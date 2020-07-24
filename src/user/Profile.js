@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { isAuthenticated } from "../auth";
+import { isAuth } from "../auth/helpers";
 import { Redirect, Link } from "react-router-dom";
 import { read } from "./apiUser";
 import DefaultProfile from "../images/avatar.jpg";
@@ -22,7 +22,7 @@ class Profile extends Component {
 
   // check follow
   checkFollow = user => {
-    const jwt = isAuthenticated();
+    const jwt = isAuth();
     const match = user.followers.find(follower => {
       // one id has many other ids (followers) and vice versa
       return follower._id === jwt.user._id;
@@ -31,8 +31,8 @@ class Profile extends Component {
   };
 
   clickFollowButton = callApi => {
-    const userId = isAuthenticated().user._id;
-    const token = isAuthenticated().token;
+    const userId = isAuth().user._id;
+    const token = isAuth().token;
 
     callApi(userId, token, this.state.user._id).then(data => {
       if (data.error) {
@@ -44,7 +44,7 @@ class Profile extends Component {
   };
 
   init = userId => {
-    const token = isAuthenticated().token;
+    const token = isAuth().token;
     read(userId, token).then(data => {
       if (data.error) {
         this.setState({ redirectToSignin: true });
@@ -57,7 +57,7 @@ class Profile extends Component {
   };
 
   loadPosts = userId => {
-    const token = isAuthenticated().token;
+    const token = isAuth().token;
     listByUser(userId, token).then(data => {
       if (data.error) {
         console.log(data.error);
@@ -108,8 +108,8 @@ class Profile extends Component {
               <p>{`Joined ${new Date(user.created).toDateString()}`}</p>
             </div>
 
-            {isAuthenticated().user &&
-            isAuthenticated().user._id === user._id ? (
+            {isAuth().user &&
+            isAuth().user._id === user._id ? (
               <div className="d-inline-block">
                 <Link
                   className="btn btn-raised btn-info mr-5"
@@ -134,8 +134,8 @@ class Profile extends Component {
             )}
 
             <div>
-              {isAuthenticated().user &&
-                isAuthenticated().user.role === "admin" && (
+              {isAuth().user &&
+                isAuth().user.role === "admin" && (
                   <div class="card mt-5">
                     <div className="card-body">
                       <h5 className="card-title">Admin</h5>

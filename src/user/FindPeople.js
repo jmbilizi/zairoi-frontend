@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { findPeople, follow } from "./apiUser";
 import DefaultProfile from "../images/avatar.jpg";
 import { Link } from "react-router-dom";
-import { isAuthenticated } from "../auth";
+import { isAuth } from "../auth/helpers";
 
 class FindPeople extends Component {
     constructor() {
@@ -15,8 +15,8 @@ class FindPeople extends Component {
     }
 
     componentDidMount() {
-        const userId = isAuthenticated().user._id;
-        const token = isAuthenticated().token;
+        const userId = isAuth().user._id;
+        const token = isAuth().token;
 
         findPeople(userId, token).then(data => {
             if (data.error) {
@@ -28,8 +28,8 @@ class FindPeople extends Component {
     }
 
     clickFollow = (user, i) => {
-        const userId = isAuthenticated().user._id;
-        const token = isAuthenticated().token;
+        const userId = isAuth().user._id;
+        const token = isAuth().token;
 
         follow(userId, token, user._id).then(data => {
             if (data.error) {
