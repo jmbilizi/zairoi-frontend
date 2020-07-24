@@ -18,6 +18,20 @@ const Layout = ({ children, match, history }) => {
           Home
         </Link>
       </li>
+      <li className="nav-item">
+        <Link to="/users" className="nav-link" style={isActive("/users")}>
+          Users
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link
+          to={`/post/create`}
+          style={isActive(history, `/post/create`)}
+          className="nav-link"
+        >
+          Create Post
+        </Link>
+      </li>
 
       {!isAuth() && (
         <Fragment>
@@ -43,11 +57,26 @@ const Layout = ({ children, match, history }) => {
       )}
 
       {isAuth() && isAuth().role === "subscriber" && (
-        <li className="nav-item">
-          <Link className="nav-link" style={isActive("/private")} to="/private">
-            {isAuth().name}
-          </Link>
-        </li>
+        <Fragment>
+          <li className="nav-item">
+            <Link
+              className="nav-link"
+              style={isActive("/private")}
+              to="/private"
+            >
+              {isAuth().name}
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              to={`/findpeople`}
+              style={isActive(history, `/findpeople`)}
+              className="nav-link"
+            >
+              Find People
+            </Link>
+          </li>
+        </Fragment>
       )}
 
       {isAuth() && (
