@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { findPeople, follow } from "./apiUser";
 import DefaultProfile from "../images/avatar.jpg";
 import { Link } from "react-router-dom";
-import { isAuth } from "../auth/helpers";
+import { isAuth, getCookie } from "../auth/helpers";
+import Layout from "../core/Layout"
 
 class FindPeople extends Component {
     constructor() {
@@ -15,8 +16,10 @@ class FindPeople extends Component {
     }
 
     componentDidMount() {
-        const userId = isAuth().user._id;
-        const token = isAuth().token;
+        const userId = isAuth()._id;
+        
+        const token = getCookie("token");
+        // const token = isAuth().token;
 
         findPeople(userId, token).then(data => {
             if (data.error) {
@@ -28,8 +31,9 @@ class FindPeople extends Component {
     }
 
     clickFollow = (user, i) => {
-        const userId = isAuth().user._id;
-        const token = isAuth().token;
+        const userId = isAuth()._id;
+        const token = getCookie("token");
+        // const token = isAuth().token;
 
         follow(userId, token, user._id).then(data => {
             if (data.error) {
@@ -84,15 +88,17 @@ class FindPeople extends Component {
     render() {
         const { users, open, followMessage } = this.state;
         return (
+          <Layout>
             <div className="container">
-                <h2 className="mt-5 mb-5">Find People</h2>
+              <h2 className="mt-5 mb-5">Find People</h2>
 
-                {open && (
-                    <div className="alert alert-success">{followMessage}</div>
-                )}
+              {open && (
+                <div className="alert alert-success">{followMessage}</div>
+              )}
 
-                {this.renderUsers(users)}
+              {this.renderUsers(users)}
             </div>
+          </Layout>
         );
     }
 }

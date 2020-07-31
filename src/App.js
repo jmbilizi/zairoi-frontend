@@ -15,10 +15,6 @@ const App = () => {
     <Layout>
       {head()}
       <div>
-        <div className="jumbotron">
-          <h2>ZAIROI APP</h2>
-          <p className="lead">Welcome to React Frontend</p>
-        </div>
         <div className="container">
           <Posts />
         </div>

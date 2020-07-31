@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { isAuth } from "../auth/helpers";
+import { isAuth, getCookie } from "../auth/helpers";
 import { Redirect, Link } from "react-router-dom";
 import { read } from "./apiUser";
 import DefaultProfile from "../images/avatar.jpg";
@@ -7,6 +7,7 @@ import DeleteUser from "./DeleteUser";
 import FollowProfileButton from "./FollowProfileButton";
 import ProfileTabs from "./ProfileTabs";
 import { listByUser } from "../post/apiPost";
+import Layout from "../core/Layout";
 
 class Profile extends Component {
   constructor() {
@@ -16,25 +17,26 @@ class Profile extends Component {
       redirectToSignin: false,
       following: false,
       error: "",
-      posts: []
+      posts: [],
     };
   }
 
   // check follow
-  checkFollow = user => {
+  checkFollow = (user) => {
     const jwt = isAuth();
-    const match = user.followers.find(follower => {
+    const match = user.followers.find((follower) => {
       // one id has many other ids (followers) and vice versa
-      return follower._id === jwt.user._id;
+      return follower._id === jwt._id;
     });
     return match;
   };
 
-  clickFollowButton = callApi => {
-    const userId = isAuth().user._id;
-    const token = isAuth().token;
+  clickFollowButton = (callApi) => {
+    const userId = isAuth()._id;
+    const token = getCookie("token");
+    // const token = isAuth().token;
 
-    callApi(userId, token, this.state.user._id).then(data => {
+    callApi(userId, token, this.state.user._id).then((data) => {
       if (data.error) {
         this.setState({ error: data.error });
       } else {
@@ -43,9 +45,11 @@ class Profile extends Component {
     });
   };
 
-  init = userId => {
-    const token = isAuth().token;
-    read(userId, token).then(data => {
+  init = (userId) => {
+    // const token = isAuth().token;
+    const token = getCookie("token");
+
+    read(userId, token).then((data) => {
       if (data.error) {
         this.setState({ redirectToSignin: true });
       } else {
@@ -56,9 +60,10 @@ class Profile extends Component {
     });
   };
 
-  loadPosts = userId => {
-    const token = isAuth().token;
-    listByUser(userId, token).then(data => {
+  loadPosts = (userId) => {
+    const token = getCookie("token");
+    // const token = isAuth().token;
+    listByUser(userId, token).then((data) => {
       if (data.error) {
         console.log(data.error);
       } else {
@@ -88,54 +93,53 @@ class Profile extends Component {
       : DefaultProfile;
 
     return (
-      <div className="container">
-        <h2 className="mt-5 mb-5">Profile</h2>
-        <div className="row">
-          <div className="col-md-4">
-            <img
-              style={{ height: "200px", width: "auto" }}
-              className="img-thumbnail"
-              src={photoUrl}
-              onError={i => (i.target.src = `${DefaultProfile}`)}
-              alt={user.name}
-            />
-          </div>
-
-          <div className="col-md-8">
-            <div className="lead mt-2">
-              <p>Hello {user.name}</p>
-              <p>Email: {user.email}</p>
-              <p>{`Joined ${new Date(user.created).toDateString()}`}</p>
+      <Layout>
+        <div className="container">
+          <h2 className="mt-5 mb-5">Profile</h2>
+          <div className="row">
+            <div className="col-md-4">
+              <img
+                style={{ height: "200px", width: "auto" }}
+                className="img-thumbnail"
+                src={photoUrl}
+                onError={(i) => (i.target.src = `${DefaultProfile}`)}
+                alt={user.name}
+              />
             </div>
 
-            {isAuth().user &&
-            isAuth().user._id === user._id ? (
-              <div className="d-inline-block">
-                <Link
-                  className="btn btn-raised btn-info mr-5"
-                  to={`/post/create`}
-                >
-                  Create Post
-                </Link>
-
-                <Link
-                  className="btn btn-raised btn-success mr-5"
-                  to={`/user/edit/${user._id}`}
-                >
-                  Edit Profile
-                </Link>
-                <DeleteUser userId={user._id} />
+            <div className="col-md-8">
+              <div className="lead mt-2">
+                <p>Name: {user.name}</p>
+                <p>Email: {user.email}</p>
+                <p>{`Joined: ${new Date(user.created).toDateString()}`}</p>
               </div>
-            ) : (
-              <FollowProfileButton
-                following={this.state.following}
-                onButtonClick={this.clickFollowButton}
-              />
-            )}
 
-            <div>
-              {isAuth().user &&
-                isAuth().user.role === "admin" && (
+              {isAuth() && isAuth()._id === user._id ? (
+                <div className="d-inline-block">
+                  <Link
+                    className="btn btn-raised btn-info mr-5"
+                    to={`/post/create`}
+                  >
+                    Create Post
+                  </Link>
+
+                  <Link
+                    className="btn btn-raised btn-success mr-5"
+                    to={`/user/edit/${user._id}`}
+                  >
+                    Edit Profile
+                  </Link>
+                  <DeleteUser userId={user._id} />
+                </div>
+              ) : (
+                <FollowProfileButton
+                  following={this.state.following}
+                  onButtonClick={this.clickFollowButton}
+                />
+              )}
+
+              <div>
+                {isAuth() && isAuth().role === "admin" && (
                   <div class="card mt-5">
                     <div className="card-body">
                       <h5 className="card-title">Admin</h5>
@@ -153,23 +157,24 @@ class Profile extends Component {
                     </div>
                   </div>
                 )}
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col md-12 mt-5 mb-5">
+              <hr />
+              <p className="lead">{user.about}</p>
+              <hr />
+
+              <ProfileTabs
+                followers={user.followers}
+                following={user.following}
+                posts={posts}
+              />
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col md-12 mt-5 mb-5">
-            <hr />
-            <p className="lead">{user.about}</p>
-            <hr />
-
-            <ProfileTabs
-              followers={user.followers}
-              following={user.following}
-              posts={posts}
-            />
-          </div>
-        </div>
-      </div>
+      </Layout>
     );
   }
 }

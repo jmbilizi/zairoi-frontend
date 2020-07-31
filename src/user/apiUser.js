@@ -5,6 +5,7 @@ export const read = (userId, token) => {
             Accept: "application/json",
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`
+
         }
     })
         .then(response => {

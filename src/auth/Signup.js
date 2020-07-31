@@ -34,7 +34,7 @@ const Signup = ({ history }) => {
     authenticate(response, () => {
       isAuth() && isAuth().role === "admin"
         ? history.push("/admin")
-        : history.push("/private");
+        : history.push(`/user/${isAuth()._id}`);
     });
   };
 

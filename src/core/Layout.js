@@ -25,8 +25,8 @@ const Layout = ({ children, match, history }) => {
       </li>
       <li className="nav-item">
         <Link
-          to={`/post/create`}
-          style={isActive(history, `/post/create`)}
+          to="/post/create"
+          style={isActive("/post/create")}
           className="nav-link"
         >
           Create Post
@@ -61,8 +61,8 @@ const Layout = ({ children, match, history }) => {
           <li className="nav-item">
             <Link
               className="nav-link"
-              style={isActive("/private")}
-              to="/private"
+              style={isActive(history, `/user/${isAuth()._id}`)}
+              to={`/user/${isAuth()._id}`}
             >
               {isAuth().name}
             </Link>

@@ -27,7 +27,7 @@ const Signin = ({ history }) => {
     authenticate(response, () => {
       isAuth() && isAuth().role === "admin"
         ? history.push("/admin")
-        : history.push("/private");
+        : history.push(`/user/${isAuth()._id}`);
     });
   };
 
@@ -53,7 +53,7 @@ const Signin = ({ history }) => {
           // toast.success(`Hey ${response.data.user.name}, Welcome back!`);
           isAuth() && isAuth().role === "admin"
             ? history.push("/admin")
-            : history.push("/private");
+            : history.push(`/user/${isAuth()._id}`);
         });
       })
       .catch((error) => {

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { isAuth } from "../auth/helpers";
+import { isAuth, getCookie } from "../auth/helpers";
 import { read, update, updateUser } from "./apiUser";
 import { Redirect } from "react-router-dom";
 import DefaultProfile from "../images/avatar.jpg";
+import Layout from "../core/Layout";
 
 class EditProfile extends Component {
   constructor() {
@@ -21,7 +22,8 @@ class EditProfile extends Component {
   }
 
   init = (userId) => {
-    const token = isAuth().token;
+    // const token = isAuth().token;
+    const token = getCookie("token");
     read(userId, token).then((data) => {
       if (data.error) {
         this.setState({ redirectToProfile: true });
@@ -89,7 +91,8 @@ class EditProfile extends Component {
 
     if (this.isValid()) {
       const userId = this.props.match.params.userId;
-      const token = isAuth().token;
+      const token = getCookie("token");
+      // const token = isAuth().token;
 
       update(userId, token, this.userData).then((data) => {
         if (data.error) {
@@ -187,37 +190,38 @@ class EditProfile extends Component {
       : DefaultProfile;
 
     return (
-      <div className="container">
-        <h2 className="mt-5 mb-5">Edit Profile</h2>
-        <div
-          className="alert alert-danger"
-          style={{ display: error ? "" : "none" }}
-        >
-          {error}
-        </div>
-
-        {loading ? (
-          <div className="jumbotron text-center">
-            <h2>Loading...</h2>
+      <Layout>
+        <div className="container">
+          <h2 className="mt-5 mb-5">Edit Profile</h2>
+          <div
+            className="alert alert-danger"
+            style={{ display: error ? "" : "none" }}
+          >
+            {error}
           </div>
-        ) : (
-          ""
-        )}
 
-        <img
-          style={{ height: "200px", width: "auto" }}
-          className="img-thumbnail"
-          src={photoUrl}
-          onError={(i) => (i.target.src = `${DefaultProfile}`)}
-          alt={name}
-        />
+          {loading ? (
+            <div className="jumbotron text-center">
+              <h2>Loading...</h2>
+            </div>
+          ) : (
+            ""
+          )}
 
-        {isAuth().user.role === "admin" &&
-          this.signupForm(name, email, password, about)}
+          <img
+            style={{ height: "200px", width: "auto" }}
+            className="img-thumbnail"
+            src={photoUrl}
+            onError={(i) => (i.target.src = `${DefaultProfile}`)}
+            alt={name}
+          />
 
-        {isAuth().user._id === id &&
-          this.signupForm(name, email, password, about)}
-      </div>
+          {isAuth().role === "admin" &&
+            this.signupForm(name, email, password, about)}
+
+          {isAuth()._id === id && this.signupForm(name, email, password, about)}
+        </div>
+      </Layout>
     );
   }
 }
