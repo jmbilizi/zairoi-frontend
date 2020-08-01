@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import { isAuth, signout } from "../auth/helpers";
+import { isAuth, getCookie, signout } from "../auth/helpers";
 import { remove } from "./apiUser";
 
 class DeleteUser extends Component {
@@ -9,7 +9,8 @@ class DeleteUser extends Component {
     };
 
     deleteAccount = () => {
-        const token = isAuth().token;
+        // const token = isAuth().token;
+        const token = getCookie("token");
         const userId = this.props.userId;
         remove(userId, token).then(data => {
             if (data.error) {
