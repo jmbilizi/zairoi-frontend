@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { isAuth, signout } from "../auth/helpers";
+import DefaultProfile from "../images/avatar.jpg";
 
 const Layout = ({ children, match, history }) => {
   const isActive = (path) => {
@@ -64,6 +65,20 @@ const Layout = ({ children, match, history }) => {
               style={isActive(history, `/user/${isAuth()._id}`)}
               to={`/user/${isAuth()._id}`}
             >
+              <img
+                style={{
+                  borderRadius: "50%"
+                  // border: "1px solid black",
+                }}
+                className="float-left mr-2"
+                height="30px"
+                width="30px"
+                onError={(i) => (i.target.src = `${DefaultProfile}`)}
+                src={`${process.env.REACT_APP_API_URL}/user/photo/${
+                  isAuth()._id
+                }`}
+                alt={isAuth().name}
+              />
               {isAuth().name}
             </Link>
           </li>

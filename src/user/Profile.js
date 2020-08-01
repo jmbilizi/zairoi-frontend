@@ -99,7 +99,7 @@ class Profile extends Component {
           <div className="row">
             <div className="col-md-4">
               <img
-                style={{ height: "200px", width: "auto" }}
+                style={{ borderRadius: "50%", height: "200px", width: "auto" }}
                 className="img-thumbnail"
                 src={photoUrl}
                 onError={(i) => (i.target.src = `${DefaultProfile}`)}
@@ -166,11 +166,11 @@ class Profile extends Component {
               <p className="lead">{user.about}</p>
               <hr />
 
-              <ProfileTabs
+              {/* <ProfileTabs
                 followers={user.followers}
                 following={user.following}
                 posts={posts}
-              />
+              /> */}
             </div>
           </div>
         </div>
