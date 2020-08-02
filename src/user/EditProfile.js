@@ -97,7 +97,7 @@ class EditProfile extends Component {
       update(userId, token, this.userData).then((data) => {
         if (data.error) {
           this.setState({ error: data.error });
-        } else if (isAuth().user.role === "admin") {
+        } else if (isAuth().role === "admin") {
           this.setState({
             redirectToProfile: true,
           });
