@@ -152,8 +152,8 @@ class Profile extends Component {
                       >
                         Edit Profile
                       </Link>
-                      {/*<DeleteUser userId={user._id} />*/}
-                      <DeleteUser />
+                      <DeleteUser userId={user._id} />
+                      {/* <DeleteUser /> */}
                     </div>
                   </div>
                 )}
@@ -165,12 +165,11 @@ class Profile extends Component {
               <hr />
               <p className="lead">{user.about}</p>
               <hr />
-
-              {/* <ProfileTabs
+              <ProfileTabs
                 followers={user.followers}
-                following={user.following}
                 posts={posts}
-              /> */}
+                following={user.following}
+              />
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { isAuth } from "../auth/helpers";
+import { isAuth, getCookie } from "../auth/helpers";
 import { create } from "./apiPost";
 import { Redirect } from "react-router-dom";
 import Layout from "../core/Layout";
@@ -21,7 +21,7 @@ class NewPost extends Component {
 
   componentDidMount() {
     this.postData = new FormData();
-    this.setState({ user: isAuth().user });
+    this.setState({ user: isAuth() });
   }
 
   isValid = () => {
@@ -55,7 +55,7 @@ class NewPost extends Component {
 
     if (this.isValid()) {
       const userId = isAuth()._id;
-      const token = isAuth().token;
+      const token = getCookie("token");
 
       create(userId, token, this.postData).then((data) => {
         if (data.error) this.setState({ error: data.error });
