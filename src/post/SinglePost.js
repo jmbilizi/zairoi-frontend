@@ -6,7 +6,7 @@ import { isAuth, getCookie } from "../auth/helpers";
 import Layout from "../core/Layout";
 import Comment from "./Comment";
 import DefaultProfile from "../images/avatar.jpg";
-import { PencilIcon, XIcon } from "@primer/octicons-react";
+import { PencilIcon, TrashIcon } from "@primer/octicons-react";
 
 class SinglePost extends Component {
   state = {
@@ -91,7 +91,7 @@ class SinglePost extends Component {
     const posterId = post.postedBy ? `/user/${post.postedBy._id}` : "";
     const posterName = post.postedBy ? post.postedBy.name : " Unknown";
 
-    const { like, likes } = this.state;
+    const { like, likes, comments } = this.state;
 
     return (
       <div className="card-body border border-silver mt-4">
@@ -152,62 +152,66 @@ class SinglePost extends Component {
               </h3>
             )}
           </div>
-          <div className="col-md-6 mt-1">
-            <div className="d-inline-block">
-              <Link to={`/`} className="btn btn-raised btn-primary btn-md mr-5">
-                Back to posts
-              </Link>
+          <div className="col-md-6 mt-2">
+            <Link
+              to={`/`}
+              className="btn btn-raised btn-primary btn-md float-md-right"
+            >
+              Back to posts
+            </Link>
 
-              {isAuth() && isAuth()._id === post.postedBy._id && (
-                <>
-                  <Link
-                    to={`/post/edit/${post._id}`}
-                    className="btn btn-raised btn-warning btn-md mr-5"
-                  >
-                    <PencilIcon size={24} /> Edit
-                  </Link>
-                  <button
-                    onClick={this.deleteConfirmed}
-                    className="btn btn-raised btn-danger btn-md mr-5"
-                  >
-                    <XIcon size={24} /> Delete
-                  </button>
-                </>
-              )}
+            {isAuth() && isAuth()._id === post.postedBy._id && (
+              <>
+                <button
+                  onClick={this.deleteConfirmed}
+                  className="btn btn-raised btn-danger btn-md float-md-right mr-3"
+                >
+                  <TrashIcon size={24} /> Delete
+                </button>
+                <Link
+                  to={`/post/edit/${post._id}`}
+                  className="btn btn-raised btn-warning btn-md float-md-right mr-3"
+                >
+                  <PencilIcon size={24} /> Edit
+                </Link>
+              </>
+            )}
 
-              <div>
-                {isAuth() && isAuth().role === "admin" && (
-                  <div class="card mt-5">
-                    <div className="card-body">
-                      <h5 className="card-title">Admin</h5>
-                      <p className="mb-2 text-danger">
-                        Edit/Delete as an Admin
-                      </p>
-                      <Link
-                        to={`/post/edit/${post._id}`}
-                        className="btn btn-raised btn-warning btn-md mr-5"
-                      >
-                        <PencilIcon size={24} /> Edit
-                      </Link>
-                      <button
-                        onClick={this.deleteConfirmed}
-                        className="btn btn-raised btn-danger btn-md mr-5"
-                      >
-                        <XIcon size={24} /> Delete
-                      </button>
-                    </div>
+            <div>
+              {isAuth() && isAuth().role === "admin" && (
+                <div class="card mt-5">
+                  <div className="card-body">
+                    <h5 className="card-title">Admin</h5>
+                    <p className="mb-2 text-danger">Edit/Delete as an Admin</p>
+                    <Link
+                      to={`/post/edit/${post._id}`}
+                      className="btn btn-raised btn-warning btn-md mr-5"
+                    >
+                      <PencilIcon size={24} /> Edit
+                    </Link>
+                    <button
+                      onClick={this.deleteConfirmed}
+                      className="btn btn-raised btn-danger btn-md mr-5"
+                    >
+                      <TrashIcon size={24} /> Delete
+                    </button>
                   </div>
-                )}
-              </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
+        <Comment
+          postId={post._id}
+          comments={comments.reverse()}
+          updateComments={this.updateComments}
+        />
       </div>
     );
   };
 
   render() {
-    const { post, redirectToHome, redirectToSignin, comments } = this.state;
+    const { post, redirectToHome, redirectToSignin } = this.state;
 
     if (redirectToHome) {
       return <Redirect to={`/`} />;
@@ -225,12 +229,6 @@ class SinglePost extends Component {
           ) : (
             this.renderPost(post)
           )}
-
-          <Comment
-            postId={post._id}
-            comments={comments.reverse()}
-            updateComments={this.updateComments}
-          />
         </div>
       </Layout>
     );

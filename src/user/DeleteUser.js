@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { isAuth, getCookie, signout } from "../auth/helpers";
 import { remove } from "./apiUser";
-import { XIcon } from "@primer/octicons-react";
+import { TrashIcon } from "@primer/octicons-react";
 
 class DeleteUser extends Component {
   state = {
@@ -43,7 +43,7 @@ class DeleteUser extends Component {
         onClick={this.deleteConfirmed}
         className="btn btn-raised btn-danger"
       >
-        <XIcon size={24} />
+        <TrashIcon size={24} />
         Delete Profile
       </button>
     );

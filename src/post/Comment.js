@@ -3,6 +3,7 @@ import { comment, uncomment } from "./apiPost";
 import { isAuth, getCookie } from "../auth/helpers";
 import { Link } from "react-router-dom";
 import DefaultProfile from "../images/avatar.jpg";
+import { CommentIcon } from "@primer/octicons-react";
 
 class Comment extends Component {
   state = {
@@ -107,7 +108,11 @@ class Comment extends Component {
         </div>
 
         <div className="col-md-12">
-          <h3 className="text-primary">{comments.length} Comments</h3>
+          <h5 className="text-primary">
+            {" "}
+            <CommentIcon size={24} />
+            {comments.length} Comments
+          </h5>
           <hr />
           {comments.map((comment, i) => (
             <div key={i}>
