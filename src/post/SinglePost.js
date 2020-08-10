@@ -5,6 +5,8 @@ import { Link, Redirect } from "react-router-dom";
 import { isAuth, getCookie } from "../auth/helpers";
 import Layout from "../core/Layout";
 import Comment from "./Comment";
+import DefaultProfile from "../images/avatar.jpg";
+import { PencilIcon, XIcon } from "@primer/octicons-react";
 
 class SinglePost extends Component {
   state = {
@@ -92,7 +94,33 @@ class SinglePost extends Component {
     const { like, likes } = this.state;
 
     return (
-      <div className="card-body">
+      <div className="card-body border border-silver mt-4">
+        <div className="row border-bottom border-silver">
+          <div className="col-sm-6">
+            <Link to={`${posterId}`}>
+              <img
+                style={{
+                  borderRadius: "50%",
+                  border: "1px solid black",
+                }}
+                className="float-left mr-3"
+                height="30px"
+                width="30px"
+                onError={(i) => (i.target.src = `${DefaultProfile}`)}
+                src={`${process.env.REACT_APP_API_URL}/user/photo/${post.postedBy._id}`}
+                alt={post.postedBy.name}
+              />
+              {posterName}
+            </Link>
+          </div>
+          <div className="col-sm-6">
+            <p className="float-right font-italic mark">
+              Posted on {new Date(post.created).toDateString()}
+            </p>
+          </div>
+        </div>
+        <h2 className="mt-2 mb-3"> {post.title} </h2>
+        <p className="card-text">{post.body}</p>
         <img
           src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}`}
           alt={post.title}
@@ -104,74 +132,74 @@ class SinglePost extends Component {
             objectFit: "cover",
           }}
         />
-
-        {like ? (
-          <h3 onClick={this.likeToggle}>
-            <i
-              className="fa fa-thumbs-up text-success bg-dark"
-              style={{ padding: "10px", borderRadius: "50%" }}
-            />{" "}
-            {likes} Like
-          </h3>
-        ) : (
-          <h3 onClick={this.likeToggle}>
-            <i
-              className="fa fa-thumbs-up text-warning bg-dark"
-              style={{ padding: "10px", borderRadius: "50%" }}
-            />{" "}
-            {likes} Like
-          </h3>
-        )}
-
-        <p className="card-text">{post.body}</p>
-        <br />
-        <p className="font-italic mark">
-          Posted by <Link to={`${posterId}`}>{posterName} </Link>
-          on {new Date(post.created).toDateString()}
-        </p>
-        <div className="d-inline-block">
-          <Link to={`/`} className="btn btn-raised btn-primary btn-sm mr-5">
-            Back to posts
-          </Link>
-
-          {isAuth() && isAuth()._id === post.postedBy._id && (
-            <>
-              <Link
-                to={`/post/edit/${post._id}`}
-                className="btn btn-raised btn-warning btn-sm mr-5"
-              >
-                Update Post
+        <div className="row border-bottom border-top border-silver">
+          <div className="col-md-6 mt-1">
+            {like ? (
+              <h4 onClick={this.likeToggle}>
+                <i
+                  className="fa fa-thumbs-up text-success bg-dark"
+                  style={{ padding: "10px", borderRadius: "50%" }}
+                />{" "}
+                {likes} Like
+              </h4>
+            ) : (
+              <h3 onClick={this.likeToggle}>
+                <i
+                  className="fa fa-thumbs-up text-warning bg-dark"
+                  style={{ padding: "10px", borderRadius: "50%" }}
+                />{" "}
+                {likes} Like
+              </h3>
+            )}
+          </div>
+          <div className="col-md-6 mt-1">
+            <div className="d-inline-block">
+              <Link to={`/`} className="btn btn-raised btn-primary btn-md mr-5">
+                Back to posts
               </Link>
-              <button
-                onClick={this.deleteConfirmed}
-                className="btn btn-raised btn-danger"
-              >
-                Delete Post
-              </button>
-            </>
-          )}
 
-          <div>
-            {isAuth() && isAuth().role === "admin" && (
-              <div class="card mt-5">
-                <div className="card-body">
-                  <h5 className="card-title">Admin</h5>
-                  <p className="mb-2 text-danger">Edit/Delete as an Admin</p>
+              {isAuth() && isAuth()._id === post.postedBy._id && (
+                <>
                   <Link
                     to={`/post/edit/${post._id}`}
-                    className="btn btn-raised btn-warning btn-sm mr-5"
+                    className="btn btn-raised btn-warning btn-md mr-5"
                   >
-                    Update Post
+                    <PencilIcon size={24} /> Edit
                   </Link>
                   <button
                     onClick={this.deleteConfirmed}
-                    className="btn btn-raised btn-danger"
+                    className="btn btn-raised btn-danger btn-md mr-5"
                   >
-                    Delete Post
+                    <XIcon size={24} /> Delete
                   </button>
-                </div>
+                </>
+              )}
+
+              <div>
+                {isAuth() && isAuth().role === "admin" && (
+                  <div class="card mt-5">
+                    <div className="card-body">
+                      <h5 className="card-title">Admin</h5>
+                      <p className="mb-2 text-danger">
+                        Edit/Delete as an Admin
+                      </p>
+                      <Link
+                        to={`/post/edit/${post._id}`}
+                        className="btn btn-raised btn-warning btn-md mr-5"
+                      >
+                        <PencilIcon size={24} /> Edit
+                      </Link>
+                      <button
+                        onClick={this.deleteConfirmed}
+                        className="btn btn-raised btn-danger btn-md mr-5"
+                      >
+                        <XIcon size={24} /> Delete
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
+            </div>
           </div>
         </div>
       </div>
@@ -190,8 +218,6 @@ class SinglePost extends Component {
     return (
       <Layout>
         <div className="container">
-          <h2 className="display-2 mt-5 mb-5">{post.title}</h2>
-
           {!post ? (
             <div className="jumbotron text-center">
               <h2>Loading...</h2>

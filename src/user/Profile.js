@@ -8,6 +8,7 @@ import FollowProfileButton from "./FollowProfileButton";
 import ProfileTabs from "./ProfileTabs";
 import { listByUser } from "../post/apiPost";
 import Layout from "../core/Layout";
+import { PencilIcon, XIcon, PlusIcon } from "@primer/octicons-react";
 
 class Profile extends Component {
   constructor() {
@@ -120,6 +121,7 @@ class Profile extends Component {
                     className="btn btn-raised btn-info mr-5"
                     to={`/post/create`}
                   >
+                    <PlusIcon size={24} />
                     Create Post
                   </Link>
 
@@ -127,7 +129,7 @@ class Profile extends Component {
                     className="btn btn-raised btn-success mr-5"
                     to={`/user/edit/${user._id}`}
                   >
-                    Edit Profile
+                    <PencilIcon size={24} /> Edit Profile
                   </Link>
                   <DeleteUser userId={user._id} />
                 </div>
@@ -150,7 +152,7 @@ class Profile extends Component {
                         className="btn btn-raised btn-success mr-5"
                         to={`/user/edit/${user._id}`}
                       >
-                        Edit Profile
+                        <PencilIcon size={24} /> Edit Profile
                       </Link>
                       <DeleteUser userId={user._id} />
                       {/* <DeleteUser /> */}
