@@ -6,7 +6,7 @@ import { isAuth, getCookie } from "../auth/helpers";
 import Layout from "../core/Layout";
 import Comment from "./Comment";
 import DefaultProfile from "../images/avatar.jpg";
-import { PencilIcon, TrashIcon } from "@primer/octicons-react";
+import { PencilIcon, TrashIcon, CommentIcon } from "@primer/octicons-react";
 
 class SinglePost extends Component {
   state = {
@@ -133,29 +133,43 @@ class SinglePost extends Component {
           }}
         />
         <div className="row border-bottom border-top border-silver">
-          <div className="col-md-6 mt-1">
-            {like ? (
-              <h4 onClick={this.likeToggle}>
-                <i
-                  className="fa fa-thumbs-up text-success bg-dark"
-                  style={{ padding: "10px", borderRadius: "50%" }}
-                />{" "}
-                {likes} Like
-              </h4>
-            ) : (
-              <h3 onClick={this.likeToggle}>
-                <i
-                  className="fa fa-thumbs-up text-warning bg-dark"
-                  style={{ padding: "10px", borderRadius: "50%" }}
-                />{" "}
-                {likes} Like
-              </h3>
-            )}
+          <div className="col-sm mt-2">
+            <div className="row">
+              <div className="col-5">
+                {like ? (
+                  <h10 onClick={this.likeToggle}>
+                    <i
+                      className="fa fa-thumbs-up text-success bg-dark"
+                      style={{ padding: "10px", borderRadius: "50%" }}
+                    />{" "}
+                    {likes} Like
+                  </h10>
+                ) : (
+                  <h10 onClick={this.likeToggle}>
+                    <i
+                      className="fa fa-thumbs-up text-warning bg-dark"
+                      style={{ padding: "10px", borderRadius: "50%" }}
+                    />{" "}
+                    {likes} Like
+                  </h10>
+                )}
+              </div>
+              <div className="col-7">
+                <div className="row">
+                  <CommentIcon size={35} />
+                  <h10 className="text-dark ml-1 mt-2 pb-2">
+                    {" "}
+                    {comments.length} Comments
+                  </h10>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="col-md-6 mt-2">
+
+          <div className="col-sm mt-2 mb-2">
             <Link
               to={`/`}
-              className="btn btn-raised btn-primary btn-md float-md-right"
+              className="btn btn-raised btn-primary btn-md float-sm-right"
             >
               Back to posts
             </Link>
@@ -164,13 +178,13 @@ class SinglePost extends Component {
               <>
                 <button
                   onClick={this.deleteConfirmed}
-                  className="btn btn-raised btn-danger btn-md float-md-right mr-3"
+                  className="btn btn-raised btn-danger btn-md float-sm-right mr-3"
                 >
                   <TrashIcon size={24} /> Delete
                 </button>
                 <Link
                   to={`/post/edit/${post._id}`}
-                  className="btn btn-raised btn-warning btn-md float-md-right mr-3"
+                  className="btn btn-raised btn-warning btn-md float-sm-right mr-3"
                 >
                   <PencilIcon size={24} /> Edit
                 </Link>

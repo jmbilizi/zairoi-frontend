@@ -83,10 +83,9 @@ class Comment extends Component {
 
     return (
       <div>
-        <h2 className="mt-2 mb-2">Leave a comment</h2>
-
+        {/* <h2 className="mt-2 mb-2">Leave a comment</h2> */}
         <form onSubmit={this.addComment}>
-          <div className="input-group">
+          <div className="input-group mt-3 mb-3">
             <input
               type="text"
               onChange={this.handleChange}
@@ -108,12 +107,11 @@ class Comment extends Component {
         </div>
 
         <div className="col-md-12">
-          <h5 className="text-primary">
+          {/* <h5 className="text-primary">
             {" "}
             <CommentIcon size={24} />
             {comments.length} Comments
-          </h5>
-          <hr />
+          </h5> */}
           {comments.map((comment, i) => (
             <div key={i}>
               <div>
