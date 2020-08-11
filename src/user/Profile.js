@@ -8,7 +8,7 @@ import FollowProfileButton from "./FollowProfileButton";
 import ProfileTabs from "./ProfileTabs";
 import { listByUser } from "../post/apiPost";
 import Layout from "../core/Layout";
-import { PencilIcon, TrashIcon, PlusIcon } from "@primer/octicons-react";
+import { PencilIcon, PlusIcon } from "@primer/octicons-react";
 
 class Profile extends Component {
   constructor() {
@@ -23,9 +23,9 @@ class Profile extends Component {
   }
 
   // check follow
-  checkFollow = (user) => {
+  checkFollow = (User) => {
     const jwt = isAuth();
-    const match = user.followers.find((follower) => {
+    const match = User.followers.find((follower) => {
       // one id has many other ids (followers) and vice versa
       return follower._id === jwt._id;
     });
