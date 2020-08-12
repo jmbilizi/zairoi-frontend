@@ -137,30 +137,30 @@ class SinglePost extends Component {
             <div className="row">
               <div className="col-5">
                 {like ? (
-                  <h10 onClick={this.likeToggle}>
+                  <p onClick={this.likeToggle}>
                     <i
                       className="fa fa-thumbs-up text-success bg-dark"
                       style={{ padding: "10px", borderRadius: "50%" }}
                     />{" "}
                     {likes} Like
-                  </h10>
+                  </p>
                 ) : (
-                  <h10 onClick={this.likeToggle}>
+                  <p onClick={this.likeToggle}>
                     <i
                       className="fa fa-thumbs-up text-warning bg-dark"
                       style={{ padding: "10px", borderRadius: "50%" }}
                     />{" "}
                     {likes} Like
-                  </h10>
+                  </p>
                 )}
               </div>
               <div className="col-7">
                 <div className="row">
                   <CommentIcon size={35} />
-                  <h10 className="text-dark ml-1 mt-2 pb-2">
+                  <p className="text-dark ml-1 mt-2">
                     {" "}
                     {comments.length} Comments
-                  </h10>
+                  </p>
                 </div>
               </div>
             </div>

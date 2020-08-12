@@ -29,7 +29,7 @@ const Forgot = ({ history }) => {
     setValues({ ...values, buttonText: "Submitting" });
     axios({
       method: "PUT",
-      url: `${process.env.REACT_APP_API}/forgot-password`,
+      url: `${process.env.REACT_APP_API_URL}/forgot-password`,
       data: { email },
     })
       .then((response) => {
