@@ -93,7 +93,7 @@ class Comment extends Component {
               className="form-control"
               placeholder="Leave a comment..."
             />
-            <div class="input-group-append">
+            <div className="input-group-append">
               <button className="btn btn-raised btn-success">Comment</button>
             </div>
           </div>
