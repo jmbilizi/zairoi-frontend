@@ -52,13 +52,22 @@ const Layout = ({ children, match, history }) => {
       {isAuth() && isAuth().role === "admin" && (
         <li className="nav-item">
           <Link className="nav-link" style={isActive("/admin")} to="/admin">
-            {isAuth().name}
+            Admin
           </Link>
         </li>
       )}
 
-      {isAuth() && isAuth().role === "subscriber" && (
+      {isAuth() && (
         <Fragment>
+          <li className="nav-item">
+            <Link
+              className="nav-link"
+              style={isActive(`/findpeople`)}
+              to={`/findpeople`}
+            >
+              Find People
+            </Link>
+          </li>
           <li className="nav-item">
             <Link
               className="nav-link"
@@ -67,7 +76,7 @@ const Layout = ({ children, match, history }) => {
             >
               <img
                 style={{
-                  borderRadius: "50%"
+                  borderRadius: "50%",
                   // border: "1px solid black",
                 }}
                 className="float-left mr-2"
@@ -83,31 +92,19 @@ const Layout = ({ children, match, history }) => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link
-              to={`/findpeople`}
-              style={isActive(history, `/findpeople`)}
+            <span
               className="nav-link"
+              style={{ cursor: "pointer", color: "#fff" }}
+              onClick={() => {
+                signout(() => {
+                  history.push("/");
+                });
+              }}
             >
-              Find People
-            </Link>
+              Signout
+            </span>
           </li>
         </Fragment>
-      )}
-
-      {isAuth() && (
-        <li className="nav-item">
-          <span
-            className="nav-link"
-            style={{ cursor: "pointer", color: "#fff" }}
-            onClick={() => {
-              signout(() => {
-                history.push("/");
-              });
-            }}
-          >
-            Signout
-          </span>
-        </li>
       )}
     </ul>
   );
