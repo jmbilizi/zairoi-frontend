@@ -23,9 +23,9 @@ class Profile extends Component {
   }
 
   // check follow
-  checkFollow = (User) => {
+  checkFollow = (user) => {
     const jwt = isAuth();
-    const match = User.followers.find((follower) => {
+    const match = user.followers.find((follower) => {
       // one id has many other ids (followers) and vice versa
       return follower._id === jwt._id;
     });
