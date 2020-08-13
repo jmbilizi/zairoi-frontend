@@ -44,7 +44,7 @@ class DeleteUser extends Component {
         className="btn btn-raised btn-danger"
       >
         <TrashIcon size={24} />
-        Delete Profile
+        Profile
       </button>
     );
   }

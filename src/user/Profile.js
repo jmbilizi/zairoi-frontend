@@ -98,7 +98,7 @@ class Profile extends Component {
         <div className="container">
           <h2 className="mt-5 mb-5">Profile</h2>
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-4 col-sm-12">
               <img
                 style={{ borderRadius: "50%", height: "200px", width: "auto" }}
                 className="img-thumbnail"
@@ -108,7 +108,7 @@ class Profile extends Component {
               />
             </div>
 
-            <div className="col-md-8">
+            <div className="col-md-8 col-sm-12">
               <div className="lead mt-2">
                 <p>Name: {user.name}</p>
                 <p>Email: {user.email}</p>
@@ -118,18 +118,18 @@ class Profile extends Component {
               {isAuth() && isAuth()._id === user._id ? (
                 <div className="d-inline-block">
                   <Link
-                    className="btn btn-raised btn-info mr-5"
+                    className="btn btn-raised btn-info mr-2"
                     to={`/post/create`}
                   >
                     <PlusIcon size={24} />
-                    Create Post
+                    Post
                   </Link>
 
                   <Link
-                    className="btn btn-raised btn-success mr-5"
+                    className="btn btn-raised btn-success mr-2"
                     to={`/user/edit/${user._id}`}
                   >
-                    <PencilIcon size={24} /> Edit Profile
+                    <PencilIcon size={24} /> Profile
                   </Link>
                   <DeleteUser userId={user._id} />
                 </div>
@@ -149,10 +149,10 @@ class Profile extends Component {
                         Edit/Delete as an Admin
                       </p>
                       <Link
-                        className="btn btn-raised btn-success mr-5"
+                        className="btn btn-raised btn-success mr-3"
                         to={`/user/edit/${user._id}`}
                       >
-                        <PencilIcon size={24} /> Edit Profile
+                        <PencilIcon size={24} /> Profile
                       </Link>
                       <DeleteUser userId={user._id} />
                       {/* <DeleteUser /> */}
@@ -163,7 +163,7 @@ class Profile extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="col md-12 mt-5 mb-5">
+            <div className="col-sm-12 mt-5 mb-5">
               <hr />
               <p className="lead">{user.about}</p>
               <hr />

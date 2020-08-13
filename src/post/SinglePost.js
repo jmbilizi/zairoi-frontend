@@ -96,14 +96,14 @@ class SinglePost extends Component {
     return (
       <div className="card-body border border-silver mt-4">
         <div className="row border-bottom border-silver">
-          <div className="col-sm-6">
+          <div className="col-sm-5">
             <Link to={`${posterId}`}>
               <img
                 style={{
                   borderRadius: "50%",
                   border: "1px solid black",
                 }}
-                className="float-left mr-3"
+                className="float-left mr-2"
                 height="30px"
                 width="30px"
                 onError={(i) => (i.target.src = `${DefaultProfile}`)}
@@ -113,7 +113,7 @@ class SinglePost extends Component {
               {posterName}
             </Link>
           </div>
-          <div className="col-sm-6">
+          <div className="col-sm-7">
             <p className="float-right font-italic mark">
               Posted on {new Date(post.created).toDateString()}
             </p>
@@ -157,7 +157,7 @@ class SinglePost extends Component {
               <div className="col-7">
                 <div className="row">
                   <CommentIcon size={35} />
-                  <p className="text-dark ml-1 mt-2">
+                  <p className="text-dark ml-1 mt-2 pb-2">
                     {" "}
                     {comments.length} Comments
                   </p>
@@ -169,7 +169,7 @@ class SinglePost extends Component {
           <div className="col-sm mt-2 mb-2">
             <Link
               to={`/`}
-              className="btn btn-raised btn-primary btn-md float-sm-right"
+              className="btn btn-raised btn-primary btn-md float-sm-right ml-2"
             >
               Back to posts
             </Link>
@@ -178,15 +178,15 @@ class SinglePost extends Component {
               <>
                 <button
                   onClick={this.deleteConfirmed}
-                  className="btn btn-raised btn-danger btn-md float-sm-right mr-3"
+                  className="btn btn-raised btn-danger btn-md float-sm-right mr-3 ml-3"
                 >
-                  <TrashIcon size={24} /> Delete
+                  <TrashIcon size={24} />
                 </button>
                 <Link
                   to={`/post/edit/${post._id}`}
                   className="btn btn-raised btn-warning btn-md float-sm-right mr-3"
                 >
-                  <PencilIcon size={24} /> Edit
+                  <PencilIcon size={24} />
                 </Link>
               </>
             )}
@@ -236,13 +236,19 @@ class SinglePost extends Component {
     return (
       <Layout>
         <div className="container">
-          {!post ? (
-            <div className="jumbotron text-center">
-              <h2>Loading...</h2>
+          <div className="row">
+            <div className="col-md-2"></div>
+            <div className="col-md-8 col-sm-12">
+              {!post ? (
+                <div className="jumbotron text-center">
+                  <h2>Loading...</h2>
+                </div>
+              ) : (
+                this.renderPost(post)
+              )}
             </div>
-          ) : (
-            this.renderPost(post)
-          )}
+            <div className="col-md-2"></div>
+          </div>
         </div>
       </Layout>
     );
