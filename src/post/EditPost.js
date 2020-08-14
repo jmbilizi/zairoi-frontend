@@ -139,7 +139,7 @@ class EditPost extends Component {
     } = this.state;
 
     if (redirectToProfile) {
-      return <Redirect to={`/user/${isAuth()._id}`} />;
+      return <Redirect to={`/post/${postedBy}`} />;
     }
 
     return (
