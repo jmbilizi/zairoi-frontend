@@ -138,6 +138,7 @@ class EditProfile extends Component {
           onChange={this.handleChange("email")}
           type="email"
           className="form-control"
+          disabled
           value={email}
         />
       </div>
