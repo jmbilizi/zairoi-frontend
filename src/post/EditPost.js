@@ -12,6 +12,7 @@ class EditPost extends Component {
       id: "",
       title: "",
       body: "",
+      postedBy: "",
       redirectToProfile: false,
       error: "",
       fileSize: 0,
@@ -25,6 +26,7 @@ class EditPost extends Component {
         this.setState({ redirectToProfile: true });
       } else {
         this.setState({
+          postedBy: data._id,
           id: data.postedBy._id,
           title: data.title,
           body: data.body,
@@ -126,7 +128,15 @@ class EditPost extends Component {
   );
 
   render() {
-    const { id, title, body, redirectToProfile, error, loading } = this.state;
+    const {
+      postedBy,
+      id,
+      title,
+      body,
+      redirectToProfile,
+      error,
+      loading,
+    } = this.state;
 
     if (redirectToProfile) {
       return <Redirect to={`/user/${isAuth()._id}`} />;
@@ -157,7 +167,7 @@ class EditPost extends Component {
             className="img-thumbnail"
             src={`${
               process.env.REACT_APP_API_URL
-            }/post/photo/${id}?${new Date().getTime()}`}
+            }/post/photo/${postedBy}?${new Date().getTime()}`}
             onError={(i) => (i.target.src = `${DefaultPost}`)}
             alt={title}
           />
