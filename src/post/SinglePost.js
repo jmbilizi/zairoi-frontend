@@ -94,7 +94,7 @@ class SinglePost extends Component {
     const { like, likes, comments } = this.state;
 
     return (
-      <div className="card-body border border-silver mt-4">
+      <div className="card-body rounded border border-silver mt-4">
         <div className="row border-bottom border-silver">
           <div className="col-sm-5">
             <Link to={`${posterId}`}>
@@ -190,31 +190,33 @@ class SinglePost extends Component {
                 </Link>
               </>
             )}
-
-            <div>
-              {isAuth() && isAuth().role === "admin" && (
-                <div class="card mt-5">
-                  <div className="card-body">
-                    <h5 className="card-title">Admin</h5>
-                    <p className="mb-2 text-danger">Edit/Delete as an Admin</p>
-                    <Link
-                      to={`/post/edit/${post._id}`}
-                      className="btn btn-raised btn-warning btn-md mr-5"
-                    >
-                      <PencilIcon size={24} /> Edit
-                    </Link>
-                    <button
-                      onClick={this.deleteConfirmed}
-                      className="btn btn-raised btn-danger btn-md mr-5"
-                    >
-                      <TrashIcon size={24} /> Delete
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
           </div>
         </div>
+        <div className="row">
+          <div className="col-sm-12">
+            {isAuth() && isAuth().role === "admin" && (
+              <div class="card mt-5">
+                <div className="card-body">
+                  <h5 className="card-title">Admin</h5>
+                  <p className="mb-2 text-danger">Edit/Delete as an Admin</p>
+                  <Link
+                    to={`/post/edit/${post._id}`}
+                    className="btn btn-raised btn-warning btn-md mr-5"
+                  >
+                    <PencilIcon size={24} />
+                  </Link>
+                  <button
+                    onClick={this.deleteConfirmed}
+                    className="btn btn-raised btn-danger btn-md mr-5"
+                  >
+                    <TrashIcon size={24} />
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
         <Comment
           postId={post._id}
           comments={comments.reverse()}

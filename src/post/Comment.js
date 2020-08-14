@@ -3,7 +3,7 @@ import { comment, uncomment } from "./apiPost";
 import { isAuth, getCookie } from "../auth/helpers";
 import { Link } from "react-router-dom";
 import DefaultProfile from "../images/avatar.jpg";
-import { CommentIcon } from "@primer/octicons-react";
+import { TrashIcon } from "@primer/octicons-react";
 
 class Comment extends Component {
   state = {
@@ -85,7 +85,7 @@ class Comment extends Component {
       <div>
         {/* <h2 className="mt-2 mb-2">Leave a comment</h2> */}
         <form onSubmit={this.addComment}>
-          <div className="input-group mt-3 mb-3">
+          <div className="input-group mt-3 mb-0">
             <input
               type="text"
               onChange={this.handleChange}
@@ -107,49 +107,64 @@ class Comment extends Component {
         </div>
 
         <div className="col-md-12">
-          {/* <h5 className="text-primary">
-            {" "}
-            <CommentIcon size={24} />
-            {comments.length} Comments
-          </h5> */}
           {comments.map((comment, i) => (
             <div key={i}>
               <div>
-                <Link to={`/user/${comment.postedBy._id}`}>
-                  <img
-                    style={{
-                      borderRadius: "50%",
-                      border: "1px solid black",
-                    }}
-                    className="float-left mr-2"
-                    height="30px"
-                    width="30px"
-                    onError={(i) => (i.target.src = `${DefaultProfile}`)}
-                    src={`${process.env.REACT_APP_API_URL}/user/photo/${comment.postedBy._id}`}
-                    alt={comment.postedBy.name}
-                  />
-                </Link>
-                <div>
-                  <p className="lead">{comment.text}</p>
-                  <p className="font-italic mark">
-                    Posted by{" "}
+                <div className="row rounded border border-silver mt-3">
+                  <div className="col-sm-1 border-right border-silver">
                     <Link to={`/user/${comment.postedBy._id}`}>
-                      {comment.postedBy.name}{" "}
+                      <img
+                        style={{
+                          borderRadius: "50%",
+                          border: "1px solid black",
+                        }}
+                        className="mt-2 mr-3"
+                        height="30px"
+                        width="30px"
+                        onError={(i) => (i.target.src = `${DefaultProfile}`)}
+                        src={`${process.env.REACT_APP_API_URL}/user/photo/${comment.postedBy._id}`}
+                        alt={comment.postedBy.name}
+                      />
                     </Link>
-                    on {new Date(comment.created).toDateString()}
-                    <span>
-                      {isAuth() && isAuth()._id === comment.postedBy._id && (
-                        <>
-                          <span
-                            onClick={() => this.deleteConfirmed(comment)}
-                            className="text-danger float-right mr-1"
-                          >
-                            Remove
+                  </div>
+                  <div className="col-sm-11">
+                    <div className="row pt-2 border-bottom border-silver">
+                      <div className="col-sm-5">
+                        <Link to={`/user/${comment.postedBy._id}`}>
+                          <>{comment.postedBy.name} </>
+                        </Link>
+                      </div>
+                      <div className="col-sm-7 text-right">
+                        <p>
+                          <small className="font-italic">
+                            Posted on{" "}
+                            {new Date(comment.created).toDateString()}
+                          </small>
+                        </p>
+                      </div>
+                    </div>
+                    <div className="row pt-2">
+                      <div className="col-sm-11">
+                        <p className="lead">{comment.text}</p>
+                      </div>
+                      <div className="col-sm-1 text-right">
+                        <p>
+                          <span>
+                            {isAuth() && isAuth()._id === comment.postedBy._id && (
+                              <>
+                                <span
+                                  onClick={() => this.deleteConfirmed(comment)}
+                                  className="text-danger"
+                                >
+                                  <TrashIcon size={24} />
+                                </span>
+                              </>
+                            )}
                           </span>
-                        </>
-                      )}
-                    </span>
-                  </p>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
