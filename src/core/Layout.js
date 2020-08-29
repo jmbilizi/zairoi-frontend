@@ -71,7 +71,7 @@ const Layout = ({ children, match, history }) => {
           <li className="nav-item">
             <Link
               className="nav-link"
-              style={isActive(history, `/user/${isAuth()._id}`)}
+              style={isActive(`/user/${isAuth()._id}`)}
               to={`/user/${isAuth()._id}`}
             >
               <img
