@@ -112,7 +112,7 @@ class Post extends Component {
           const posterId = post.postedBy ? `/user/${post.postedBy._id}` : "";
           const posterName = post.postedBy ? post.postedBy.name : " Unknown";
 
-          const { like, likes, comments } = this.state;
+          const { likes, comments } = this.state;
 
           return (
             <div
