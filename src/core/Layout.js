@@ -13,7 +13,7 @@ const Layout = ({ children, match, history }) => {
   };
 
   const nav = () => (
-    <ul className="nav nav-tabs bg-primary">
+    <ul className="nav fixed-top nav-tabs bg-primary">
       <li className="nav-item">
         <Link to="/" className="nav-link" style={isActive("/")}>
           Home
