@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "./core/Layout";
 import { Helmet } from "react-helmet";
 import Posts from "./post/Posts";
+import Post from "./post/Post";
 
 const App = () => {
   const head = () => (
@@ -16,7 +17,7 @@ const App = () => {
       {head()}
       <div>
         <div className="container">
-          <Posts />
+          <Post />
         </div>
       </div>
     </Layout>

@@ -4,7 +4,6 @@ import DefaultPost from "../images/mountains.jpg";
 import { singlePost, remove, like, unlike } from "./apiPost";
 import { Link, Redirect } from "react-router-dom";
 import { isAuth, getCookie } from "../auth/helpers";
-import Layout from "../core/Layout";
 import Comment from "./Comment";
 import DefaultProfile from "../images/avatar.jpg";
 import { PencilIcon, TrashIcon, CommentIcon } from "@primer/octicons-react";
@@ -15,6 +14,7 @@ class Post extends Component {
     this.state = {
       posts: [],
       page: 1,
+      post: "",
       redirectToHome: false,
       redirectToSignin: false,
       like: false,
@@ -33,7 +33,15 @@ class Post extends Component {
       if (data.error) {
         console.log(data.error);
       } else {
-        this.setState({ posts: data });
+        for (let item of data) {
+          this.setState({
+            posts: data,
+            post: item,
+            likes: item.likes.length,
+            like: this.checkLike(item.likes),
+            comments: item.comments,
+          });
+        }
       }
     });
   };
@@ -41,6 +49,51 @@ class Post extends Component {
   componentDidMount() {
     this.loadPosts(this.state.page);
   }
+  updateComments = (comments) => {
+    this.setState({ comments });
+  };
+
+  likeToggle = () => {
+    if (!isAuth()) {
+      this.setState({ redirectToSignin: true });
+      return false;
+    }
+    let callApi = this.state.like ? unlike : like;
+    const userId = isAuth()._id;
+    const postId = this.state.post._id;
+    const token = getCookie("token");
+    // const token = isAuth().token;
+
+    callApi(userId, token, postId).then((data) => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        this.setState({
+          like: !this.state.like,
+          likes: data.likes.length,
+        });
+      }
+    });
+  };
+  deletePost = () => {
+    const postId = this.props.match.params.postId;
+    const token = getCookie("token");
+    // const token = isAuth().token;
+    remove(postId, token).then((data) => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        this.setState({ redirectToHome: true });
+      }
+    });
+  };
+
+  deleteConfirmed = () => {
+    let answer = window.confirm("Are you sure you want to delete your post?");
+    if (answer) {
+      this.deletePost();
+    }
+  };
 
   loadMore = (number) => {
     this.setState({ page: this.state.page + number });
@@ -138,13 +191,6 @@ class Post extends Component {
                 </div>
 
                 <div className="col-sm mt-2 mb-2">
-                  <Link
-                    to={`/`}
-                    className="btn btn-raised btn-primary btn-md float-sm-right ml-2"
-                  >
-                    Back to posts
-                  </Link>
-
                   {isAuth() && isAuth()._id === post.postedBy._id && (
                     <>
                       <button
@@ -203,36 +249,49 @@ class Post extends Component {
   };
 
   render() {
-    const { posts, page } = this.state;
+    const { posts, page, redirectToHome, redirectToSignin } = this.state;
+
+    if (redirectToHome) {
+      return <Redirect to={`/`} />;
+    } else if (redirectToSignin) {
+      return <Redirect to={`/signin`} />;
+    }
+
     return (
       <div className="container">
-        <h2 className="mt-5 mb-5">
-          {!posts.length ? "No more posts!" : "Recent Posts"}
-        </h2>
+        <div className="row">
+          <div className="col-md-2 col-sm-12"></div>
+          <div className="col-md-8 col-sm-12">
+            <h2 className="mt-2 mb-2">
+              {!posts.length ? "No more posts!" : "Recent Posts"}
+            </h2>
 
-        {this.renderPosts(posts)}
+            {this.renderPosts(posts)}
 
-        {page > 1 ? (
-          <button
-            className="btn btn-raised btn-warning mr-5 mt-5 mb-5"
-            onClick={() => this.loadLess(1)}
-          >
-            Previous ({this.state.page - 1})
-          </button>
-        ) : (
-          ""
-        )}
+            {page > 1 ? (
+              <button
+                className="btn btn-raised btn-warning mr-5 mt-5 mb-5"
+                onClick={() => this.loadLess(1)}
+              >
+                Previous ({this.state.page - 1})
+              </button>
+            ) : (
+              ""
+            )}
 
-        {posts.length ? (
-          <button
-            className="btn btn-raised btn-success mt-5 mb-5"
-            onClick={() => this.loadMore(1)}
-          >
-            Next ({page + 1})
-          </button>
-        ) : (
-          ""
-        )}
+            {posts.length ? (
+              <button
+                className="btn btn-raised btn-success mt-5 mb-5"
+                onClick={() => this.loadMore(1)}
+              >
+                Next ({page + 1})
+              </button>
+            ) : (
+              ""
+            )}
+          </div>
+          <div className="col-md-2 col-sm-12"></div>
+        </div>
       </div>
     );
   }

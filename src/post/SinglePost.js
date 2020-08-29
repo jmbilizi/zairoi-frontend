@@ -239,8 +239,7 @@ class SinglePost extends Component {
       <Layout>
         <div className="container">
           <div className="row">
-            <div className="col-md-2"></div>
-            <div className="col-md-8 col-sm-12">
+            <div className="col-sm-12">
               {!post ? (
                 <div className="jumbotron text-center">
                   <h2>Loading...</h2>
@@ -249,7 +248,6 @@ class SinglePost extends Component {
                 this.renderPost(post)
               )}
             </div>
-            <div className="col-md-2"></div>
           </div>
         </div>
       </Layout>
