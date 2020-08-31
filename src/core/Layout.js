@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { isAuth, signout } from "../auth/helpers";
 import DefaultProfile from "../images/avatar.jpg";
+import { itemTotal } from "./cartHelpers";
 
 const Layout = ({ children, match, history }) => {
   const isActive = (path) => {
@@ -17,6 +18,11 @@ const Layout = ({ children, match, history }) => {
       <li className="nav-item">
         <Link to="/" className="nav-link" style={isActive("/")}>
           Home
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link className="nav-link" style={isActive("/shop")} to="/shop">
+          Shop
         </Link>
       </li>
       <li className="nav-item">
@@ -92,6 +98,15 @@ const Layout = ({ children, match, history }) => {
             </Link>
           </li>
           <li className="nav-item">
+            <Link
+              className="nav-link"
+              style={isActive("/admin/dashboard")}
+              to="/admin/dashboard"
+            >
+              Dashboard
+            </Link>
+          </li>
+          <li className="nav-item">
             <span
               className="nav-link"
               style={{ cursor: "pointer", color: "#fff" }}
@@ -106,6 +121,14 @@ const Layout = ({ children, match, history }) => {
           </li>
         </Fragment>
       )}
+      <li className="nav-item">
+        <Link className="nav-link" style={isActive("/cart")} to="/cart">
+          Cart{" "}
+          <sup>
+            <small className="cart-badge">{itemTotal()}</small>
+          </sup>
+        </Link>
+      </li>
     </ul>
   );
 
