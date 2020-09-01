@@ -17,6 +17,15 @@ import Users from "./user/Users";
 import FindPeople from "./user/FindPeople";
 import Admin from "./admin/Admin";
 
+//seller
+import SellerRoute from "./auth/SellerRoute";
+import AddCategory from "./sellerDashboard/AddCategory";
+import AddProduct from "./sellerDashboard/AddProduct";
+import Orders from "./sellerDashboard/Orders";
+import ManageProducts from "./sellerDashboard/ManageProducts";
+import UpdateProduct from "./sellerDashboard/UpdateProduct";
+import UpdateCategory from "./sellerDashboard/updateCategory";
+
 const Routes = () => {
   return (
     <BrowserRouter>
@@ -35,6 +44,7 @@ const Routes = () => {
         <PrivateRoute exact path="/post/edit/:postId" component={EditPost} />
         <Route path="/auth/password/forgot" exact component={Forgot} />
         <Route path="/auth/password/reset/:token" exact component={Reset} />
+        
       </Switch>
     </BrowserRouter>
   );
