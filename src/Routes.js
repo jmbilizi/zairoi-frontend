@@ -19,12 +19,12 @@ import Admin from "./admin/Admin";
 
 //seller
 import SellerRoute from "./auth/SellerRoute";
-import AddCategory from "./sellerDashboard/AddCategory";
-import AddProduct from "./sellerDashboard/AddProduct";
-import Orders from "./sellerDashboard/Orders";
-import ManageProducts from "./sellerDashboard/ManageProducts";
-import UpdateProduct from "./sellerDashboard/UpdateProduct";
-import UpdateCategory from "./sellerDashboard/updateCategory";
+import AddCategory from "./seller/AddCategory";
+import AddProduct from "./seller/AddProduct";
+import Orders from "./seller/Orders";
+import ManageProducts from "./seller/ManageProducts";
+import UpdateProduct from "./seller/UpdateProduct";
+import UpdateCategory from "./seller/updateCategory";
 
 const Routes = () => {
   return (
