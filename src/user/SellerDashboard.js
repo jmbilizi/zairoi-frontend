@@ -52,7 +52,7 @@ const SellerDashboard = () => {
               <li className="list-group-item">{name}</li>
               <li className="list-group-item">{email}</li>
               <li className="list-group-item">
-                {role === "seller" ? `${role}` : "Registered User"}
+                {role === "seller" || "admin" ? `${role}` : "Registered User"}
               </li>
             </ul>
           </div>

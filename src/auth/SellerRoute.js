@@ -6,7 +6,7 @@ const SellerRoute = ({ component: Component, ...rest }) => (
     <Route
         {...rest}
         render={props =>
-            isAuth() && isAuth().role === ("seller" || "admin") ? (
+            isAuth() && isAuth().role !== "subscriber" ? (
                 <Component {...props} />
             ) : (
                 <Redirect
