@@ -20,7 +20,10 @@ const AddProduct = () => {
         formData: ''
     });
 
-    const { user, token } = isAuth();
+    // const { user, token } = isAuth();
+    const user = isAuth();
+    const token = getCookie("token");
+    
     const {
         name,
         description,

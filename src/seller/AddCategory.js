@@ -10,7 +10,9 @@ const AddCategory = () => {
     const [success, setSuccess] = useState(false);
 
     // destructure user and token from localstorage
-    const { user, token } = isAuth();
+    // const { user, token } = isAuth();
+    const user = isAuth();
+    const token = getCookie('token');
 
     const handleChange = e => {
         setError("");

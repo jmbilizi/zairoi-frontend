@@ -18,6 +18,7 @@ import FindPeople from "./user/FindPeople";
 import Admin from "./admin/Admin";
 
 //seller
+import SellerDashboard from "./user/SellerDashboard";
 import SellerRoute from "./auth/SellerRoute";
 import AddCategory from "./seller/AddCategory";
 import AddProduct from "./seller/AddProduct";
@@ -44,7 +45,26 @@ const Routes = () => {
         <PrivateRoute exact path="/post/edit/:postId" component={EditPost} />
         <Route path="/auth/password/forgot" exact component={Forgot} />
         <Route path="/auth/password/reset/:token" exact component={Reset} />
-        
+
+        <SellerRoute
+          path="/admin/dashboard"
+          exact
+          component={SellerDashboard}
+        />
+        <SellerRoute path="/create/category" exact component={AddCategory} />
+        <SellerRoute path="/create/product" exact component={AddProduct} />
+        <SellerRoute path="/admin/orders" exact component={Orders} />
+        <SellerRoute
+          path="/admin/product/update/:productId"
+          exact
+          component={UpdateProduct}
+        />
+        <SellerRoute
+          path="/admin/category/update/:categoryId"
+          exact
+          component={UpdateCategory}
+        />
+        <SellerRoute path="/admin/products" exact component={ManageProducts} />
       </Switch>
     </BrowserRouter>
   );

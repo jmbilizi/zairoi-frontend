@@ -7,7 +7,9 @@ import { getProducts, deleteProduct } from "./apiAdmin";
 const ManageProducts = () => {
     const [products, setProducts] = useState([]);
 
-    const { user, token } = isAuth();
+    // const { user, token } = isAuth();
+    const user = isAuth();
+    const token = getCookie("token");
 
     const loadProducts = () => {
         getProducts().then(data => {

@@ -14,7 +14,9 @@ const UpdateCategory = ({ match }) => {
     });
 
     // destructure user and token from localStorage
-    const { user, token } = isAuth();
+    // const { user, token } = isAuth();
+    const user = isAuth();
+    const token = getCookie("token");
 
     const { name, error, redirectToProfile } = values;
 

@@ -9,8 +9,9 @@ const Orders = () => {
     const [orders, setOrders] = useState([]);
     const [statusValues, setStatusValues] = useState([]);
 
-    const { user, token } = isAuth();
-
+    // const { user, token } = isAuth();
+    const user = isAuth();
+    const token = getCookie("token");
     const loadOrders = () => {
         listOrders(user._id, token).then(data => {
             if (data.error) {

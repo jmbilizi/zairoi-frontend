@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { authenticate, isAuth } from "./helpers";
 
-const AdminRoute = ({ component: Component, ...rest }) => (
+const SellerRoute = ({ component: Component, ...rest }) => (
     <Route
         {...rest}
         render={props =>
-            isAuth() && isAuth().user.role === ("seller" || "admin") ? (
+            isAuth() && isAuth().role === ("seller" || "admin") ? (
                 <Component {...props} />
             ) : (
                 <Redirect
@@ -20,4 +20,4 @@ const AdminRoute = ({ component: Component, ...rest }) => (
     />
 );
 
-export default AdminRoute;
+export default SellerRoute;
