@@ -30,15 +30,6 @@ const Layout = ({ children, match, history }) => {
           Users
         </Link>
       </li>
-      <li className="nav-item">
-        <Link
-          to="/post/create"
-          style={isActive("/post/create")}
-          className="nav-link"
-        >
-          Create Post
-        </Link>
-      </li>
 
       {!isAuth() && (
         <Fragment>
@@ -82,6 +73,15 @@ const Layout = ({ children, match, history }) => {
               to={`/findpeople`}
             >
               Find People
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              to="/post/create"
+              style={isActive("/post/create")}
+              className="nav-link"
+            >
+              Create Post
             </Link>
           </li>
           <li className="nav-item">
