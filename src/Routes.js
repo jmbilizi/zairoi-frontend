@@ -27,6 +27,9 @@ import ManageProducts from "./seller/ManageProducts";
 import UpdateProduct from "./seller/UpdateProduct";
 import UpdateCategory from "./seller/updateCategory";
 
+//Massaging
+import Messaging from "./chat/Chat";
+
 const Routes = () => {
   return (
     <BrowserRouter>
@@ -38,6 +41,7 @@ const Routes = () => {
         <Route path="/auth/activate/:token" exact component={Activate} />
         <Route path="/users" exact component={Users} />
         <PrivateRoute path="/findpeople" exact component={FindPeople} />
+        <PrivateRoute path="/messaging" exact component={Messaging} />
         <PrivateRoute path="/user/:userId" exact component={Profile} />
         <PrivateRoute exact path="/user/edit/:userId" component={EditProfile} />
         <PrivateRoute exact path="/post/create" component={NewPost} />

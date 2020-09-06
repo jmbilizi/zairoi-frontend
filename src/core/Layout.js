@@ -87,6 +87,15 @@ const Layout = ({ children, match, history }) => {
           <li className="nav-item">
             <Link
               className="nav-link"
+              style={isActive(`/messaging`)}
+              to={`/messaging`}
+            >
+              Messaging
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              className="nav-link"
               style={isActive(`/user/${isAuth()._id}`)}
               to={`/user/${isAuth()._id}`}
             >
