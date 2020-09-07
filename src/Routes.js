@@ -26,6 +26,11 @@ import Orders from "./seller/Orders";
 import ManageProducts from "./seller/ManageProducts";
 import UpdateProduct from "./seller/UpdateProduct";
 import UpdateCategory from "./seller/updateCategory";
+//shop
+import Shop from "./shop/Shop";
+import Cart from "./shop/Cart";
+import Product from "./shop/Product";
+import MarketPlace from "./shop/MarketPlace";
 
 //Massaging
 import Messaging from "./chat/Chat";
@@ -69,6 +74,10 @@ const Routes = () => {
           component={UpdateCategory}
         />
         <SellerRoute path="/admin/products" exact component={ManageProducts} />
+        <Route path="/shop" exact component={Shop} />
+        <Route path="/cart" exact component={Cart} />
+        <Route path="/product/:productId" exact component={Product} />
+        <Route path="/marketplace" exact component={MarketPlace} />
       </Switch>
     </BrowserRouter>
   );
