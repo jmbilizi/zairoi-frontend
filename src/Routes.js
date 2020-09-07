@@ -44,7 +44,7 @@ const Routes = () => {
         <Route path="/signup" exact component={Signup} />
         <Route path="/signin" exact component={Signin} />
         <Route path="/auth/activate/:token" exact component={Activate} />
-        <Route path="/users" exact component={Users} />
+        <PrivateRoute path="/users" exact component={Users} />
         <PrivateRoute path="/findpeople" exact component={FindPeople} />
         <PrivateRoute path="/messaging" exact component={Messaging} />
         <PrivateRoute path="/user/:userId" exact component={Profile} />

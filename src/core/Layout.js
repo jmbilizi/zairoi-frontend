@@ -26,7 +26,7 @@ const Layout = ({ children, match, history }) => {
           style={isActive("/marketplace")}
           to="/marketplace"
         >
-          Marketplace
+          Market place
         </Link>
       </li>
       <li className="nav-item">
@@ -34,12 +34,6 @@ const Layout = ({ children, match, history }) => {
           Shop
         </Link>
       </li>
-      <li className="nav-item">
-        <Link to="/users" className="nav-link" style={isActive("/users")}>
-          Users
-        </Link>
-      </li>
-
       {!isAuth() && (
         <Fragment>
           <li className="nav-item">
@@ -75,6 +69,11 @@ const Layout = ({ children, match, history }) => {
       )}
       {isAuth() && (
         <Fragment>
+          <li className="nav-item">
+            <Link to="/users" className="nav-link" style={isActive("/users")}>
+              Users
+            </Link>
+          </li>
           <li className="nav-item">
             <Link
               className="nav-link"
