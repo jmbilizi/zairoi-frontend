@@ -81,7 +81,7 @@ const Layout = ({ children, match, history }) => {
                     fontSize: "20px",
                   }}
                 >
-                  <small>SignIn</small>
+                  <small> In</small>
                 </span>
               </i>
             </Link>
@@ -107,7 +107,7 @@ const Layout = ({ children, match, history }) => {
                     fontSize: "20px",
                   }}
                 >
-                  <small>SignUp</small>
+                  <small>Up</small>
                 </span>
               </i>
             </Link>
@@ -284,7 +284,7 @@ const Layout = ({ children, match, history }) => {
                     fontSize: "20px",
                   }}
                 >
-                  <small>LogOut</small>
+                  <small>Out</small>
                 </span>
               </i>
             </span>
