@@ -98,7 +98,7 @@ const Shop = () => {
   return (
     <Layout>
       <div className="row">
-        <div className="col-3">
+        <div className="col-md-3 col-sm-4">
           <h5>Filter by categories</h5>
           <ul>
             <Checkbox
@@ -107,7 +107,7 @@ const Shop = () => {
             />
           </ul>
 
-          <h5>Filter by price range</h5>
+          <h5>Filter by price</h5>
           <div>
             <RadioBox
               prices={prices}
@@ -116,11 +116,11 @@ const Shop = () => {
           </div>
         </div>
 
-        <div className="col-9">
+        <div className="col-md-9 col-sm-8">
           <h2 className="mb-4">Products</h2>
           <div className="row">
             {filteredResults.map((product, i) => (
-              <div key={i} className="col-5 mb-3">
+              <div key={i} className="col-lg-6 col-sm-12 mb-1">
                 <Card product={product} />
               </div>
             ))}
