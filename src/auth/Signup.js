@@ -145,6 +145,11 @@ const Signup = ({ history }) => {
         </Link>
         <Google informParent={informParent} />
         <Facebook informParent={informParent} />
+        <small>
+          By clicking Sign up or Login with Google or Facebook, you agree to
+          Tokoos's Terms of Use and Privacy Policy. Tokoos may communicate with
+          you via email. We'll never post without your permission.
+        </small>
       </div>
     </Layout>
   );
