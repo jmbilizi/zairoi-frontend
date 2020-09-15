@@ -102,10 +102,13 @@ const Signin = ({ history }) => {
 
   return (
     <Layout>
-      <div className="col-md-6 offset-md-3">
+      <div
+        style={{ border: "", background: "white" }}
+        className="col-md-6 my-auto offset-md-3 px-5 py-5"
+      >
         <ToastContainer />
         {isAuth() ? <Redirect to="/" /> : null}
-        <h1 className="pt-5 pb-3 text-center">SIGN IN</h1>
+        <h1 className="pb-3 text-center">Sign In</h1>
         <div
           className="alert alert-danger text-center"
           style={{ display: error ? "" : "none" }}
@@ -119,6 +122,12 @@ const Signin = ({ history }) => {
           className="btn btn-lg btn-block btn-outline-danger mb-3 mt-3"
         >
           Forgot Password
+        </Link>
+        <Link
+          to="/signup"
+          className="btn btn-primary btn-lg btn-block mb-3 mt-3"
+        >
+          Sign Up
         </Link>
         <Google informParent={informParent} />
         <Facebook informParent={informParent} />
