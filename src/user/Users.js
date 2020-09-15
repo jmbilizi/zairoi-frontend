@@ -25,7 +25,7 @@ class Users extends Component {
   renderUsers = (users) => (
     <div className="row">
       {users.map((user, i) => (
-        <div className="card col-md-4" key={i}>
+        <div className="card col-lg-3 col-md-4 col-sm-12" key={i}>
           <img
             style={{ height: "200px", width: "auto" }}
             className="img-thumbnail"
@@ -53,7 +53,7 @@ class Users extends Component {
     return (
       <Layout>
         <div className="container">
-          <h2 className="mt-5 mb-5">Users</h2>
+          <h2 className="mt-5 mb-5">{users.length} Users</h2>
 
           {this.renderUsers(users)}
         </div>
