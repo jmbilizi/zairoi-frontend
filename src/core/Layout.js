@@ -8,7 +8,7 @@ import { itemTotal } from "../shop/cartHelpers";
 const Layout = ({ children, match, history }) => {
   const isActive = (path) => {
     if (match.path === path) {
-      return { color: "#000" };
+      return { color: "orange" };
     } else {
       return { color: "#fff" };
     }
@@ -16,8 +16,8 @@ const Layout = ({ children, match, history }) => {
 
   const nav = () => (
     <ul
-      style={{ listStyleType: "none", opacity: "100%", margin: "0" }}
-      className="navbar nav-tabs fixed-top bg-primary"
+      style={{ listStyleType: "none", opacity: "100%", margin: "0", background: "black" }}
+      className="navbar navbar-expand-lg nav-tabs fixed-top"
     >
       <li className="nav-item">
         <Link to="/" className="nav-link" style={isActive("/")}>
