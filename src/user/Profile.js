@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { isAuth, getCookie } from "../auth/helpers";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect, Link, withRouter } from "react-router-dom";
 import { read } from "./apiUser";
 import DefaultProfile from "../images/avatar.jpg";
 import DeleteUser from "./DeleteUser";
 import FollowProfileButton from "./FollowProfileButton";
 import ProfileTabs from "./ProfileTabs";
+import NewProfileTab from "./NewProfileTab";
 import { listByUser } from "../post/apiPost";
 import Layout from "../core/Layout";
 import { PencilIcon, PlusIcon } from "@primer/octicons-react";
@@ -96,7 +97,7 @@ class Profile extends Component {
     return (
       <Layout>
         <div className="container">
-          <h2 className="mt-5 mb-5">Profile</h2>
+          {/* <h2 className="mt-5 mb-2">Profile</h2> */}
           <div className="row">
             <div className="col-md-4 col-sm-12">
               <img
@@ -162,12 +163,27 @@ class Profile extends Component {
               </div>
             </div>
           </div>
+
           <div className="row">
-            <div className="col-sm-12 mt-5 mb-5">
+            <div className="col-sm-12 border-bottom border-dark mt-2">
               <hr />
-              <p className="lead">{user.about}</p>
-              <hr />
-              <ProfileTabs
+              <p
+                className="lead text-center"
+                placeholder="say something nice about yourself"
+              >
+                {user.about}
+              </p>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-sm-12 p-0">
+              {/* <ProfileTabs
+                followers={user.followers}
+                posts={posts}
+                following={user.following}
+              /> */}
+              <NewProfileTab
+                user={user}
                 followers={user.followers}
                 posts={posts}
                 following={user.following}
@@ -180,4 +196,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default withRouter(Profile);
