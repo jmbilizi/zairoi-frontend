@@ -10,14 +10,15 @@ const Layout = ({ children, match, history }) => {
     if (match.path === path) {
       return { color: "orange" };
     } else {
-      return { color: "#fff" };
+      return { color: "black" };
     }
   };
 
+
   const nav = () => (
     <ul
-      style={{ listStyleType: "none", opacity: "100%", margin: "0", background: "black" }}
-      className="navbar navbar-expand-lg nav-tabs fixed-top"
+      style={{ listStyleType: "none", opacity: "100%", margin: "0", background: "" }}
+      className="navbar nav-tabs fixed-top"
     >
       <li className="nav-item">
         <Link to="/" className="nav-link" style={isActive("/")}>
@@ -259,7 +260,7 @@ const Layout = ({ children, match, history }) => {
           <li className="nav-item">
             <span
               className="nav-link"
-              style={{ cursor: "pointer", color: "#fff" }}
+              style={{ cursor: "pointer" }}
               onClick={() => {
                 signout(() => {
                   history.push("/");
