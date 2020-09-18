@@ -165,7 +165,7 @@ class Profile extends Component {
           </div>
 
           <div className="row">
-            <div className="col-sm-12 border-bottom border-dark mt-2">
+            <div className="col-sm-12 mt-2">
               <hr />
               <p
                 className="lead text-center"
@@ -175,6 +175,7 @@ class Profile extends Component {
               </p>
             </div>
           </div>
+          <hr />
           <div className="row">
             <div className="col-sm-12 p-0">
               {/* <ProfileTabs
