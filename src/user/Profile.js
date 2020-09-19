@@ -165,17 +165,14 @@ class Profile extends Component {
           </div>
 
           <div className="row">
-            <div className="col-sm-12 mt-2">
-              <hr />
-              <p
-                className="lead text-center"
-                placeholder="say something nice about yourself"
-              >
+            <div className="col-sm-12 nav-tabs mt-2">
+              <p className="lead text-center">
+                {" "}
+                <hr />
                 {user.about}
               </p>
             </div>
           </div>
-          <hr />
           <div className="row">
             <div className="col-sm-12 p-0">
               {/* <ProfileTabs
