@@ -12,6 +12,9 @@ import { read } from "./apiUser";
 import "antd/dist/antd.css";
 import { Tabs } from "antd";
 
+//import user's shop
+import ShopByUser from "../shop/ShopByUser";
+
 const NewProfileTab = ({
   user,
   following,
@@ -360,6 +363,31 @@ const NewProfileTab = ({
       </i>
     </>
   );
+  const shopTab = () => (
+    <>
+      <i
+        className="fas fa-store"
+        style={{
+          fontSize: "25px",
+          position: "relative",
+          height: "50px",
+        }}
+      >
+        <span
+          style={{
+            position: "absolute",
+            height: "20px",
+            bottom: "0",
+            right: "0",
+            left: "0",
+            fontSize: "20px",
+          }}
+        >
+          <small>Shop</small>
+        </span>
+      </i>
+    </>
+  );
 
   const { TabPane } = Tabs;
 
@@ -379,6 +407,9 @@ const NewProfileTab = ({
       </TabPane>
       <TabPane tab={followingTab()} key="3">
         <div className="row">{allFollowing()}</div>
+      </TabPane>
+      <TabPane tab={shopTab()} key="4">
+        <div className="row">{<ShopByUser userId={user._id}/>}</div>
       </TabPane>
     </Tabs>
   );
