@@ -20,24 +20,27 @@ const NewProfileTab = ({
   posts,
 }) => {
   console.log(posts);
+  console.log(following);
+  console.log(followers);
 
-  let deletePost = () => {
-    const postId = this.props.match.params.postId;
+  let deletePost = (postId) => {
+    // const postId = this.props.match.params.postId;
     const token = getCookie("token");
     // const token = isAuth().token;
     remove(postId, token).then((data) => {
       if (data.error) {
         console.log(data.error);
       } else {
-        this.setState({ redirectToHome: true });
+        alert("Post successfully deleted");
+        window.location.reload();
       }
     });
   };
 
-  let deleteConfirmed = () => {
+  let deleteConfirmed = (postId) => {
     let answer = window.confirm("Are you sure you want to delete your post?");
     if (answer) {
-      deletePost();
+      deletePost(postId);
     }
   };
 
@@ -161,7 +164,9 @@ const NewProfileTab = ({
                     {isAuth() && isAuth()._id === post.postedBy._id && (
                       <>
                         <button
-                          onClick={deleteConfirmed}
+                          onClick={() => {
+                            deleteConfirmed(post._id);
+                          }}
                           className="btn btn-raised btn-danger btn-md float-sm-right mr-3 ml-3"
                         >
                           <TrashIcon size={24} />
