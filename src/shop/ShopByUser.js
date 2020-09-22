@@ -96,29 +96,37 @@ const Shop = ({ userId }) => {
 
   return (
     <>
-      <div className="col-md-3 col-sm-4">
-        <h5>Filter by categories</h5>
-        <ul>
-          <Checkbox
-            categories={categories}
-            handleFilters={(filters) => handleFilters(filters, "category")}
-          />
-        </ul>
+      <div className="col-12">
+        <div className="row mx-auto">
+          <div className="col-5 mx-auto">
+            <h5>Filter by categories</h5>
+            <ul>
+              <Checkbox
+                categories={categories}
+                handleFilters={(filters) => handleFilters(filters, "category")}
+              />
+            </ul>
+          </div>
 
-        <h5>Filter by price</h5>
-        <div>
-          <RadioBox
-            prices={prices}
-            handleFilters={(filters) => handleFilters(filters, "price")}
-          />
+          <div className="col-5 mx-auto">
+            <h5>Filter by price</h5>
+            <div>
+              <RadioBox
+                prices={prices}
+                handleFilters={(filters) => handleFilters(filters, "price")}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="col-md-9 col-sm-8">
+      <div className="col-12">
         <h2 className="mb-4">Products</h2>
         <div className="row">
-          {filteredResults.filter(product => product.soldBy === userId ).map((product, i) => (
-              <div key={i} className="col-lg-6 col-sm-12 mb-1">
+          {filteredResults
+            .filter((product) => product.soldBy === userId)
+            .map((product, i) => (
+              <div key={i} className="col-md-4 col-sm-8 mb-1">
                 <Card product={product} />
               </div>
             ))}
