@@ -4,7 +4,6 @@ import App from "./App";
 import Signup from "./auth/Signup";
 import Signin from "./auth/Signin";
 import Activate from "./auth/Activate";
-import Private from "./core/Private";
 import PrivateRoute from "./auth/PrivateRoute";
 import Forgot from "./auth/Forgot";
 import Reset from "./auth/Reset";
