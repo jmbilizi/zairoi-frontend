@@ -60,7 +60,7 @@ const Routes = () => {
           component={SellerDashboard}
         />
         <SellerRoute path="/create/category" exact component={AddCategory} />
-        <SellerRoute path="/create/product" exact component={AddProduct} />
+        <PrivateRoute path="/create/product" exact component={AddProduct} />
         <SellerRoute path="/admin/orders" exact component={Orders} />
         <SellerRoute
           path="/admin/product/update/:productId"
