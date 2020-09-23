@@ -98,21 +98,28 @@ const Shop = () => {
   return (
     <Layout>
       <div className="row">
-        <div className="col-md-3 col-sm-4">
-          <h5>Filter by categories</h5>
-          <ul>
-            <Checkbox
-              categories={categories}
-              handleFilters={(filters) => handleFilters(filters, "category")}
-            />
-          </ul>
-
-          <h5>Filter by price</h5>
-          <div>
-            <RadioBox
-              prices={prices}
-              handleFilters={(filters) => handleFilters(filters, "price")}
-            />
+        <div className="col-md-3 col-sm-10">
+          <div className="row">
+            <div>
+              <h5>Filter by categories</h5>
+              <ul>
+                <Checkbox
+                  categories={categories}
+                  handleFilters={(filters) =>
+                    handleFilters(filters, "category")
+                  }
+                />
+              </ul>
+            </div>
+            <div>
+              <h5>Filter by price</h5>
+              <div>
+                <RadioBox
+                  prices={prices}
+                  handleFilters={(filters) => handleFilters(filters, "price")}
+                />
+              </div>
+            </div>
           </div>
         </div>
 
