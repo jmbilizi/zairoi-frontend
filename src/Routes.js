@@ -49,7 +49,7 @@ const Routes = () => {
         <PrivateRoute path="/user/:userId" exact component={Profile} />
         <PrivateRoute exact path="/user/edit/:userId" component={EditProfile} />
         <PrivateRoute exact path="/post/create" component={NewPost} />
-        <Route exact path="/post/:postId" component={SinglePost} />
+        <PrivateRoute exact path="/post/:postId" component={SinglePost} />
         <PrivateRoute exact path="/post/edit/:postId" component={EditPost} />
         <Route path="/auth/password/forgot" exact component={Forgot} />
         <Route path="/auth/password/reset/:token" exact component={Reset} />
