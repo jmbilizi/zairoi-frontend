@@ -119,20 +119,26 @@ class Profile extends Component {
               {isAuth() && isAuth()._id === user._id ? (
                 <div className="d-inline-block">
                   <Link
-                    className="btn btn-raised btn-info mr-2"
-                    to={`/post/create`}
-                  >
-                    <PlusIcon size={24} />
-                    Post
-                  </Link>
-
-                  <Link
                     className="btn btn-raised btn-success mr-2"
                     to={`/user/edit/${user._id}`}
                   >
                     <PencilIcon size={24} /> Profile
                   </Link>
                   <DeleteUser userId={user._id} />
+                  <Link
+                    className="btn btn-raised btn-info ml-2"
+                    to={`/post/create`}
+                  >
+                    <PlusIcon size={24} />
+                    Post
+                  </Link>
+                  <Link
+                    className="btn btn-raised btn-info ml-2"
+                    to={`/create/product`}
+                  >
+                    <PlusIcon size={24} />
+                    Product
+                  </Link>
                 </div>
               ) : (
                 <FollowProfileButton
