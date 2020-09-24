@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { isAuth, getCookie, signout } from "../auth/helpers";
 import { remove } from "./apiUser";
-import { TrashIcon } from "@primer/octicons-react";
 
 class DeleteUser extends Component {
   state = {
@@ -42,9 +41,11 @@ class DeleteUser extends Component {
       <button
         onClick={this.deleteConfirmed}
         className="btn btn-raised btn-danger"
+        data-toggle="tooltip"
+        data-placement="left"
+        title="Delete your account"
       >
-        <TrashIcon size={24} />
-        Profile
+        <i className="fas fa-2x fa-user-slash"></i>
       </button>
     );
   }

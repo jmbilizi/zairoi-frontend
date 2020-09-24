@@ -9,7 +9,6 @@ import ProfileTabs from "./ProfileTabs";
 import NewProfileTab from "./NewProfileTab";
 import { listByUser } from "../post/apiPost";
 import Layout from "../core/Layout";
-import { PencilIcon, PlusIcon } from "@primer/octicons-react";
 
 class Profile extends Component {
   constructor() {
@@ -120,24 +119,33 @@ class Profile extends Component {
                 <div className="d-inline-block">
                   <Link
                     className="btn btn-raised btn-success mr-2"
+                    data-toggle="tooltip"
+                    data-placement="left"
+                    title="Edit your profile"
                     to={`/user/edit/${user._id}`}
                   >
-                    <PencilIcon size={24} /> Profile
+                    <i className="fas fa-2x fa-user-edit"></i>
                   </Link>
                   <DeleteUser userId={user._id} />
                   <Link
                     className="btn btn-raised btn-info ml-2"
+                    data-toggle="tooltip"
+                    data-placement="left"
+                    title="Add a new post"
                     to={`/post/create`}
                   >
-                    <PlusIcon size={24} />
+                    <i class="fas fa-2x fa-plus"></i>
                     Post
                   </Link>
                   <Link
                     className="btn btn-raised btn-info ml-2"
+                    data-toggle="tooltip"
+                    data-placement="left"
+                    title="Add a new product"
                     to={`/create/product`}
                   >
-                    <PlusIcon size={24} />
-                    Product
+                    <i class="fas fa-2x fa-plus"></i>
+                     Product
                   </Link>
                 </div>
               ) : (
@@ -159,7 +167,7 @@ class Profile extends Component {
                         className="btn btn-raised btn-success mr-3"
                         to={`/user/edit/${user._id}`}
                       >
-                        <PencilIcon size={24} /> Profile
+                        <i className="fas fa-2x fa-user-edit"></i>
                       </Link>
                       <DeleteUser userId={user._id} />
                       {/* <DeleteUser /> */}
