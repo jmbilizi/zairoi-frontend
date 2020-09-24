@@ -19,7 +19,7 @@ const NewProfileTab = ({
   user,
   following,
   followers,
-  clickFollowButton,
+  // clickFollowButton,
   posts,
 }) => {
   console.log(posts);
@@ -226,10 +226,10 @@ const NewProfileTab = ({
   const allFollowers = () => (
     <>
       {followers.map((person, i) => (
-        <div className="card col-lg-3 col-md-4 col-sm-5 mx-auto" key={i}>
+        <div className="card col-lg-2 col-md-3 col-sm-6 mx-auto" key={i}>
           <img
             style={{ height: "200px", width: "auto" }}
-            className="pt-2"
+            className="pt-2 rounded-circle"
             src={`${process.env.REACT_APP_API_URL}/user/photo/${person._id}`}
             onError={(i) => (i.target.src = `${DefaultProfile}`)}
             alt={person.name}
@@ -239,14 +239,14 @@ const NewProfileTab = ({
             <p className="card-text">{person.email}</p>
             <Link
               to={`/user/${person._id}`}
-              className="btn btn-raised btn-primary float-right"
+              className="btn btn-raised btn-primary justtify-content-center"
             >
-              <i className="fas fa-eye"></i>
+              <i className="fas fa-eye"></i> View
             </Link>
-            <FollowProfileButton
+            {/* <FollowProfileButton
               following={false}
               onButtonClick={clickFollowButton}
-            />
+            /> */}
           </div>
         </div>
       ))}
@@ -256,10 +256,10 @@ const NewProfileTab = ({
   const allFollowing = () => (
     <>
       {following.map((person, i) => (
-        <div className="card col-lg-3 col-md-4 col-sm-5 mx-sm-auto" key={i}>
+        <div className="card col-lg-2 col-md-3 col-sm-4 mx-sm-auto" key={i}>
           <img
             style={{ height: "200px", width: "auto" }}
-            className="pt-2"
+            className="pt-2 rounded-circle"
             src={`${process.env.REACT_APP_API_URL}/user/photo/${person._id}`}
             onError={(i) => (i.target.src = `${DefaultProfile}`)}
             alt={person.name}
@@ -269,14 +269,14 @@ const NewProfileTab = ({
             <p className="card-text">{person.email}</p>
             <Link
               to={`/user/${person._id}`}
-              className="btn btn-raised btn-primary float-right"
+              className="btn btn-raised btn-primary"
             >
-              <i className="fas fa-eye"></i>
+              <i className="fas fa-eye"></i> View
             </Link>
-            <FollowProfileButton
+            {/* <FollowProfileButton
               following={following}
               onButtonClick={clickFollowButton}
-            />
+            /> */}
           </div>
         </div>
       ))}
@@ -409,7 +409,7 @@ const NewProfileTab = ({
         <div className="row">{allFollowing()}</div>
       </TabPane>
       <TabPane tab={shopTab()} key="4">
-        <div className="row">{<ShopByUser userId={user._id}/>}</div>
+        <div className="row">{<ShopByUser userId={user._id} />}</div>
       </TabPane>
     </Tabs>
   );
