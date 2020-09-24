@@ -65,6 +65,26 @@ const Shop = () => {
     );
   };
 
+  const shuffle = array => {
+    var currentIndex = array.length,
+      temporaryValue,
+      randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
+
   useEffect(() => {
     init();
     loadFilteredResults(skip, limit, myFilters.filters);
@@ -126,7 +146,7 @@ const Shop = () => {
         <div className="col-md-9 col-sm-8">
           <h2 className="mb-4">Products</h2>
           <div className="row">
-            {filteredResults.map((product, i) => (
+            {shuffle(filteredResults).map((product, i) => (
               <div key={i} className="col-lg-6 col-sm-12 mb-1">
                 <Card product={product} />
               </div>
