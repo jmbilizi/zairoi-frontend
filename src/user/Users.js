@@ -25,10 +25,10 @@ class Users extends Component {
   renderUsers = (users) => (
     <div className="row">
       {users.map((user, i) => (
-        <div className="card col-lg-3 col-md-4 col-sm-12" key={i}>
+        <div className="card col-lg-2 col-md-3 col-sm-5 mx-auto" key={i}>
           <img
             style={{ height: "200px", width: "auto" }}
-            className="img-thumbnail"
+            className="pt-3"
             src={`${process.env.REACT_APP_API_URL}/user/photo/${user._id}`}
             onError={(i) => (i.target.src = `${DefaultProfile}`)}
             alt={user.name}
@@ -51,13 +51,11 @@ class Users extends Component {
   render() {
     const { users } = this.state;
     return (
-      <Layout>
-        <div className="container">
-          <h2 className="mt-5 mb-5">{users.length} Users</h2>
+      <div className="container">
+        <h2 className="mt-2 mb-5">{users.length} Users</h2>
 
-          {this.renderUsers(users)}
-        </div>
-      </Layout>
+        {this.renderUsers(users)}
+      </div>
     );
   }
 }

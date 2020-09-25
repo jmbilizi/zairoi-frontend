@@ -136,7 +136,7 @@ const Layout = ({ children, match, history }) => {
       )}
       {isAuth() && (
         <Fragment>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link to="/users" className="nav-link" style={isActive("/users")}>
               <i
                 style={{ position: "relative", height: "50px" }}
@@ -156,7 +156,7 @@ const Layout = ({ children, match, history }) => {
                 </span>
               </i>
             </Link>
-          </li>
+          </li> */}
           <li className="nav-item">
             <Link
               className="nav-link"

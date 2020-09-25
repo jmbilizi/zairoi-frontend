@@ -12,7 +12,7 @@ import EditProfile from "./user/EditProfile";
 import NewPost from "./post/NewPost";
 import SinglePost from "./post/SinglePost";
 import EditPost from "./post/EditPost";
-import Users from "./user/Users";
+// import Users from "./user/Users";
 import FindPeople from "./user/FindPeople";
 import Admin from "./admin/Admin";
 
@@ -43,7 +43,7 @@ const Routes = () => {
         <Route path="/signup" exact component={Signup} />
         <Route path="/signin" exact component={Signin} />
         <Route path="/auth/activate/:token" exact component={Activate} />
-        <PrivateRoute path="/users" exact component={Users} />
+        {/* <PrivateRoute path="/users" exact component={Users} /> */}
         <PrivateRoute path="/findpeople" exact component={FindPeople} />
         <PrivateRoute path="/messaging" exact component={Messaging} />
         <PrivateRoute path="/user/:userId" exact component={Profile} />
