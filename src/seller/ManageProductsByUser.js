@@ -37,6 +37,7 @@ const ManageProducts = ({ userId }) => {
 
   return (
     <div className="col-12">
+      <h2 className="text-center">My products</h2>
       {products
         .filter((p) => p.soldBy === userId)
         .map((p, i) => (
