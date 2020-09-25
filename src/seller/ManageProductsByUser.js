@@ -4,7 +4,7 @@ import { isAuth, getCookie } from "../auth/helpers";
 import { Link } from "react-router-dom";
 import { getProducts, deleteProduct } from "./apiAdmin";
 
-const ManageProducts = (userId) => {
+const ManageProducts = ({ userId }) => {
   const [products, setProducts] = useState([]);
 
   // const { user, token } = isAuth();
@@ -36,14 +36,12 @@ const ManageProducts = (userId) => {
   }, []);
 
   return (
-    <div className="row">
-      <div className="col-12">
-        <h2 className="text-center">Total {products.length} products</h2>
-        <hr />
-        <ul className="list-group">
-          {products
-            .filter((product) => product.soldBy === userId)
-            .map((p, i) => (
+    <div className="col-12">
+      {products
+        .filter((p) => p.soldBy === userId)
+        .map((p, i) => (
+          <>
+            <ul className="list-group">
               <li
                 key={i}
                 className="list-group-item d-flex justify-content-between align-items-center"
@@ -59,10 +57,10 @@ const ManageProducts = (userId) => {
                   Delete
                 </span>
               </li>
-            ))}
-        </ul>
-        <br />
-      </div>
+            </ul>
+          </>
+        ))}
+      <br />
     </div>
   );
 };

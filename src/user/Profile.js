@@ -134,7 +134,7 @@ class Profile extends Component {
                     title="Add a new post"
                     to={`/post/create`}
                   >
-                    <i class="fas fa-2x fa-plus"></i>
+                    <i className="fas fa-2x fa-plus"></i>
                     Post
                   </Link>
                   <Link
@@ -144,8 +144,8 @@ class Profile extends Component {
                     title="Add a new product"
                     to={`/create/product`}
                   >
-                    <i class="fas fa-2x fa-plus"></i>
-                     Product
+                    <i className="fas fa-2x fa-plus"></i>
+                    Product
                   </Link>
                 </div>
               ) : (
@@ -157,7 +157,7 @@ class Profile extends Component {
 
               <div>
                 {isAuth() && isAuth().role === "admin" && (
-                  <div class="card mt-5">
+                  <div className="card mt-5">
                     <div className="card-body">
                       <h5 className="card-title">Admin</h5>
                       <p className="mb-2 text-danger">

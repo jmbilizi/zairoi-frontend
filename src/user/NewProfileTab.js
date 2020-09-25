@@ -14,6 +14,7 @@ import { Tabs } from "antd";
 
 //import user's shop
 import ShopByUser from "../shop/ShopByUser";
+import ManagerProductsByUser from "../seller/ManageProductsByUser";
 
 const NewProfileTab = ({
   user,
@@ -389,6 +390,34 @@ const NewProfileTab = ({
     </>
   );
 
+  const manageUserShopTab = () => (
+    <>
+      <i
+        className="fas fa-edit"
+        style={{
+          fontSize: "25px",
+          position: "relative",
+          height: "50px",
+        }}
+      >
+        <i className="fas fa-trash"></i>
+        <i className="fas fa-store"></i>
+        <span
+          style={{
+            position: "absolute",
+            height: "20px",
+            bottom: "0",
+            right: "0",
+            left: "0",
+            fontSize: "20px",
+          }}
+        >
+          <small>MG Products</small>
+        </span>
+      </i>
+    </>
+  );
+
   const { TabPane } = Tabs;
 
   function callback(key) {
@@ -411,6 +440,15 @@ const NewProfileTab = ({
       <TabPane tab={shopTab()} key="4">
         <div className="row">{<ShopByUser userId={user._id} />}</div>
       </TabPane>
+      {isAuth() && (isAuth()._id === user._id || isAuth().role === "admin") ? (
+        <TabPane tab={manageUserShopTab()} key="5">
+          <div className="row">
+            {<ManagerProductsByUser userId={user._id} />}
+          </div>
+        </TabPane>
+      ) : (
+        false
+      )}
     </Tabs>
   );
 
