@@ -6,6 +6,7 @@ import { isAuth } from "../auth/helpers";
 import { Redirect } from "react-router-dom";
 import Layout from "../core/Layout";
 import { Tabs } from "antd";
+import Orders from "../seller/Orders";
 
 class Admin extends Component {
   state = {
@@ -35,12 +36,12 @@ class Admin extends Component {
           <Posts />
         </TabPane>
         <TabPane tab="MG Products" key="3">
-          <ManageProducts/>
+          <ManageProducts />
         </TabPane>
-        <TabPane tab="add categories" key="4">
-          Content of Tab Pane 3
+        <TabPane tab="orders" key="4">
+          <Orders/>
         </TabPane>
-        <TabPane tab="orders" key="5">
+        <TabPane tab="add categories" key="5">
           Content of Tab Pane 3
         </TabPane>
       </Tabs>
