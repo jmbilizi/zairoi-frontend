@@ -40,10 +40,12 @@ const Orders = () => {
   const showOrdersLength = () => {
     if (orders.length > 0) {
       return (
-        <h1 className="text-danger display-2">Total orders: {orders.length}</h1>
+        <h1 className="text-danger display-2 text-center">
+          Total orders: {orders.length}
+        </h1>
       );
     } else {
-      return <h1 className="text-danger">No orders</h1>;
+      return <h1 className="text-danger text-center">No orders</h1>;
     }
   };
 
