@@ -18,7 +18,7 @@ const Layout = ({ children, match, history }) => {
   const nav = () => (
     <ul
       style={{ listStyleType: "none", opacity: "100%", margin: "0", background: "" }}
-      className="navbar nav-tabs fixed-top"
+      className="navbar nav-tabs sticky-top"
     >
       <li className="nav-item">
         <Link to="/" className="nav-link" style={isActive("/")}>
@@ -323,7 +323,7 @@ const Layout = ({ children, match, history }) => {
   return (
     <Fragment>
       {nav()}
-      <div style={{ marginTop: "100px" }} className="container">
+      <div style={{ marginTop: "30px" }} className="container">
         {children}
       </div>
     </Fragment>
