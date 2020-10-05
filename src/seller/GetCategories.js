@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { getCategories } from "./apiAdmin";
+import { isAuth, getCookie } from "../auth/helpers";
+import { getCategories, deleteCategory } from "./apiAdmin";
 import { Link } from "react-router-dom";
+
+const user = isAuth();
+const token = getCookie("token");
 
 const GetCategories = () => {
   const [categories, setCategories] = useState([]);
@@ -14,6 +18,21 @@ const GetCategories = () => {
       }
     });
   }, []);
+
+  const destroy = async (categoryName, categoryId) => {
+    let answer = await window.confirm(
+      `Are you sure you want to delete the category "${categoryName}"?`
+    );
+    if (answer) {
+      deleteCategory(categoryId, user._id, token).then((data) => {
+        if (data.error) {
+          console.log(data.error);
+        } else {
+          window.location.reload();
+        }
+      });
+    }
+  };
 
   return (
     <>
@@ -38,6 +57,7 @@ const GetCategories = () => {
 
               <div
                 style={{ color: "red" }}
+                onClick={() => destroy(category.name, category._id)}
                 className="col-1 fas fa-trash-alt text-center my-auto"
               ></div>
             </div>
