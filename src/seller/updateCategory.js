@@ -78,7 +78,7 @@ const UpdateCategory = ({ match }) => {
             onChange={handleChange("name")}
             value={name}
             style={{ width: "100%" }}
-            className="rounded-pill text-center"
+            className="form-control text-center"
             type="text"
             required
             name="name"
