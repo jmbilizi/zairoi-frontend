@@ -41,32 +41,36 @@ const ManageProducts = () => {
   }, []);
 
   return (
-    <div className="row">
-      <div className="col-12">
-        <h2 className="text-center">Total {products.length} products</h2>
-        <hr />
-        <ul className="list-group">
-          {products.map((p, i) => (
-            <li
-              key={i}
-              className="list-group-item d-flex justify-content-between align-items-center mb-1"
-            >
-              <strong>{p.name}</strong>
-              <Link to={`/admin/product/update/${p._id}`}>
-                <span className="badge badge-warning badge-pill">Update</span>
-              </Link>
-              <span
+    <>
+      <h2 className="text-center">All {products.length} products</h2>
+      <br />
+      <div>
+        {products.map((p, i) => (
+          <div key={i}>
+            <div style={{ height: "40px" }} className="row bg-white mb-1 px-3">
+              <div style={{ color: "dark" }} className="col-10 mx-auto my-auto">
+                {p.name}
+              </div>
+
+              <div className="col-1  my-auto">
+                <Link to={`/admin/product/update/${p._id}`}>
+                  <span
+                    style={{ color: "orange" }}
+                    className="fas fa-edit"
+                  ></span>
+                </Link>
+              </div>
+
+              <div
+                style={{ color: "red" }}
                 onClick={() => destroy(p.name, p._id)}
-                className="badge badge-danger badge-pill"
-              >
-                Delete
-              </span>
-            </li>
-          ))}
-        </ul>
-        <br />
+                className="col-1 fas fa-trash-alt text-center my-auto"
+              ></div>
+            </div>
+          </div>
+        ))}
       </div>
-    </div>
+    </>
   );
 };
 
