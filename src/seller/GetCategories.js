@@ -36,7 +36,7 @@ const GetCategories = () => {
 
   return (
     <>
-      <h3 className="text-center">All Categories</h3>
+      <h3 className="text-center">All {categories.length} Categories</h3>
       <br />
       <div>
         {categories.map((category, i) => (
