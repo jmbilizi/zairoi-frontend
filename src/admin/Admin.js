@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Posts from "../post/Posts";
 import Users from "../user/Users";
-import ManageProducts from "../seller/ManageProducts"
+import ManageProducts from "../seller/ManageProducts";
 import { isAuth } from "../auth/helpers";
 import { Redirect } from "react-router-dom";
 import Layout from "../core/Layout";
 import { Tabs } from "antd";
 import Orders from "../seller/Orders";
+import GetCategories from "../seller/GetCategories";
 
 class Admin extends Component {
   state = {
@@ -39,11 +40,12 @@ class Admin extends Component {
           <ManageProducts />
         </TabPane>
         <TabPane tab="orders" key="4">
-          <Orders/>
+          <Orders />
         </TabPane>
-        <TabPane tab="add categories" key="5">
-          Content of Tab Pane 3
+        <TabPane tab="categories" key="5">
+          <GetCategories />
         </TabPane>
+        <drop />
       </Tabs>
     );
 
@@ -59,16 +61,6 @@ class Admin extends Component {
           </div>
           <div className="container-fluid">
             <AdminTabs />
-            {/* <div className="col-md-6">
-                <h2>Posts</h2>
-                <hr />
-                <Posts />
-              </div>
-              <div className="col-md-6">
-                <h2>Users</h2>
-                <hr />
-                <Users />
-              </div> */}
           </div>
         </div>
       </Layout>
