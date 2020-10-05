@@ -7,6 +7,7 @@ import { Redirect } from "react-router-dom";
 import Layout from "../core/Layout";
 import { Tabs } from "antd";
 import Orders from "../seller/Orders";
+import AddCategory from "../seller/AddCategory";
 import GetCategories from "../seller/GetCategories";
 
 class Admin extends Component {
@@ -43,6 +44,7 @@ class Admin extends Component {
           <Orders />
         </TabPane>
         <TabPane tab="categories" key="5">
+          <AddCategory/>
           <GetCategories />
         </TabPane>
         <drop />
