@@ -21,14 +21,19 @@ const ManageProducts = () => {
     });
   };
 
-  const destroy = (productId) => {
-    deleteProduct(productId, user._id, token).then((data) => {
-      if (data.error) {
-        console.log(data.error);
-      } else {
-        loadProducts();
-      }
-    });
+  const destroy = async (productName, productId) => {
+    let answer = await window.confirm(
+      `Are you sure you want to delete the product "${productName}"?`
+    );
+    if (answer) {
+      deleteProduct(productId, user._id, token).then((data) => {
+        if (data.error) {
+          console.log(data.error);
+        } else {
+          loadProducts();
+        }
+      });
+    }
   };
 
   useEffect(() => {
@@ -51,13 +56,12 @@ const ManageProducts = () => {
                 <span className="badge badge-warning badge-pill">Update</span>
               </Link>
               <span
-                onClick={() => destroy(p._id)}
+                onClick={() => destroy(p.name, p._id)}
                 className="badge badge-danger badge-pill"
               >
                 Delete
               </span>
             </li>
-        
           ))}
         </ul>
         <br />
