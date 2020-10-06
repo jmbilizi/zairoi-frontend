@@ -442,9 +442,7 @@ const NewProfileTab = ({
       </TabPane>
       {isAuth() && (isAuth()._id === user._id || isAuth().role === "admin") ? (
         <TabPane tab={manageUserShopTab()} key="5">
-          <div className="row">
-            {<ManagerProductsByUser userId={user._id} />}
-          </div>
+          {<ManagerProductsByUser userId={user._id} />}
         </TabPane>
       ) : (
         false
