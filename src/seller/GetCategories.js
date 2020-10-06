@@ -9,7 +9,7 @@ const token = getCookie("token");
 const GetCategories = () => {
   const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
+  const loadCategories = () => {
     getCategories().then((data) => {
       if (data.error) {
         console.log(data.error);
@@ -17,6 +17,9 @@ const GetCategories = () => {
         setCategories(data);
       }
     });
+  }
+  useEffect(() => {
+    loadCategories();
   }, []);
 
   const destroy = async (categoryName, categoryId) => {
@@ -28,7 +31,7 @@ const GetCategories = () => {
         if (data.error) {
           console.log(data.error);
         } else {
-          window.location.reload();
+          loadCategories();
         }
       });
     }
