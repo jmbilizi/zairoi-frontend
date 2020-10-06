@@ -425,7 +425,7 @@ const NewProfileTab = ({
   }
 
   const ProfileTabs = () => (
-    <Tabs defaultActiveKey="1" onChange={callback}>
+    <Tabs defaultActiveKey="1" onChange={callback} centered>
       <TabPane tab={postsTab()} key="1">
         <div className="row">
           <div className="col-sm-12">{allPosts()}</div>
