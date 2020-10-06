@@ -48,14 +48,29 @@ const ManageProducts = () => {
         {products.map((p, i) => (
           <div key={i}>
             <div style={{ height: "40px" }} className="row bg-white mb-1 px-3">
-              <div style={{ color: "dark" }} className="col-10 mx-auto my-auto">
+              <div style={{ color: "dark" }} className="col-9 mx-auto my-auto">
                 {p.name}
+              </div>
+
+              <div className="col-1  my-auto">
+                <Link to={`/user/${p.soldBy}`}>
+                  <span
+                    style={{ color: "blue" }}
+                    data-toggle="tooltip"
+                    data-placement="left"
+                    title="View Seller's profile"
+                    className="far fa-user"
+                  ></span>
+                </Link>
               </div>
 
               <div className="col-1  my-auto">
                 <Link to={`/admin/product/update/${p._id}`}>
                   <span
                     style={{ color: "orange" }}
+                    data-toggle="tooltip"
+                    data-placement="left"
+                    title="Edit product"
                     className="fas fa-edit"
                   ></span>
                 </Link>
@@ -64,6 +79,9 @@ const ManageProducts = () => {
               <div
                 style={{ color: "red" }}
                 onClick={() => destroy(p.name, p._id)}
+                data-toggle="tooltip"
+                data-placement="left"
+                title="Delete product"
                 className="col-1 fas fa-trash-alt text-center my-auto"
               ></div>
             </div>
