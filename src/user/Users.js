@@ -52,7 +52,7 @@ class Users extends Component {
     const { users } = this.state;
     return (
       <div className="container">
-        <h2 className="mt-2 mb-5">{users.length} Users</h2>
+        <h2 className="mt-2 mb-3 text-center">{users.length} Users</h2>
 
         {this.renderUsers(users)}
       </div>
