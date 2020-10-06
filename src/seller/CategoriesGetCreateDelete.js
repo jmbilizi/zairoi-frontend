@@ -1,14 +1,70 @@
 import React, { useState, useEffect } from "react";
 import { isAuth, getCookie } from "../auth/helpers";
-import { getCategories, deleteCategory } from "./apiAdmin";
+import { getCategories, deleteCategory, createCategory } from "./apiAdmin";
 import { Link } from "react-router-dom";
 
 const user = isAuth();
 const token = getCookie("token");
 
-const GetCategories = () => {
+const CategoriesGetCreateDelete = () => {
   const [categories, setCategories] = useState([]);
+  const [name, setName] = useState("");
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
+//add category code
+  const handleChange = (e) => {
+    setError("");
+    setName(e.target.value);
+  };
+
+  const clickSubmit = (e) => {
+    e.preventDefault();
+    setError("");
+    setSuccess(false);
+    // make request to api to create category
+    createCategory(user._id, token, { name }).then((data) => {
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setError("");
+        setSuccess(true);
+        loadCategories();
+      }
+    });
+  };
+  const newCategoryFom = () => (
+    <form onSubmit={clickSubmit}>
+      <div className="form-group">
+        <label className="text-muted">Name</label>
+        <input
+          type="text"
+          className="form-control text-center"
+          onChange={handleChange}
+          value={name}
+          autoFocus
+          required
+        />
+      </div>
+      <button className="btn btn-raised btn-info rounded-pill">
+        Create Category
+      </button>
+    </form>
+  );
+
+  const showSuccess = () => {
+    if (success) {
+      return <h3 className="text-success">{name} is created</h3>;
+    }
+  };
+
+  const showError = () => {
+    if (error) {
+      return <h3 className="text-danger">Category should be unique</h3>;
+    }
+  };
+
+//view category code
   const loadCategories = () => {
     getCategories().then((data) => {
       if (data.error) {
@@ -17,11 +73,12 @@ const GetCategories = () => {
         setCategories(data);
       }
     });
-  }
+  };
   useEffect(() => {
     loadCategories();
   }, []);
 
+//delete category code
   const destroy = async (categoryName, categoryId) => {
     let answer = await window.confirm(
       `Are you sure you want to delete the category "${categoryName}"?`
@@ -39,6 +96,14 @@ const GetCategories = () => {
 
   return (
     <>
+      <div className="row text-center mb-3">
+        <div className="col-md-8 offset-md-2">
+          <h3>Add a new category</h3>
+          {showSuccess()}
+          {showError()}
+          {newCategoryFom()}
+        </div>
+      </div>
       <h3 className="text-center">All {categories.length} Categories</h3>
       <br />
       <div>
@@ -71,4 +136,4 @@ const GetCategories = () => {
   );
 };
 
-export default GetCategories;
+export default CategoriesGetCreateDelete;
