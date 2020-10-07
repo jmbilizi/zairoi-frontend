@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { isAuth, getCookie } from "../auth/helpers";
-import { getCategories, deleteCategory, createCategory } from "./apiAdmin";
+import {
+  getCategories,
+  deleteCategory,
+  createCategory,
+  updateCategory,
+} from "./apiAdmin";
+
 import { Link } from "react-router-dom";
 
 const user = isAuth();
@@ -8,14 +14,18 @@ const token = getCookie("token");
 
 const CategoriesGetCreateDelete = () => {
   const [categories, setCategories] = useState([]);
+  const [catId, setCatId] = useState();
+  const [catName, setCatName] = useState();
   const [name, setName] = useState("");
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [update, setUpdate] = useState(false);
 
-//add category code
+  //add category code
   const handleChange = (e) => {
     setError("");
     setName(e.target.value);
+    setCatName(e.target.value);
   };
 
   const clickSubmit = (e) => {
@@ -33,28 +43,32 @@ const CategoriesGetCreateDelete = () => {
       }
     });
   };
-  const newCategoryFom = () => (
-    <form onSubmit={clickSubmit}>
+  const newCategoryFom = (theValue, submitFunction) => (
+    <form onSubmit={submitFunction}>
       <div className="form-group">
         <label className="text-muted">Name</label>
         <input
           type="text"
           className="form-control text-center"
           onChange={handleChange}
-          value={name}
+          value={theValue}
           autoFocus
           required
         />
       </div>
       <button className="btn btn-raised btn-info rounded-pill">
-        Create Category
+        {!update ? <>Create Category</> : <>Save Changes</>}
       </button>
     </form>
   );
 
   const showSuccess = () => {
     if (success) {
-      return <h3 className="text-success">{name} is created</h3>;
+      return (
+        <h3 className="text-success">
+          {!update ? <>{name} is created</> : <></>}
+        </h3>
+      );
     }
   };
 
@@ -64,7 +78,7 @@ const CategoriesGetCreateDelete = () => {
     }
   };
 
-//view category code
+  //view category code
   const loadCategories = () => {
     getCategories().then((data) => {
       if (data.error) {
@@ -78,7 +92,28 @@ const CategoriesGetCreateDelete = () => {
     loadCategories();
   }, []);
 
-//delete category code
+  //Update category
+  const submitCategoryFormUpdate = (e) => {
+    e.preventDefault();
+    setError("");
+    setSuccess(false);
+    let cat = {
+      name: catName,
+    };
+    if (update) {
+      updateCategory(catId, user._id, token, cat).then((data) => {
+        if (data.error) {
+          setError(data.error);
+        } else {
+          setError("");
+          setName("");
+          setUpdate(false);
+          loadCategories();
+        }
+      });
+    }
+  };
+  //delete category code
   const destroy = async (categoryName, categoryId) => {
     let answer = await window.confirm(
       `Are you sure you want to delete the category "${categoryName}"?`
@@ -98,10 +133,17 @@ const CategoriesGetCreateDelete = () => {
     <>
       <div className="row text-center mb-3">
         <div className="col-md-8 offset-md-2">
-          <h3>Add a new category</h3>
+          {!update ? (
+            <h3>Add a new category</h3>
+          ) : (
+            <h3>Update Category Form</h3>
+          )}
           {showSuccess()}
           {showError()}
-          {newCategoryFom()}
+          {newCategoryFom.apply(
+            this,
+            !update ? [name, clickSubmit] : [catName, submitCategoryFormUpdate]
+          )}
         </div>
       </div>
       <h3 className="text-center">All {categories.length} Categories</h3>
@@ -115,12 +157,15 @@ const CategoriesGetCreateDelete = () => {
               </div>
 
               <div className="col-1  my-auto">
-                <Link to={`/admin/category/update/${category._id}`}>
-                  <span
-                    style={{ color: "orange" }}
-                    className="fas fa-edit"
-                  ></span>
-                </Link>
+                <span
+                  style={{ color: "orange" }}
+                  onClick={() => {
+                    setUpdate(true);
+                    setCatId(category._id);
+                    setCatName(category.name);
+                  }}
+                  className="fas fa-edit"
+                ></span>
               </div>
 
               <div
