@@ -14,10 +14,14 @@ const Layout = ({ children, match, history }) => {
     }
   };
 
-
   const nav = () => (
     <ul
-      style={{ listStyleType: "none", opacity: "100%", margin: "0", background: "" }}
+      style={{
+        listStyleType: "none",
+        opacity: "100%",
+        margin: "0",
+        background: "",
+      }}
       className="navbar nav-tabs sticky-top"
     >
       <li className="nav-item">
@@ -123,40 +127,8 @@ const Layout = ({ children, match, history }) => {
           </Link>
         </li>
       )}
-      {isAuth() && isAuth().role !== "subscriber" && (
-        <li className="nav-item">
-          <Link
-            className="nav-link"
-            style={isActive("/admin/dashboard")}
-            to="/admin/dashboard"
-          >
-            Dashboard
-          </Link>
-        </li>
-      )}
       {isAuth() && (
         <Fragment>
-          {/* <li className="nav-item">
-            <Link to="/users" className="nav-link" style={isActive("/users")}>
-              <i
-                style={{ position: "relative", height: "50px" }}
-                className="fas fa-2x fa-users"
-              >
-                <span
-                  style={{
-                    position: "absolute",
-                    height: "20px",
-                    bottom: "0",
-                    right: "0",
-                    left: "0",
-                    fontSize: "20px",
-                  }}
-                >
-                  <small>Users</small>
-                </span>
-              </i>
-            </Link>
-          </li> */}
           <li className="nav-item">
             <Link
               className="nav-link"
