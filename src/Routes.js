@@ -21,7 +21,6 @@ import SellerDashboard from "./user/SellerDashboard";
 import SellerRoute from "./auth/SellerRoute";
 import AddProduct from "./seller/AddProduct";
 import Orders from "./seller/Orders";
-import ManageProducts from "./seller/ManageProducts";
 import UpdateProduct from "./seller/UpdateProduct";
 import UpdateCategory from "./seller/updateCategory";
 //shop
@@ -70,7 +69,6 @@ const Routes = () => {
           exact
           component={UpdateCategory}
         />
-        <SellerRoute path="/admin/products" exact component={ManageProducts} />
         <Route path="/shop" exact component={Shop} />
         <Route path="/cart" exact component={Cart} />
         <Route path="/product/:productId" exact component={Product} />
