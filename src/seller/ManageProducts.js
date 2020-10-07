@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Layout from "../core/Layout";
 import { isAuth, getCookie } from "../auth/helpers";
 import { Link } from "react-router-dom";
 import { getProducts, deleteProduct } from "./apiAdmin";
