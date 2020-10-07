@@ -19,7 +19,6 @@ import Admin from "./admin/Admin";
 //seller
 import SellerDashboard from "./user/SellerDashboard";
 import SellerRoute from "./auth/SellerRoute";
-import AddCategory from "./seller/AddCategory";
 import AddProduct from "./seller/AddProduct";
 import Orders from "./seller/Orders";
 import ManageProducts from "./seller/ManageProducts";
@@ -59,7 +58,6 @@ const Routes = () => {
           exact
           component={SellerDashboard}
         />
-        <SellerRoute path="/create/category" exact component={AddCategory} />
         <PrivateRoute path="/create/product" exact component={AddProduct} />
         <SellerRoute path="/admin/orders" exact component={Orders} />
         <SellerRoute
