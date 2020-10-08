@@ -225,21 +225,19 @@ const SinglePost = ({ postId }) => {
   }
 
   return (
-    <Layout>
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-12">
-            {!post ? (
-              <div className="jumbotron text-center">
-                <h2>Loading...</h2>
-              </div>
-            ) : (
-              renderPost(post)
-            )}
-          </div>
+    <div className="container">
+      <div className="row">
+        <div className="col-sm-12">
+          {!post ? (
+            <div className="jumbotron text-center">
+              <h2>Loading...</h2>
+            </div>
+          ) : (
+            renderPost(post)
+          )}
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 
