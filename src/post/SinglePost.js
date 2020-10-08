@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { singlePost, remove, like, unlike } from "./apiPost";
 import DefaultPost from "../images/mountains.jpg";
 import { Link, Redirect } from "react-router-dom";
@@ -8,90 +8,82 @@ import Comment from "./Comment";
 import DefaultProfile from "../images/avatar.jpg";
 import { PencilIcon, TrashIcon, CommentIcon } from "@primer/octicons-react";
 
-class SinglePost extends Component {
-  state = {
-    post: "",
-    redirectToHome: false,
-    redirectToSignin: false,
-    like: false,
-    likes: 0,
-    comments: [],
-  };
+const SinglePost = ({ postId }) => {
+  const [post, setPost] = useState();
+  const [redirectToHome, setRedirectToHome] = useState(false);
+  const [redirectToSignin, setRedirectToSignin] = useState(false);
+  const [liked, setLiked] = useState(false);
+  const [likes, setLikes] = useState(0);
+  const [comments, setComments] = useState([]);
 
-  checkLike = (likes) => {
-    const userId = isAuth() && isAuth()._id;
-    let match = likes.indexOf(userId) !== -1;
+  const userId = isAuth()._id;
+  const token = getCookie("token");
+
+  const checkLike = (numberOfLikes) => {
+    let match = numberOfLikes.indexOf(userId) !== -1;
     return match;
   };
 
-  componentDidMount = () => {
-    const postId = this.props.match.params.postId;
+  useEffect(() => {
     singlePost(postId).then((data) => {
       if (data.error) {
         console.log(data.error);
       } else {
-        this.setState({
-          post: data,
-          likes: data.likes.length,
-          like: this.checkLike(data.likes),
-          comments: data.comments,
-        });
+        console.log(data);
+        setPost(data);
+        setLikes(data.likes.length);
+        setLiked(checkLike(data.likes));
+        setComments(data.comments);
       }
     });
+  }, []);
+
+  const updateComments = (allComments) => {
+    setComments({ allComments });
   };
 
-  updateComments = (comments) => {
-    this.setState({ comments });
-  };
-
-  likeToggle = () => {
+  const likeToggle = () => {
     if (!isAuth()) {
-      this.setState({ redirectToSignin: true });
+      setRedirectToSignin(true);
       return false;
     }
-    let callApi = this.state.like ? unlike : like;
-    const userId = isAuth()._id;
-    const postId = this.state.post._id;
-    const token = getCookie("token");
-    // const token = isAuth().token;
+    let callApi = liked ? unlike : like;
 
     callApi(userId, token, postId).then((data) => {
       if (data.error) {
         console.log(data.error);
       } else {
-        this.setState({
-          like: !this.state.like,
-          likes: data.likes.length,
-        });
+        setLiked(!liked);
+        setLikes(data.likes.length);
       }
     });
   };
 
-  deletePost = () => {
-    const postId = this.props.match.params.postId;
-    const token = getCookie("token");
-    // const token = isAuth().token;
+  const deletePost = () => {
     remove(postId, token).then((data) => {
       if (data.error) {
         console.log(data.error);
       } else {
-        this.setState({ redirectToHome: true });
+        setRedirectToHome(true);
       }
     });
   };
 
-  deleteConfirmed = () => {
+  const deleteConfirmed = () => {
     let answer = window.confirm("Are you sure you want to delete your post?");
     if (answer) {
-      this.deletePost();
+      deletePost();
     }
   };
 
-  renderPost = (post) => {
-    const posterId = post.postedBy ? `/user/${post.postedBy._id}` : "";
-    const posterName = post.postedBy ? post.postedBy.name : " Unknown";
-
-    const { likes, comments } = this.state;
+  const renderPost = (currentPost) => {
+    console.log(currentPost);
+    const posterId = currentPost.postedBy
+      ? `/user/${currentPost.postedBy._id}`
+      : "";
+    const posterName = currentPost.postedBy
+      ? currentPost.postedBy.name
+      : " Unknown";
 
     return (
       <div className="card-body rounded border border-silver mt-4">
@@ -107,23 +99,23 @@ class SinglePost extends Component {
                 height="30px"
                 width="30px"
                 onError={(i) => (i.target.src = `${DefaultProfile}`)}
-                src={`${process.env.REACT_APP_API_URL}/user/photo/${post.postedBy._id}`}
-                alt={post.postedBy.name}
+                src={`${process.env.REACT_APP_API_URL}/user/photo/${currentPost.postedBy._id}`}
+                alt={currentPost.postedBy.name}
               />
               {posterName}
             </Link>
           </div>
           <div className="col-sm-7">
             <p className="float-right font-italic mark">
-              Posted on {new Date(post.created).toDateString()}
+              Posted on {new Date(currentPost.created).toDateString()}
             </p>
           </div>
         </div>
-        <h2 className="mt-2 mb-3"> {post.title} </h2>
-        <p className="card-text">{post.body}</p>
+        <h2 className="mt-2 mb-3"> {currentPost.title} </h2>
+        <p className="card-text">{currentPost.body}</p>
         <img
-          src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}`}
-          alt={post.title}
+          src={`${process.env.REACT_APP_API_URL}/post/photo/${currentPost._id}`}
+          alt={currentPost.title}
           onError={(i) => (i.target.src = `${DefaultPost}`)}
           className="img-thunbnail mb-3"
           style={{
@@ -137,7 +129,7 @@ class SinglePost extends Component {
             <div className="row">
               <div className="col-5">
                 {like ? (
-                  <p onClick={this.likeToggle}>
+                  <p onClick={likeToggle}>
                     <i
                       className="fa fa-thumbs-up text-success bg-dark"
                       style={{ padding: "10px", borderRadius: "50%" }}
@@ -145,7 +137,7 @@ class SinglePost extends Component {
                     {likes} Like
                   </p>
                 ) : (
-                  <p onClick={this.likeToggle}>
+                  <p onClick={likeToggle}>
                     <i
                       className="fa fa-thumbs-up text-warning bg-dark"
                       style={{ padding: "10px", borderRadius: "50%" }}
@@ -174,16 +166,16 @@ class SinglePost extends Component {
               Back to posts
             </Link>
 
-            {isAuth() && isAuth()._id === post.postedBy._id && (
+            {isAuth() && isAuth()._id === currentPost.postedBy._id && (
               <>
                 <button
-                  onClick={this.deleteConfirmed}
+                  onClick={deleteConfirmed}
                   className="btn btn-raised btn-danger btn-md float-sm-right mr-3 ml-3"
                 >
                   <TrashIcon size={24} />
                 </button>
                 <Link
-                  to={`/post/edit/${post._id}`}
+                  to={`/post/edit/${currentPost._id}`}
                   className="btn btn-raised btn-warning btn-md float-sm-right mr-3"
                 >
                   <PencilIcon size={24} />
@@ -200,13 +192,13 @@ class SinglePost extends Component {
                   <h5 className="card-title">Admin</h5>
                   <p className="mb-2 text-danger">Edit/Delete as an Admin</p>
                   <Link
-                    to={`/post/edit/${post._id}`}
+                    to={`/post/edit/${currentPost._id}`}
                     className="btn btn-raised btn-warning btn-md mr-5"
                   >
                     <PencilIcon size={24} />
                   </Link>
                   <button
-                    onClick={this.deleteConfirmed}
+                    onClick={deleteConfirmed}
                     className="btn btn-raised btn-danger btn-md mr-5"
                   >
                     <TrashIcon size={24} />
@@ -218,41 +210,37 @@ class SinglePost extends Component {
         </div>
 
         <Comment
-          postId={post._id}
+          postId={currentPost._id}
           comments={comments.reverse()}
-          updateComments={this.updateComments}
+          updateComments={updateComments}
         />
       </div>
     );
   };
 
-  render() {
-    const { post, redirectToHome, redirectToSignin } = this.state;
+  if (redirectToHome) {
+    return <Redirect to={`/`} />;
+  } else if (redirectToSignin) {
+    return <Redirect to={`/signin`} />;
+  }
 
-    if (redirectToHome) {
-      return <Redirect to={`/`} />;
-    } else if (redirectToSignin) {
-      return <Redirect to={`/signin`} />;
-    }
-
-    return (
-      <Layout>
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-12">
-              {!post ? (
-                <div className="jumbotron text-center">
-                  <h2>Loading...</h2>
-                </div>
-              ) : (
-                this.renderPost(post)
-              )}
-            </div>
+  return (
+    <Layout>
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-12">
+            {!post ? (
+              <div className="jumbotron text-center">
+                <h2>Loading...</h2>
+              </div>
+            ) : (
+              renderPost(post)
+            )}
           </div>
         </div>
-      </Layout>
-    );
-  }
-}
+      </div>
+    </Layout>
+  );
+};
 
 export default SinglePost;
