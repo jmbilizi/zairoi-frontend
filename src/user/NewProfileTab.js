@@ -1,15 +1,9 @@
-import React, { useState, Component, Fragment } from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import DefaultProfile from "../images/avatar.jpg";
 import { isAuth, getCookie } from "../auth/helpers";
-import DefaultPost from "../images/mountains.jpg";
-import { PencilIcon, TrashIcon, CommentIcon } from "@primer/octicons-react";
-// import Comment from "../post/Comment";
-import { remove, like, unlike } from "../post/apiPost";
+
 import SinglePost from "../post/SinglePost";
-import { Modal } from "react-bootstrap";
-import FollowProfileButton from "./FollowProfileButton";
-import { read } from "./apiUser";
 // import antd from "antd";
 import "antd/dist/antd.css";
 import { Tabs } from "antd";
@@ -18,76 +12,11 @@ import { Tabs } from "antd";
 import ShopByUser from "../shop/ShopByUser";
 import ManagerProductsByUser from "../seller/ManageProductsByUser";
 
-const NewProfileTab = ({
-  user,
-  following,
-  followers,
-  // clickFollowButton,
-  posts,
-}) => {
-  console.log(posts);
-  console.log(following);
-  console.log(followers);
-
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  let deletePost = (postId) => {
-    // const postId = this.props.match.params.postId;
-    const token = getCookie("token");
-    // const token = isAuth().token;
-    remove(postId, token).then((data) => {
-      if (data.error) {
-        console.log(data.error);
-      } else {
-        alert("Post successfully deleted");
-        window.location.reload();
-      }
-    });
-  };
-
-  let deleteConfirmed = (postId) => {
-    let answer = window.confirm("Are you sure you want to delete your post?");
-    if (answer) {
-      deletePost(postId);
-    }
-  };
-
-  // let likeToggle = () => {
-  //   if (!isAuth()) {
-  //     this.setState({ redirectToSignin: true });
-  //     return false;
-  //   }
-  //   let callApi = this.state.like ? unlike : like;
-  //   const userId = isAuth()._id;
-  //   const postId = this.state.post._id;
-  //   const token = getCookie("token");
-  //   // const token = isAuth().token;
-
-  //   callApi(userId, token, postId).then((data) => {
-  //     if (data.error) {
-  //       console.log(data.error);
-  //     } else {
-  //       this.setState({
-  //         like: !this.state.like,
-  //         likes: data.likes.length,
-  //       });
-  //     }
-  //   });
-  // };
-
-  // let updateComments = (comments) => {
-  //   this.setState({ comments });
-  // };
-
+const NewProfileTab = ({ user, following, followers, posts }) => {
   const allPosts = () => (
     <>
       {posts.reverse().map((post, i) => (
-        <div key={i}>
-          {<SinglePost postId={post._id}/>}
-        </div>
+        <div key={i}>{<SinglePost postId={post._id} />}</div>
       ))}
     </>
   );
