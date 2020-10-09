@@ -10,6 +10,7 @@ import Reset from "./auth/Reset";
 import Profile from "./user/Profile";
 import EditProfile from "./user/EditProfile";
 import NewPost from "./post/NewPost";
+import ViewSinglePost from "./post/ViewSinglePost";
 import EditPost from "./post/EditPost";
 import FindPeople from "./user/FindPeople";
 import Admin from "./admin/Admin";
@@ -44,6 +45,7 @@ const Routes = () => {
         <PrivateRoute exact path="/user/edit/:userId" component={EditProfile} />
         <PrivateRoute exact path="/post/create" component={NewPost} />
         <PrivateRoute exact path="/post/edit/:postId" component={EditPost} />
+        <PrivateRoute exact path="/post/:postId" component={ViewSinglePost} />
         <Route path="/auth/password/forgot" exact component={Forgot} />
         <Route path="/auth/password/reset/:token" exact component={Reset} />
         <PrivateRoute path="/create/product" exact component={AddProduct} />
