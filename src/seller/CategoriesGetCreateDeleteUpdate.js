@@ -7,8 +7,6 @@ import {
   updateCategory,
 } from "./apiAdmin";
 
-import { Link } from "react-router-dom";
-
 const user = isAuth();
 const token = getCookie("token");
 
