@@ -86,7 +86,7 @@ const SinglePost = ({ postId }) => {
       : " Unknown";
 
     return (
-      <div className="card-body rounded border border-silver mt-4">
+      <div className="card-body rounded border border-silver mb-4 bg-white">
         <div className="row border-bottom border-silver">
           <div className="col-sm-5">
             <Link to={`${posterId}`}>
