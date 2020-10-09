@@ -49,7 +49,7 @@ class Posts extends Component {
 
                     return (
                       <div
-                        className="card col-lg-4 col-md-5 col-sm-10 mx-auto"
+                        className="card col-lg-3 col-md-5 col-sm-10 mx-auto"
                         key={i}
                       >
                         <div className="card-body">
