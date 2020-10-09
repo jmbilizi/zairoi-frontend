@@ -6,7 +6,6 @@ import DefaultProfile from "../images/avatar.jpg";
 import DeleteUser from "./DeleteUser";
 import FollowProfileButton from "./FollowProfileButton";
 import ProfileTabs from "./ProfileTabs";
-import NewProfileTab from "./NewProfileTab";
 import { listByUser } from "../post/apiPost";
 import Layout from "../core/Layout";
 
@@ -194,7 +193,7 @@ class Profile extends Component {
                 posts={posts}
                 following={user.following}
               /> */}
-              <NewProfileTab
+              <ProfileTabs
                 user={user}
                 followers={user.followers}
                 posts={posts}
