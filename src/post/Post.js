@@ -4,6 +4,7 @@ import DefaultPost from "../images/mountains.jpg";
 import { singlePost, remove, like, unlike } from "./apiPost";
 import { Link, Redirect } from "react-router-dom";
 import { isAuth, getCookie } from "../auth/helpers";
+import Layout from "../core/Layout";
 import Comment from "./Comment";
 import DefaultProfile from "../images/avatar.jpg";
 import { PencilIcon, TrashIcon, CommentIcon } from "@primer/octicons-react";
@@ -258,41 +259,43 @@ class Post extends Component {
     }
 
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-md-2 col-sm-12"></div>
-          <div className="col-md-8 col-sm-12">
-            <h2 className="mt-2 mb-2">
-              {!posts.length ? "No more posts!" : "Recent Posts"}
-            </h2>
+      <Layout>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-2 col-sm-12"></div>
+            <div className="col-md-8 col-sm-12">
+              <h2 className="mt-2 mb-2">
+                {!posts.length ? "No more posts!" : "Recent Posts"}
+              </h2>
 
-            {this.renderPosts(posts)}
+              {this.renderPosts(posts)}
 
-            {page > 1 ? (
-              <button
-                className="btn btn-raised btn-warning mr-5 mt-5 mb-5"
-                onClick={() => this.loadLess(1)}
-              >
-                Previous ({this.state.page - 1})
-              </button>
-            ) : (
-              ""
-            )}
+              {page > 1 ? (
+                <button
+                  className="btn btn-raised btn-warning mr-5 mt-5 mb-5"
+                  onClick={() => this.loadLess(1)}
+                >
+                  Previous ({this.state.page - 1})
+                </button>
+              ) : (
+                ""
+              )}
 
-            {posts.length ? (
-              <button
-                className="btn btn-raised btn-success mt-5 mb-5"
-                onClick={() => this.loadMore(1)}
-              >
-                Next ({page + 1})
-              </button>
-            ) : (
-              ""
-            )}
+              {posts.length ? (
+                <button
+                  className="btn btn-raised btn-success mt-5 mb-5"
+                  onClick={() => this.loadMore(1)}
+                >
+                  Next ({page + 1})
+                </button>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className="col-md-2 col-sm-12"></div>
           </div>
-          <div className="col-md-2 col-sm-12"></div>
         </div>
-      </div>
+      </Layout>
     );
   }
 }

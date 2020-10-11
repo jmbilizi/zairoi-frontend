@@ -10,6 +10,7 @@ import Reset from "./auth/Reset";
 import Profile from "./user/Profile";
 import EditProfile from "./user/EditProfile";
 import NewPost from "./post/NewPost";
+import Post from "./post/Post";
 import ViewSinglePost from "./post/ViewSinglePost";
 import EditPost from "./post/EditPost";
 import FindPeople from "./user/FindPeople";
@@ -58,7 +59,7 @@ const Routes = () => {
         <Route path="/shop" exact component={Shop} />
         <Route path="/cart" exact component={Cart} />
         <Route path="/product/:productId" exact component={Product} />
-        <Route path="/marketplace" exact component={MarketPlace} />
+        <PrivateRoute path="/posts" exact component={Post} />
       </Switch>
     </BrowserRouter>
   );

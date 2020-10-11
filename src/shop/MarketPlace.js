@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Layout from "../core/Layout";
 import { getProducts } from "./apiCore";
 import Card from "./Card";
 import Search from "./Search";
@@ -36,32 +35,30 @@ const Home = () => {
   }, []);
 
   return (
-    <Layout>
-      <div className="container">
-        <div className="row mt-5">
-          <div className="col-12">
-            <Search />
-            <h2 className="mb-4">New Arrivals</h2>
-            <div className="row">
-              {productsByArrival.map((product, i) => (
-                <div key={i} className="col-md-4 col-sm-12 mb-3">
-                  <Card product={product} />
-                </div>
-              ))}
-            </div>
+    <div className="container">
+      <div className="row mt-5">
+        <div className="col-12">
+          <Search />
+          <h2 className="mb-4">New Arrivals</h2>
+          <div className="row">
+            {productsByArrival.map((product, i) => (
+              <div key={i} className="col-md-4 col-sm-12 mb-3">
+                <Card product={product} />
+              </div>
+            ))}
+          </div>
 
-            <h2 className="mb-4">Best Sellers</h2>
-            <div className="row">
-              {productsBySell.map((product, i) => (
-                <div key={i} className="col-lg-4 col-md-6 col-sm-12 mb-1">
-                  <Card product={product} />
-                </div>
-              ))}
-            </div>
+          <h2 className="mb-4">Best Sellers</h2>
+          <div className="row">
+            {productsBySell.map((product, i) => (
+              <div key={i} className="col-lg-4 col-md-6 col-sm-12 mb-1">
+                <Card product={product} />
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 
