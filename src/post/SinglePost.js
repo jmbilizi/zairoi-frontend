@@ -197,7 +197,7 @@ const SinglePost = ({ postId }) => {
         <div className="row">
           <div className="col-sm-12">
             {isAuth() && isAuth().role === "admin" && (
-              <div className="card mt-2">
+              <div className="card mt-2 rounded border border-silver">
                 <div className="card-body">
                   <h5 className="card-title">Admin</h5>
                   <p className="mb-2 text-danger">Edit/Delete as an Admin</p>
