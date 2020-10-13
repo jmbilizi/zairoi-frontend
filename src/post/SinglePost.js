@@ -88,26 +88,37 @@ const SinglePost = ({ postId }) => {
     return (
       <div className="card-body rounded border border-silver mb-4 bg-white">
         <div className="row border-bottom border-silver">
-          <div className="col-sm-5">
+          <div className="col">
             <Link to={`${posterId}`}>
               <img
                 style={{
                   borderRadius: "50%",
-                  border: "1px solid black",
                 }}
-                className="float-left mr-2"
-                height="30px"
-                width="30px"
+                className="float-left mr-2 mb-3"
+                height="38px"
+                width="38px"
                 onError={(i) => (i.target.src = `${DefaultProfile}`)}
                 src={`${process.env.REACT_APP_API_URL}/user/photo/${currentPost.postedBy._id}`}
                 alt={currentPost.postedBy.name}
               />
-              {posterName}
+              <div
+                style={{
+                  lineHeight: "35px",
+                }}
+                className=""
+              >
+                <strong>{posterName}</strong>
+              </div>
             </Link>
           </div>
-          <div className="col-sm-7">
-            <p className="float-right font-italic mark">
-              Posted on {new Date(currentPost.created).toDateString()}
+          <div className="col-auto">
+            <p
+              style={{
+                lineHeight: "30px",
+              }}
+              className="float-right font-italic mark"
+            >
+              {new Date(currentPost.created).toDateString()}
             </p>
           </div>
         </div>
