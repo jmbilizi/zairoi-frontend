@@ -136,9 +136,9 @@ const SinglePost = ({ postId }) => {
           }}
         />
         <div className="row border-bottom border-top border-silver">
-          <div className="col-sm mt-2">
+          <div className="col mt-2">
             <div className="row">
-              <div className="col-5">
+              <div className="col-auto">
                 {!liked ? (
                   <p onClick={likeToggle}>
                     <i
@@ -157,9 +157,9 @@ const SinglePost = ({ postId }) => {
                   </p>
                 )}
               </div>
-              <div className="col-7">
+              <div className="col">
                 <div className="row">
-                  <CommentIcon size={35} />
+                  <CommentIcon size={30} />
                   <p className="text-dark ml-1 mt-2 pb-2">
                     {" "}
                     {comments.length} Comments
@@ -169,36 +169,35 @@ const SinglePost = ({ postId }) => {
             </div>
           </div>
 
-          <div className="col-sm mt-2 mb-2">
-            <Link
-              to={`/`}
-              className="btn btn-raised btn-primary btn-md float-sm-right ml-2"
-            >
-              Back to posts
-            </Link>
-
+          <div className="col-auto text-right mt-2 mb-2">
             {isAuth() && isAuth()._id === currentPost.postedBy._id && (
               <>
                 <button
                   onClick={deleteConfirmed}
-                  className="btn btn-raised btn-danger btn-md float-sm-right mr-3 ml-3"
+                  className="btn btn-raised btn-danger btn-md"
                 >
-                  <TrashIcon size={24} />
+                  <TrashIcon size={20} />
                 </button>
                 <Link
                   to={`/post/edit/${currentPost._id}`}
-                  className="btn btn-raised btn-warning btn-md float-sm-right mr-3"
+                  className="btn btn-raised btn-warning btn-md mx-1"
                 >
-                  <PencilIcon size={24} />
+                  <PencilIcon size={20} />
                 </Link>
               </>
             )}
+            <Link
+              to={`/`}
+              className="btn btn-raised btn-primary btn-md float-right"
+            >
+              Back
+            </Link>
           </div>
         </div>
         <div className="row">
           <div className="col-sm-12">
             {isAuth() && isAuth().role === "admin" && (
-              <div class="card mt-5">
+              <div class="card mt-2">
                 <div className="card-body">
                   <h5 className="card-title">Admin</h5>
                   <p className="mb-2 text-danger">Edit/Delete as an Admin</p>
@@ -206,13 +205,13 @@ const SinglePost = ({ postId }) => {
                     to={`/post/edit/${currentPost._id}`}
                     className="btn btn-raised btn-warning btn-md mr-5"
                   >
-                    <PencilIcon size={24} />
+                    <PencilIcon size={20} />
                   </Link>
                   <button
                     onClick={deleteConfirmed}
                     className="btn btn-raised btn-danger btn-md mr-5"
                   >
-                    <TrashIcon size={24} />
+                    <TrashIcon size={20} />
                   </button>
                 </div>
               </div>
