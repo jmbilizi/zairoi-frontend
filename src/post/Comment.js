@@ -86,16 +86,30 @@ class Comment extends Component {
         {/* <h2 className="mt-2 mb-2">Leave a comment</h2> */}
         <form onSubmit={this.addComment}>
           <div className="input-group mt-3 mb-0">
+            <img
+              style={{
+                borderRadius: "50%",
+                // border: "1px solid black",
+              }}
+              // className="float-left mr-2"
+              height="38px"
+              width="38px"
+              onError={(i) => (i.target.src = `${DefaultProfile}`)}
+              src={`${process.env.REACT_APP_API_URL}/user/photo/${
+                isAuth()._id
+              }`}
+              alt={isAuth().name}
+            />
             <input
               type="text"
               onChange={this.handleChange}
               value={this.state.text}
-              className="form-control"
+              className="form-control ml-1 rounded-pill bg-light"
               placeholder="Leave a comment..."
             />
-            <div className="input-group-append">
+            {/* <div className="input-group-append">
               <button className="btn btn-raised btn-success">Comment</button>
-            </div>
+            </div> */}
           </div>
         </form>
 
@@ -106,22 +120,21 @@ class Comment extends Component {
           {error}
         </div>
 
-        <div className="col-md-12">
+        <div className="form-group">
           {comments.map((comment, i) => (
             <div key={i}>
               <div>
                 <div className="row mt-3 justify-content-center">
                   <div className="col-12">
                     <div className="row">
-                      <div className="col-md-1 col-sm-4 text-right">
+                      <div className="col-md-1 col-sm-4">
                         <Link to={`/user/${comment.postedBy._id}`}>
                           <img
                             style={{
                               borderRadius: "50%",
                             }}
-                            className=""
-                            height="40px"
-                            width="40px"
+                            height="38px"
+                            width="38px"
                             onError={(i) =>
                               (i.target.src = `${DefaultProfile}`)
                             }
@@ -195,9 +208,7 @@ class Comment extends Component {
                                     isAuth()._id === comment.postedBy._id && (
                                       <>
                                         <span
-                                          onClick={() =>
-                                            this.deleteConfirmed()
-                                          }
+                                          onClick={() => this.deleteConfirmed()}
                                           className="text-primary"
                                         >
                                           <i class="fas fa-pencil-alt"></i> Edit
