@@ -139,7 +139,7 @@ const SinglePost = ({ postId }) => {
           <div className="col-sm mt-2">
             <div className="row">
               <div className="col-5">
-                {like ? (
+                {!liked ? (
                   <p onClick={likeToggle}>
                     <i
                       className="fa fa-thumbs-up text-success bg-dark"
@@ -222,7 +222,7 @@ const SinglePost = ({ postId }) => {
 
         <Comment
           postId={currentPost._id}
-          comments={comments.reverse()}
+          comments={comments}
           updateComments={updateComments}
         />
       </div>
