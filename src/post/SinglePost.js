@@ -221,7 +221,7 @@ const SinglePost = ({ postId }) => {
 
         <Comment
           postId={currentPost._id}
-          comments={comments}
+          comments={comments.reverse()}
           updateComments={updateComments}
         />
       </div>

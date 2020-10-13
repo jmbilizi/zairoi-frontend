@@ -39,7 +39,9 @@ class Post extends Component {
             <div className="col-md-2 col-sm-12"></div>
             <div className="col-md-8 col-sm-12">
               {posts.map((post, i) => (
-                <SinglePost postId={post._id} />
+                <div key={i}>
+                  <SinglePost postId={post._id} />
+                </div>
               ))}
             </div>
             <div className="col-md-2 col-sm-12"></div>
