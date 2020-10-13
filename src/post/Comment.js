@@ -82,15 +82,12 @@ class Comment extends Component {
 
     return (
       <div>
-        {/* <h2 className="mt-2 mb-2">Leave a comment</h2> */}
         <form onSubmit={this.addComment}>
-          <div className="input-group mt-1 mb-0">
+          <div className="input-group mt-2 mb-0">
             <img
               style={{
                 borderRadius: "50%",
-                // border: "1px solid black",
               }}
-              // className="float-left mr-2"
               height="38px"
               width="38px"
               onError={(i) => (i.target.src = `${DefaultProfile}`)}
@@ -151,7 +148,7 @@ class Comment extends Component {
                 </div>
               </div>
               <div className="row">
-                <div className="col-sm-12">
+                <div className="col">
                   <p className="lead">{comment.text}</p>
                 </div>
               </div>
