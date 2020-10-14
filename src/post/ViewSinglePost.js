@@ -1,25 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import Layout from "../core/Layout";
 import SinglePost from "./SinglePost";
 
-class ViewSinglePost extends Component {
-  state = {
-    thePostId: "",
-  };
-
-  componentDidMount = () => {
-    const postId = this.props.match.params.postId;
-    this.setState({
-      thePostId: `${postId}`,
-    });
-  };
-
-  render() {
-    const id = this.state.thePostId;
-    console.log(id);
-
-    return <Layout>{<SinglePost postId={id} />}</Layout>;
-  }
-}
+const ViewSinglePost = (props) => {
+  const post_id = props.match.params.postId;
+  return <Layout>{<SinglePost postId={post_id} />}</Layout>;
+};
 
 export default ViewSinglePost;
