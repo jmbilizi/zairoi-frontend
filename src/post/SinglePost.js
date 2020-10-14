@@ -136,7 +136,7 @@ const SinglePost = ({ postId }) => {
           }}
         />
         <div className="row border-bottom border-top border-silver">
-          <div className="col mt-2">
+          <div className="col mt-3">
             <div className="row">
               <div className="col-auto">
                 {!liked ? (
@@ -169,26 +169,26 @@ const SinglePost = ({ postId }) => {
             </div>
           </div>
 
-          <div className="col-auto text-right mt-2 mb-2">
+          <div className="col-auto mt-3 text-right">
             {isAuth() && isAuth()._id === currentPost.postedBy._id && (
               <>
                 <button
                   onClick={deleteConfirmed}
-                  className="btn btn-raised btn-danger btn-md"
+                  className="btn btn-raised btn-danger btn-sm"
                 >
-                  <TrashIcon size={20} />
+                  <TrashIcon size={18} />
                 </button>
                 <Link
                   to={`/post/edit/${currentPost._id}`}
-                  className="btn btn-raised btn-warning btn-md mx-1"
+                  className="btn btn-raised btn-warning btn-sm mx-1"
                 >
-                  <PencilIcon size={20} />
+                  <PencilIcon size={18} />
                 </Link>
               </>
             )}
             <Link
               to={`/`}
-              className="btn btn-raised btn-primary btn-md float-right"
+              className="btn btn-raised btn-primary btn-sm float-right"
             >
               Back
             </Link>
