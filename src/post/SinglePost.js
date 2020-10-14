@@ -130,7 +130,7 @@ const SinglePost = ({ postId }) => {
           onError={(i) => (i.target.src = `${DefaultPost}`)}
           className="img-thunbnail mb-3"
           style={{
-            height: "300px",
+            height: "100%",
             width: "100%",
             objectFit: "cover",
           }}
