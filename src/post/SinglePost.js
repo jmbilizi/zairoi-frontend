@@ -29,7 +29,6 @@ const SinglePost = ({ postId }) => {
       if (data.error) {
         console.log(data.error);
       } else {
-        console.log(data);
         setPost(data);
         setLikes(data.likes.length);
         setLiked(checkLike(data.likes));
@@ -77,7 +76,6 @@ const SinglePost = ({ postId }) => {
   };
 
   const renderPost = (currentPost) => {
-    console.log(currentPost);
     const posterId = currentPost.postedBy
       ? `/user/${currentPost.postedBy._id}`
       : "";
