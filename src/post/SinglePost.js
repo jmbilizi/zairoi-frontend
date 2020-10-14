@@ -104,6 +104,7 @@ const SinglePost = ({ postId }) => {
               <div
                 style={{
                   lineHeight: "35px",
+                  color: "black",
                 }}
                 className=""
               >
