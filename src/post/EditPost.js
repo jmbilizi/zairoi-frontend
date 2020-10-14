@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { singlePost, update } from "./apiPost";
 import { isAuth, getCookie } from "../auth/helpers";
 import { Redirect } from "react-router-dom";
-import DefaultPost from "../images/mountains.jpg";
 import Layout from "../core/Layout";
 
 class EditPost extends Component {
@@ -168,7 +167,7 @@ class EditPost extends Component {
             src={`${
               process.env.REACT_APP_API_URL
             }/post/photo/${postedBy}?${new Date().getTime()}`}
-            onError={(i) => (i.target.src = `${DefaultPost}`)}
+            onError={(i) => (i.target.style.display = "none")}
             alt={title}
           />
 

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { singlePost, remove, like, unlike } from "./apiPost";
-import DefaultPost from "../images/mountains.jpg";
 import { Link, Redirect } from "react-router-dom";
 import { isAuth, getCookie } from "../auth/helpers";
-import Layout from "../core/Layout";
 import Comment from "./Comment";
 import DefaultProfile from "../images/avatar.jpg";
 import { PencilIcon, TrashIcon, CommentIcon } from "@primer/octicons-react";
@@ -126,7 +124,7 @@ const SinglePost = ({ postId }) => {
         <img
           src={`${process.env.REACT_APP_API_URL}/post/photo/${currentPost._id}`}
           alt={currentPost.title}
-          onError={(i) => (i.target.src = `${DefaultPost}`)}
+          onError={(i) => (i.target.style.display = "none")}
           className="img-thunbnail mb-3"
           style={{
             height: "100%",
