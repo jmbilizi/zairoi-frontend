@@ -41,7 +41,7 @@ const CategoriesGetCreateDelete = () => {
         setTimeout(() => {
           setSuccess(false);
           setName("");
-        }, 2000);
+        }, 1000);
       }
     });
   };
