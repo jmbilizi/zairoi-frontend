@@ -172,7 +172,7 @@ class Comment extends Component {
                             onClick={() => this.deleteConfirmed(comment)}
                             className="text-danger"
                           >
-                            <i class="far fa-trash-alt"></i> Delete
+                            <i className="far fa-trash-alt"></i> Delete
                           </span>
                         </>
                       )}

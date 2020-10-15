@@ -45,7 +45,6 @@ class Admin extends Component {
         <TabPane tab="categories" key="5">
           <CategoriesGetCreateDeleteUpdate />
         </TabPane>
-        <drop />
       </Tabs>
     );
 

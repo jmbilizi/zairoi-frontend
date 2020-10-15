@@ -109,15 +109,7 @@ class NewPost extends Component {
   );
 
   render() {
-    const {
-      title,
-      body,
-      photo,
-      user,
-      error,
-      loading,
-      redirectToProfile,
-    } = this.state;
+    const { title, body, user, error, loading, redirectToProfile } = this.state;
 
     if (redirectToProfile) {
       return <Redirect to={`/user/${user._id}`} />;
