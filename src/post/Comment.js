@@ -188,7 +188,7 @@ class Comment extends Component {
                             onClick={() => this.deleteConfirmed()}
                             className="text-primary"
                           >
-                            <i class="fas fa-pencil-alt"></i> Edit
+                            <i className="fas fa-pencil-alt"></i> Edit
                           </span>
                         </>
                       )}

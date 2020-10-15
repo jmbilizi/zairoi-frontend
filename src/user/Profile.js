@@ -180,7 +180,6 @@ class Profile extends Component {
           <div className="row">
             <div className="col-sm-12 nav-tabs mt-2">
               <p className="lead text-center">
-                {" "}
                 <hr />
                 {user.about}
               </p>
