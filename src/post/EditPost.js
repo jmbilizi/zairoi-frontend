@@ -162,6 +162,7 @@ class EditPost extends Component {
             className="img-thumbnail"
             src={photoUrl}
             // onError={(i) => (i.target.src = `${DefaultPost}`)}
+            onError={(i) => (i.target.style.display = "none")}
             alt={title}
           />
 
