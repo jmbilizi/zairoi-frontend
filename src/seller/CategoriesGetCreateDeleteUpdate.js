@@ -35,9 +35,13 @@ const CategoriesGetCreateDelete = () => {
       if (data.error) {
         setError(data.error);
       } else {
-        setError("");
         setSuccess(true);
+        setError("");
         loadCategories();
+        setTimeout(() => {
+          setSuccess(false);
+          setName("");
+        }, 2000);
       }
     });
   };
@@ -57,6 +61,20 @@ const CategoriesGetCreateDelete = () => {
       <button className="btn btn-raised btn-info rounded-pill">
         {!update ? <>Create Category</> : <>Save Changes</>}
       </button>
+      {update ? (
+        <button
+          onClick={() => {
+            setUpdate(false);
+            setSuccess(false);
+            setError(false);
+          }}
+          className="btn btn-raised btn-info rounded-pill ml-1"
+        >
+          Back to add
+        </button>
+      ) : (
+        ""
+      )}
     </form>
   );
 
@@ -64,7 +82,7 @@ const CategoriesGetCreateDelete = () => {
     if (success) {
       return (
         <h3 className="text-success">
-          {!update ? <>{name} is created</> : <></>}
+          {!update ? <>{name} is created</> : <>Updated</>}
         </h3>
       );
     }
@@ -105,8 +123,12 @@ const CategoriesGetCreateDelete = () => {
         } else {
           setError("");
           setName("");
-          setUpdate(false);
+          setUpdate(true);
+          setSuccess(true);
           loadCategories();
+          setTimeout(() => {
+            setSuccess(false);
+          }, 1000);
         }
       });
     }
