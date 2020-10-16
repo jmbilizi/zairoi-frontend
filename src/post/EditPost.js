@@ -12,7 +12,7 @@ class EditPost extends Component {
       id: "",
       title: "",
       body: "",
-      redirectToProfile: false,
+      redirectToPost: false,
       error: "",
       fileSize: 0,
       loading: false,
@@ -22,7 +22,7 @@ class EditPost extends Component {
   init = (postId) => {
     singlePost(postId).then((data) => {
       if (data.error) {
-        this.setState({ redirectToProfile: true });
+        this.setState({ redirectToPost: true });
       } else {
         this.setState({
           id: data._id,
@@ -80,7 +80,7 @@ class EditPost extends Component {
             loading: false,
             title: "",
             body: "",
-            redirectToProfile: true,
+            redirectToPost: true,
           });
         }
       });
@@ -125,11 +125,11 @@ class EditPost extends Component {
   );
 
   render() {
-    const { id, title, body, redirectToProfile, error, loading } = this.state;
+    const { id, title, body, redirectToPost, error, loading } = this.state;
     console.log(id);
 
-    if (redirectToProfile) {
-      return <Redirect to={`/user/${isAuth._id}`} />;
+    if (redirectToPost) {
+      return <Redirect to={`/post/${id}`} />;
     }
     const photoUrl = id
       ? `${
