@@ -741,7 +741,7 @@ class Chat extends Component {
                                         </Link>
                                       </li>
                                       <li className="list-inline-item">
-                                        <Link to="#">
+                                        <label>
                                           <i
                                             className="mdi mdi-file-image-outline"
                                             id="Imagetooltip"
@@ -752,7 +752,8 @@ class Chat extends Component {
                                           >
                                             Images
                                           </UncontrolledTooltip>
-                                        </Link>
+                                          <input type="file" hidden />
+                                        </label>
                                       </li>
                                       <li className="list-inline-item">
                                         <Link to="#">
