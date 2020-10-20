@@ -148,10 +148,18 @@ class Profile extends Component {
                   </Link>
                 </div>
               ) : (
-                <FollowProfileButton
-                  following={this.state.following}
-                  onButtonClick={this.clickFollowButton}
-                />
+                <>
+                  <FollowProfileButton
+                    following={this.state.following}
+                    onButtonClick={this.clickFollowButton}
+                  />
+                  <button
+                    //I will add on click event that will send you to a card that allow you to send message to the particular user
+                    className="btn btn-primary btn-raised ml-5"
+                  >
+                    Message
+                  </button>
+                </>
               )}
 
               <div>
