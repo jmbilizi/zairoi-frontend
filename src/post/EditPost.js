@@ -90,11 +90,13 @@ class EditPost extends Component {
   editPostForm = (title, body) => (
     <form>
       <div className="form-group">
-        <label className="text-muted">Post Photo</label>
+        <label className="text-muted">Photo/Video/Audio</label>
         <input
           onChange={this.handleChange("photo")}
           type="file"
-          accept="image/*"
+          multiple
+          accept="image/*|audio/*|video/*"
+          // accept="image/*"
           className="form-control"
         />
       </div>

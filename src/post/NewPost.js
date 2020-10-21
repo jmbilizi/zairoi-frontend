@@ -74,11 +74,12 @@ class NewPost extends Component {
   newPostForm = (title, body) => (
     <form>
       <div className="form-group">
-        <label className="text-muted">Post Photo</label>
+        <label className="text-muted">Photo/Video/Audio</label>
         <input
           onChange={this.handleChange("photo")}
           type="file"
-          accept="image/*"
+          multiple accept="image/*|audio/*|video/*"
+          // accept="image/*"
           className="form-control"
         />
       </div>
@@ -101,10 +102,14 @@ class NewPost extends Component {
           value={body}
         />
       </div>
-
-      <button onClick={this.clickSubmit} className="btn btn-raised btn-primary">
-        Create Post
-      </button>
+      <div className="text-center">
+        <button
+          onClick={this.clickSubmit}
+          className="btn btn-raised btn-primary text-center"
+        >
+          Create Post
+        </button>
+      </div>
     </form>
   );
 
@@ -118,7 +123,7 @@ class NewPost extends Component {
     return (
       <Layout>
         <div className="container">
-          <h2 className="mt-5 mb-5">Create a new post</h2>
+          <h2 className="mt-5 mb-3 text-center">Create a new post</h2>
           <div
             className="alert alert-danger"
             style={{ display: error ? "" : "none" }}
