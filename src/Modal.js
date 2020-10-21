@@ -8,6 +8,8 @@ class Modal extends React.Component {
     super(props);
     // We create an element div for this modal
     this.element = document.createElement("div");
+    this.element.setAttribute("class", "my-modal");
+    //e.setAttribute("class", `saveBtn${time[i]}`);
   }
   // We append the created div to the div#modal
   componentDidMount() {

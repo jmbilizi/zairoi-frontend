@@ -8,6 +8,7 @@ import FollowProfileButton from "./FollowProfileButton";
 import ProfileTabs from "./ProfileTabs";
 import { listByUser } from "../post/apiPost";
 import Layout from "../core/Layout";
+import Modal from "../Modal";
 
 class Profile extends Component {
   constructor() {
@@ -18,8 +19,16 @@ class Profile extends Component {
       following: false,
       error: "",
       posts: [],
+      showModal: false,
     };
   }
+
+  //Modal
+  toggleModal = () => {
+    this.setState({
+      showModal: !this.state.showModal,
+    });
+  };
 
   // check follow
   checkFollow = (user) => {
@@ -83,7 +92,7 @@ class Profile extends Component {
   }
 
   render() {
-    const { redirectToSignin, user, posts } = this.state;
+    const { redirectToSignin, user, posts, showModal } = this.state;
     if (redirectToSignin) return <Redirect to="/signin" />;
 
     const photoUrl = user._id
@@ -153,12 +162,35 @@ class Profile extends Component {
                     following={this.state.following}
                     onButtonClick={this.clickFollowButton}
                   />
-                  <button
-                    //I will add on click event that will send you to a card that allow you to send message to the particular user
-                    className="btn btn-primary btn-raised ml-5"
-                  >
-                    Message
-                  </button>
+                  <React.Fragment>
+                    <button
+                      //I will add on click event that will send you to a card that allow you to send message to the particular user
+                      onClick={this.toggleModal}
+                      className="btn btn-primary btn-raised ml-5"
+                    >
+                      {!showModal ? "Message" : "End Message"}
+                    </button>
+                    {showModal ? (
+                      <Modal>
+                        <h1>Message</h1>
+                        <p>
+                          George Floyd was murdered over potentially using a
+                          counterfeit $20 bill. As a white woman, would my $20
+                          bill ever be called into question? As a white woman,
+                          would I have to fear if the police are called? As a
+                          white woman, would I be murdered over a hunch? The
+                          answer to all of these questions is “NO.” However, it
+                          is a different story for Janvier.
+                        </p>
+                        <button
+                          className="modal-close"
+                          onClick={this.toggleModal}
+                        >
+                          X
+                        </button>
+                      </Modal>
+                    ) : null}
+                  </React.Fragment>
                 </>
               )}
 
