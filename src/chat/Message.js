@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { isAuth, getCookie } from "../auth/helpers";
 import { read } from "../user/apiUser";
+import DefaultProfile from "../images/avatar.jpg";
 
 import {
   Row,
@@ -13,12 +14,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Input,
   Card,
-  Form,
-  FormGroup,
-  InputGroup,
-  InputGroupAddon,
 } from "reactstrap";
 
 //Import Scrollbar
@@ -101,29 +97,44 @@ const Message = ({ userId }) => {
   };
 
   return (
-    <div style={{ height: "100%" }} className="user-chat">
+    <Col lg="12" className="px-0">
+      {/* <div className="d-lg-flex">
+        <div style={{ height: "100%" }} className="user-chat"> */}
       <Card>
         <div className="p-2 border-bottom ">
           <Row>
-            <Col md="6" xs="9">
-              <h5 className="font-size-15 mb-1 text-left">
-                {Chat_Box_Username}
-              </h5>
+            <Col md="8" xs="9">
+              <img
+                style={{
+                  borderRadius: "50%",
+                }}
+                className="float-left mr-2"
+                height="38px"
+                width="38px"
+                onError={(i) => (i.target.src = `${DefaultProfile}`)}
+                src={`${process.env.REACT_APP_API_URL}/user/photo/${userId}`}
+                alt="userName"
+              />
+              <>
+                <h5 className="font-size-15 mb-1 text-left">
+                  {Chat_Box_Username}
+                </h5>
 
-              <p className="text-muted mb-0 text-left">
-                <i
-                  className={
-                    Chat_Box_User_Status === "online"
-                      ? "mdi mdi-circle text-success align-middle mr-1"
-                      : Chat_Box_User_Status === "intermediate"
-                      ? "mdi mdi-circle text-warning align-middle mr-1"
-                      : "mdi mdi-circle align-middle mr-1"
-                  }
-                ></i>
-                {Chat_Box_User_Status}
-              </p>
+                <p className="text-muted mb-0 text-left">
+                  <i
+                    className={
+                      Chat_Box_User_Status === "online"
+                        ? "mdi mdi-circle text-success align-middle mr-1"
+                        : Chat_Box_User_Status === "intermediate"
+                        ? "mdi mdi-circle text-warning align-middle mr-1"
+                        : "mdi mdi-circle align-middle mr-1"
+                    }
+                  ></i>
+                  {Chat_Box_User_Status}
+                </p>
+              </>
             </Col>
-            <Col md="6" xs="3">
+            <Col md="4" xs="3">
               <ul className="list-inline user-chat-nav text-right mb-0">
                 <li className="list-inline-item pr-4">
                   <Dropdown isOpen={other_Menu} toggle={toggleOther}>
@@ -150,7 +161,9 @@ const Message = ({ userId }) => {
         <div>
           <div className="chat-conversation">
             <ul className="list-unstyled p-0">
-              <PerfectScrollbar style={{ height: "310px" }}>
+              <PerfectScrollbar
+                style={{ height: "310px", marginBottom: "0px" }}
+              >
                 <li>
                   <div className="chat-day-title">
                     <span className="title">Today</span>
@@ -159,7 +172,7 @@ const Message = ({ userId }) => {
                 {messages.map((message) => (
                   <li
                     key={"test_k" + message.id}
-                    className={message.isRight ? "right" : "left"}
+                    className={message.isRight ? "right" : ""}
                   >
                     <div className="conversation-list">
                       <UncontrolledDropdown>
@@ -177,7 +190,7 @@ const Message = ({ userId }) => {
                           <DropdownItem href="#">Delete</DropdownItem>
                         </DropdownMenu>
                       </UncontrolledDropdown>
-                      <div className="ctext-wrap p-3 ml-0">
+                      <div className="ctext-wrap p-3">
                         <div
                           className={`conversation-name ${
                             message.isRight ? "text-right" : "text-left"
@@ -223,11 +236,11 @@ const Message = ({ userId }) => {
                             id="Emojitooltip"
                           ></i>
                           {/* <UncontrolledTooltip
-                            placement="top"
-                            target="Emojitooltip"
-                          >
-                            Emojis
-                          </UncontrolledTooltip> */}
+                                      placement="top"
+                                      target="Emojitooltip"
+                                    >
+                                      Emojis
+                                    </UncontrolledTooltip> */}
                         </Link>
                       </li>
                       <li className="list-inline-item">
@@ -237,11 +250,11 @@ const Message = ({ userId }) => {
                             id="Imagetooltip"
                           ></i>
                           {/* <UncontrolledTooltip
-                            placement="top"
-                            target="Imagetooltip"
-                          >
-                            Images
-                          </UncontrolledTooltip> */}
+                                      placement="top"
+                                      target="Imagetooltip"
+                                    >
+                                      Images
+                                    </UncontrolledTooltip> */}
                           <input type="file" hidden />
                         </label>
                       </li>
@@ -252,11 +265,11 @@ const Message = ({ userId }) => {
                             id="Filetooltip"
                           ></i>
                           {/* <UncontrolledTooltip
-                            placement="top"
-                            target="Filetooltip"
-                          >
-                            Add Files
-                          </UncontrolledTooltip> */}
+                                      placement="top"
+                                      target="Filetooltip"
+                                    >
+                                      Add Files
+                                    </UncontrolledTooltip> */}
                         </Link>
                       </li>
                     </ul>
@@ -278,7 +291,9 @@ const Message = ({ userId }) => {
           </div>
         </div>
       </Card>
-    </div>
+      {/* </div>
+      </div> */}
+    </Col>
   );
 };
 
