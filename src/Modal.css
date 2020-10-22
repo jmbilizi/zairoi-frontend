@@ -1,20 +1,21 @@
 .my-modal {
   background: #fff;
   position: absolute;
-  right: 10px;
+  left: auto;
+  right: 20px;
   top: 0;
   bottom: 0;
   margin: auto;
   width: 350px;
-  height: 800px;
+  height: 900px;
   box-shadow: 0 5px 10px 2px rgba(195, 192, 192, 0.5);
-  padding: 20px;
+  padding: 1px;
   text-align: center;
 }
 .modal-close {
   position: absolute;
   right: 6px;
-  top: 9px;
+  top: 13px;
   cursor: pointer;
   border: none;
   font-size: 20px;

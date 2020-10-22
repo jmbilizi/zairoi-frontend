@@ -9,6 +9,7 @@ import ProfileTabs from "./ProfileTabs";
 import { listByUser } from "../post/apiPost";
 import Layout from "../core/Layout";
 import Modal from "../Modal";
+import Message from "../chat/Message";
 
 class Profile extends Component {
   constructor() {
@@ -172,16 +173,7 @@ class Profile extends Component {
                     </button>
                     {showModal ? (
                       <Modal>
-                        <h1>Message</h1>
-                        <p>
-                          George Floyd was murdered over potentially using a
-                          counterfeit $20 bill. As a white woman, would my $20
-                          bill ever be called into question? As a white woman,
-                          would I have to fear if the police are called? As a
-                          white woman, would I be murdered over a hunch? The
-                          answer to all of these questions is “NO.” However, it
-                          is a different story for Janvier.
-                        </p>
+                        <Message userId={user._id}/>
                         <button
                           className="modal-close"
                           onClick={this.toggleModal}
