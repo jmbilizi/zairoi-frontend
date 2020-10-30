@@ -8,8 +8,7 @@ import FollowProfileButton from "./FollowProfileButton";
 import ProfileTabs from "./ProfileTabs";
 import { listByUser } from "../post/apiPost";
 import Layout from "../core/Layout";
-import Modal from "../Modal";
-import Message from "../chat/Message";
+import ChatBox from "../chat/ChatBox";
 
 class Profile extends Component {
   constructor() {
@@ -20,16 +19,8 @@ class Profile extends Component {
       following: false,
       error: "",
       posts: [],
-      showModal: false,
     };
   }
-
-  //Modal
-  toggleModal = () => {
-    this.setState({
-      showModal: !this.state.showModal,
-    });
-  };
 
   // check follow
   checkFollow = (user) => {
@@ -93,7 +84,7 @@ class Profile extends Component {
   }
 
   render() {
-    const { redirectToSignin, user, posts, showModal } = this.state;
+    const { redirectToSignin, user, posts } = this.state;
     if (redirectToSignin) return <Redirect to="/signin" />;
 
     const photoUrl = user._id
@@ -163,26 +154,7 @@ class Profile extends Component {
                     following={this.state.following}
                     onButtonClick={this.clickFollowButton}
                   />
-                  <React.Fragment>
-                    <button
-                      //I will add on click event that will send you to a card that allow you to send message to the particular user
-                      onClick={this.toggleModal}
-                      className="btn btn-primary btn-raised ml-5"
-                    >
-                      {!showModal ? "Message" : "End Message"}
-                    </button>
-                    {showModal ? (
-                      <Modal>
-                        <Message userId={user._id}/>
-                        <button
-                          className="modal-close"
-                          onClick={this.toggleModal}
-                        >
-                          X
-                        </button>
-                      </Modal>
-                    ) : null}
-                  </React.Fragment>
+                  <ChatBox id={user._id} name={user.name} />
                 </>
               )}
 
