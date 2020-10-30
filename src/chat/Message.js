@@ -23,7 +23,7 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 // Import scss
 import "./assets/scss/theme.scss";
 
-const Message = ({ userId }) => {
+const Message = ({ userId, userName }) => {
   const [messages, setMessages] = useState([
     {
       id: "34",
@@ -42,7 +42,7 @@ const Message = ({ userId }) => {
     {
       id: "36",
       isRight: false,
-      name: "Steven Franklin",
+      name: userName,
       message: "I am fine, What about you ?",
       time: "10:09",
     },
