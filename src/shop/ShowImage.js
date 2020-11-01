@@ -7,7 +7,7 @@ const ShowImage = ({ p }) => (
       src={p.photo && p.photo.url}
       alt={p.name}
       className="mb-3 mx-auto"
-      style={{ height: "200px", width: "auto" }}
+      style={{ height: "200px", width: "100%" }}
     />
   </div>
 );
