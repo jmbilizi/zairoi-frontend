@@ -1,11 +1,11 @@
 import React from "react";
 import { API } from "../config";
 
-const ShowImage = ({ item, url }) => (
+const ShowImage = ({ p }) => (
   <div className="product-img">
     <img
-      src={`${API}/${url}/photo/${item._id}`}
-      alt={item.name}
+      src={p.photo && p.photo.url}
+      alt={p.name}
       className="mb-3 mx-auto"
       style={{ height: "200px", width: "auto" }}
     />
