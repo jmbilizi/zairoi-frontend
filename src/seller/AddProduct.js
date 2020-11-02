@@ -20,6 +20,10 @@ const AddProduct = () => {
     formData: process.browser && new FormData(),
   });
 
+  const [imageUploadButtonName, setImageUploadButtonName] = useState(
+    "Upload image"
+  );
+
   // const { user, token } = isAuth();
   const user = isAuth();
   const token = getCookie("token");
@@ -32,6 +36,7 @@ const AddProduct = () => {
     category,
     shipping,
     quantity,
+    photo,
     loading,
     error,
     createdProduct,
@@ -58,6 +63,9 @@ const AddProduct = () => {
   }, []);
 
   const handleChange = (name) => (event) => {
+    if (name === "photo") {
+      setImageUploadButtonName(event.target.files[0].name);
+    }
     const value = name === "photo" ? event.target.files[0] : event.target.value;
     formData.set(name, value);
     setValues({ ...values, [name]: value });
@@ -81,6 +89,7 @@ const AddProduct = () => {
           loading: false,
           createdProduct: data.name,
         });
+        setImageUploadButtonName("Upload image");
       }
     });
   };
@@ -90,7 +99,7 @@ const AddProduct = () => {
       <label className="text-muted">Product photo</label>
       <div className="form-group">
         <label className="btn btn-secondary">
-          Choose File
+          {imageUploadButtonName}
           <input
             onChange={handleChange("photo")}
             type="file"
