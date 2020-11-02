@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuth, getCookie } from "../auth/helpers";
 import { createProduct, getCategories } from "./apiAdmin";
+import PicturesWall from "./PicturesWall";
 
 const AddProduct = () => {
   const [values, setValues] = useState({
@@ -109,6 +110,7 @@ const AddProduct = () => {
             accept="image/*"
           />
         </label>
+        <PicturesWall />
       </div>
 
       <div className="form-group">
