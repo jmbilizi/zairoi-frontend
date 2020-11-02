@@ -3,6 +3,7 @@ import Layout from "../core/Layout";
 import { isAuth, getCookie } from "../auth/helpers";
 import { Link, Redirect } from "react-router-dom";
 import { getProduct, getCategories, updateProduct } from "./apiAdmin";
+import PicturesWall from "./PicturesWall";
 
 const UpdateProduct = ({ match }) => {
   const [values, setValues] = useState({
@@ -135,6 +136,7 @@ const UpdateProduct = ({ match }) => {
             hidden
           />
         </label>
+        <PicturesWall />
       </div>
 
       <div className="form-group">
