@@ -1,10 +1,8 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import DefaultProfile from "../images/avatar.jpg";
-import { isAuth, getCookie } from "../auth/helpers";
-import FollowProfileButton from "./FollowProfileButton";
-import { unfollow, follow } from "./apiUser";
-
+import { isAuth } from "../auth/helpers";
+import FollowUnfollow from "./FollowUnfollow";
 import SinglePost from "../post/SinglePost";
 // import antd from "antd";
 import "antd/dist/antd.css";
@@ -25,16 +23,6 @@ const ProfileTabs = ({ user, following, followers, posts }) => {
       ))}
     </>
   );
-
-  //check follow
-  const checkFollow = (user) => {
-    const jwt = isAuth();
-    const match = user.followers.find((follower) => {
-      // one id has many other ids (followers) and vice versa
-      return follower === jwt._id;
-    });
-    return match;
-  };
 
   const allFollowers = () => (
     <>
@@ -58,10 +46,7 @@ const ProfileTabs = ({ user, following, followers, posts }) => {
             </Link>
             {person._id !== isAuth()._id ? (
               <div class="float-right">
-                <FollowProfileButton
-                  following={checkFollow(person)}
-                  onButtonClick={console.log("clicked")}
-                />
+                <FollowUnfollow user={person} />
               </div>
             ) : (
               ""
@@ -94,10 +79,7 @@ const ProfileTabs = ({ user, following, followers, posts }) => {
             </Link>
             {person._id !== isAuth()._id ? (
               <div class="float-right">
-                <FollowProfileButton
-                  following={checkFollow(person)}
-                  onButtonClick={console.log("clicked")}
-                />
+                <FollowUnfollow user={person} />
               </div>
             ) : (
               ""
