@@ -1,7 +1,9 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import DefaultProfile from "../images/avatar.jpg";
-import { isAuth } from "../auth/helpers";
+import { isAuth, getCookie } from "../auth/helpers";
+import FollowProfileButton from "./FollowProfileButton";
+import { unfollow, follow } from "./apiUser";
 
 import SinglePost from "../post/SinglePost";
 // import antd from "antd";
@@ -13,6 +15,9 @@ import ShopByUser from "../shop/ShopByUser";
 import ManagerProductsByUser from "../seller/ManageProductsByUser";
 
 const ProfileTabs = ({ user, following, followers, posts }) => {
+  console.log(following);
+  console.log(followers);
+
   const allPosts = () => (
     <>
       {posts.reverse().map((post, i) => (
@@ -21,10 +26,20 @@ const ProfileTabs = ({ user, following, followers, posts }) => {
     </>
   );
 
+  //check follow
+  const checkFollow = (user) => {
+    const jwt = isAuth();
+    const match = user.followers.find((follower) => {
+      // one id has many other ids (followers) and vice versa
+      return follower === jwt._id;
+    });
+    return match;
+  };
+
   const allFollowers = () => (
     <>
       {followers.map((person, i) => (
-        <div className="card col-lg-2 col-md-3 col-sm-6 mx-auto" key={i}>
+        <div className="card col-lg-3 col-md-3 col-sm-6 mx-auto" key={i}>
           <img
             style={{ height: "200px", width: "auto" }}
             className="pt-2 rounded-circle"
@@ -34,17 +49,23 @@ const ProfileTabs = ({ user, following, followers, posts }) => {
           />
           <div className="card-body">
             <h5 className="card-title">{person.name}</h5>
-            <p className="card-text">{person.email}</p>
+            {/* <p className="card-text">{person.email}</p> */}
             <Link
               to={`/user/${person._id}`}
-              className="btn btn-raised btn-primary justtify-content-center"
+              className="btn btn-raised btn-primary justtify-content-center float-left"
             >
               <i className="fas fa-eye"></i> View
             </Link>
-            {/* <FollowProfileButton
-              following={false}
-              onButtonClick={clickFollowButton}
-            /> */}
+            {person._id !== isAuth()._id ? (
+              <div class="float-right">
+                <FollowProfileButton
+                  following={checkFollow(person)}
+                  onButtonClick={console.log("clicked")}
+                />
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       ))}
@@ -54,7 +75,7 @@ const ProfileTabs = ({ user, following, followers, posts }) => {
   const allFollowing = () => (
     <>
       {following.map((person, i) => (
-        <div className="card col-lg-2 col-md-3 col-sm-4 mx-sm-auto" key={i}>
+        <div className="card col-lg-3 col-md-3 col-sm-6 mx-sm-auto" key={i}>
           <img
             style={{ height: "200px", width: "auto" }}
             className="pt-2 rounded-circle"
@@ -64,17 +85,23 @@ const ProfileTabs = ({ user, following, followers, posts }) => {
           />
           <div className="card-body">
             <h5 className="card-title">{person.name}</h5>
-            <p className="card-text">{person.email}</p>
+            {/* <p className="card-text">{person.email}</p> */}
             <Link
               to={`/user/${person._id}`}
-              className="btn btn-raised btn-primary"
+              className="btn btn-raised btn-primary float-left"
             >
               <i className="fas fa-eye"></i> View
             </Link>
-            {/* <FollowProfileButton
-              following={following}
-              onButtonClick={clickFollowButton}
-            /> */}
+            {person._id !== isAuth()._id ? (
+              <div class="float-right">
+                <FollowProfileButton
+                  following={checkFollow(person)}
+                  onButtonClick={console.log("clicked")}
+                />
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       ))}
