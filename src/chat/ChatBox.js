@@ -4,10 +4,16 @@ import Message from "./Message";
 
 function ToggleModal({ id, name }) {
   const [showModal, setShowModal] = useState(false);
+  const [reduceModal, setreduceModal] = useState(false);
 
   //Modal
   const togglemodal = () => {
     setShowModal(!showModal);
+  };
+
+  //reduceModal
+  const toggleReduceModal = () => {
+    setreduceModal(!reduceModal);
   };
 
   return (
@@ -21,7 +27,17 @@ function ToggleModal({ id, name }) {
       </button>
       {showModal ? (
         <Modal>
-          <Message userId={id} userName={name}/>
+          <Message userId={id} userName={name} />
+          {reduceModal ? (
+            <button className="modal-sizer" onClick={toggleReduceModal}>
+              <i class="fas fa-angle-up"></i>
+            </button>
+          ) : (
+            <button className="modal-sizer" onClick={toggleReduceModal}>
+              <i class="fas fa-angle-down"></i>
+            </button>
+          )}
+
           <button className="modal-close" onClick={togglemodal}>
             X
           </button>
