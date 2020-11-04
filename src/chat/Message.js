@@ -103,7 +103,7 @@ const Message = ({ userId, userName }) => {
       <Card>
         <div className="p-2 border-bottom ">
           <Row>
-            <Col md="8" xs="9">
+            <Col md="7" xs="8">
               <img
                 style={{
                   borderRadius: "50%",
@@ -134,9 +134,9 @@ const Message = ({ userId, userName }) => {
                 </p>
               </>
             </Col>
-            <Col md="4" xs="3">
+            <Col md="5" xs="4">
               <ul className="list-inline user-chat-nav text-right mb-0">
-                <li className="list-inline-item pr-4">
+                <li className="list-inline-item pr-5">
                   <Dropdown isOpen={other_Menu} toggle={toggleOther}>
                     <DropdownToggle className="btn nav-btn" tag="i">
                       <i className="bx bx-dots-horizontal-rounded"></i>
