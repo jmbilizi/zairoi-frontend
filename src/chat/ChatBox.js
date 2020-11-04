@@ -23,10 +23,10 @@ function ToggleModal({ id, name }) {
         onClick={togglemodal}
         className="btn btn-primary btn-raised ml-5"
       >
-        {!showModal ? "Message" : "End Message"}
+        {!showModal ? "Message" : "End Chat"}
       </button>
       {showModal ? (
-        <Modal>
+        <Modal reducer={reduceModal}>
           <Message userId={id} userName={name} />
           {reduceModal ? (
             <button className="modal-sizer" onClick={toggleReduceModal}>
