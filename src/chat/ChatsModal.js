@@ -1,38 +1,51 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
-// import "./Modal.css";
+import { isAuth, getCookie } from "../auth/helpers";
+import "./Modal.css";
 // We get hold of the div with the id modal that we have created in index.html
 const chatsModalRoot = document.getElementById("chats");
-const theChats = document.createElement("div");
-theChats.setAttribute("class", "my-chats");
 
-const i = document.createElement("i");
-i.setAttribute("class", "fas fa-chalkboard-teacher");
-i.setAttribute("style", "font-size: 30px; color: black");
+const ChatsModal = ({ children, auth }) => {
+  // We create an element div for this modal
+  let element = document.createElement("div");
+  element.setAttribute("class", "my-chatsmodal");
 
-theChats.append(i);
+  if (auth === true) {
+    chatsModalRoot.textContent = (
+      <i
+        className="fas fa-chalkboard-teacher"
+        style={{ fontSize: "30px", color: "black" }}
+      ></i>
+    );
+  }
 
-class ChatsModal extends React.Component {
-  constructor(props) {
-    super(props);
-    // We create an element div for this modal
-    this.element = document.createElement("div");
-    this.element.setAttribute("class", "my-chats");
-    //e.setAttribute("class", `saveBtn${time[i]}`);
+  if (auth === false) {
+    chatsModalRoot.textContent = "Chats";
   }
-  // We append the created div to the div#modal
-  componentDidMount() {
-    modalRoot.appendChild(this.element);
-  }
-  /**
-   * We remove the created div when this Modal Component is unmounted
-   * Used to clean up the memory to avoid memory leak
-   */
-  componentWillUnmount() {
-    modalRoot.removeChild(this.element);
-  }
-  render() {
-    return createPortal(this.props.children, this.element);
-  }
-}
+
+  // if (reducer === true) {
+  //   element.setAttribute(
+  //     "style",
+  //     "height: 110px; width: 310px; background: #fff; position: absolute; left: auto; right: 70px; top: 0; bottom: 0; margin: auto; box-shadow: 0 5px 10px 2px rgba(195, 192, 192, 0.5); padding: 1px; text-align: center;"
+  //   );
+  // }
+
+  // if (reducer === false) {
+  //   element.setAttribute(
+  //     "style",
+  //     "height: 900px; width: 350px; background: #fff; position: absolute; left: auto; right: 70px; top: 0; bottom: 0; margin: auto; box-shadow: 0 5px 10px 2px rgba(195, 192, 192, 0.5); padding: 1px; text-align: center;"
+  //   );
+  // }
+
+  useEffect(() => {
+    //mount
+    chatsModalRoot.appendChild(element);
+    //unmount
+    return () => {
+      chatsModalRoot.removeChild(element);
+    };
+  });
+
+  return createPortal(children, element);
+};
 export default ChatsModal;
