@@ -1,16 +1,16 @@
-
 .modal-close {
   position: absolute;
   right: 6px;
   top: 13px;
   cursor: pointer;
+  background: none;
   border: none;
   font-size: 20px;
 }
 
 .modal-sizer {
   position: absolute;
-  right: 30px;
+  right: 31px;
   top: 13px;
   border: none;
   background: none;
