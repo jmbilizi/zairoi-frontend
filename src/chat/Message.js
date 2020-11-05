@@ -172,7 +172,7 @@ const Message = ({ userId, userName }) => {
           <div className="chat-conversation">
             <ul className="list-unstyled p-0">
               <PerfectScrollbar
-                style={{ height: "310px", marginBottom: "0px" }}
+                style={{ height: "320px", marginBottom: "0px" }}
               >
                 <li>
                   <div className="chat-day-title">
@@ -182,7 +182,7 @@ const Message = ({ userId, userName }) => {
                 {messages.map((message) => (
                   <li
                     key={"test_k" + message.id}
-                    className={message.isRight ? "right" : ""}
+                    className={message.isRight ? "right" : "left"}
                   >
                     <div className="conversation-list">
                       <UncontrolledDropdown>
