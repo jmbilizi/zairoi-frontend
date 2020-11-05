@@ -7,6 +7,9 @@
   border: none;
   font-size: 20px;
 }
+.modal-close:hover {
+  background-color: #f5f5f5;
+}
 
 .modal-sizer {
   position: absolute;
@@ -16,4 +19,7 @@
   background: none;
   cursor: pointer;
   font-size: 20px;
+}
+.modal-sizer:hover {
+  background-color: #f5f5f5;
 }
