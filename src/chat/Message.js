@@ -79,7 +79,7 @@ const Message = ({ userId, userName }) => {
   console.log(Chat_Box_Username);
 
   const toggleOther = () => {
-    setOther_Menu((prevState) => !prevState.other_Menu);
+    setOther_Menu(!other_Menu);
   };
 
   const addMessage = () => {
@@ -138,8 +138,18 @@ const Message = ({ userId, userName }) => {
               <ul className="list-inline user-chat-nav text-right mb-0">
                 <li className="list-inline-item pr-5">
                   <Dropdown isOpen={other_Menu} toggle={toggleOther}>
-                    <DropdownToggle className="btn nav-btn" tag="i">
-                      <i className="bx bx-dots-horizontal-rounded"></i>
+                    <DropdownToggle
+                      style={{
+                        // "&:hover": {
+                        //   backgroundColor: "#f5f5f5",
+                        // },
+                        paddingLeft: "6px",
+                        paddingRight: "6px",
+                      }}
+                      className="btn"
+                      tag="i"
+                    >
+                      <i className="fas fa-ellipsis-h"></i>
                     </DropdownToggle>
                     <DropdownMenu right>
                       <DropdownItem href={`/user/${userId}`}>
