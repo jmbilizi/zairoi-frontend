@@ -5,6 +5,14 @@ import { isAuth, getCookie } from "../auth/helpers";
 import Comment from "./Comment";
 import DefaultProfile from "../images/avatar.jpg";
 import { PencilIcon, TrashIcon, CommentIcon } from "@primer/octicons-react";
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
+
+const moment = require("moment");
 
 const SinglePost = ({ postId }) => {
   const [post, setPost] = useState();
@@ -13,6 +21,11 @@ const SinglePost = ({ postId }) => {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(0);
   const [comments, setComments] = useState([]);
+  const [other_Menu, setOther_Menu] = useState(false);
+
+  const toggleOther = () => {
+    setOther_Menu(!other_Menu);
+  };
 
   const userId = isAuth()._id;
   const token = getCookie("token");
@@ -82,45 +95,71 @@ const SinglePost = ({ postId }) => {
       : " Unknown";
 
     return (
-      <div className="card-body rounded border border-silver mb-4 bg-white">
-        <div className="row border-bottom border-silver">
-          <div className="col">
+      <div className="card rounded border border-silver mb-3 bg-white">
+        <div className="row border-bottom border-silver mt-3 mx-1">
+          <div className="col-auto">
             <Link to={`${posterId}`}>
               <img
                 style={{
                   borderRadius: "50%",
                 }}
-                className="float-left mr-2 mb-3"
-                height="38px"
-                width="38px"
+                className="float-left mb-2"
+                height="50px"
+                width="50px"
                 onError={(i) => (i.target.src = `${DefaultProfile}`)}
                 src={`${process.env.REACT_APP_API_URL}/user/photo/${currentPost.postedBy._id}`}
                 alt={currentPost.postedBy.name}
               />
-              <div
-                style={{
-                  lineHeight: "35px",
-                  color: "black",
-                }}
-                className=""
-              >
-                <strong>{posterName}</strong>
-              </div>
             </Link>
           </div>
-          <div className="col-auto">
-            <p
-              style={{
-                lineHeight: "30px",
-              }}
-              className="float-right font-italic mark"
-            >
-              {new Date(currentPost.created).toDateString()}
-            </p>
+          <div className="col-8">
+            <div className="row text-left">
+              <Link to={`${posterId}`}>
+                <div
+                  style={{
+                    lineHeight: "25px",
+                    color: "black",
+                  }}
+                  className=""
+                >
+                  <strong>{posterName}</strong>
+                </div>
+              </Link>
+            </div>
+            <div className="row text-left">
+              <small className="mute">
+                {moment(currentPost.created).fromNow()}
+              </small>
+            </div>
+          </div>
+          <div className="col text-right">
+            <Dropdown isOpen={other_Menu} toggle={toggleOther}>
+              <DropdownToggle
+                style={{
+                  // "&:hover": {
+                  //   backgroundColor: "#f5f5f5",
+                  // },
+                  paddingLeft: "6px",
+                  paddingRight: "6px",
+                }}
+                className="btn"
+                tag="i"
+              >
+                <i className="fas fa-ellipsis-h"></i>
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem href="#">View Profile</DropdownItem>
+                <DropdownItem href="#">Muted</DropdownItem>
+                <DropdownItem href="#">Delete</DropdownItem>
+                <DropdownItem href="#">Action</DropdownItem>
+                <DropdownItem href="#">Report</DropdownItem>
+                <DropdownItem href="#">Another Action</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
           </div>
         </div>
-        <h2 className="mt-2 mb-3"> {currentPost.title} </h2>
-        <p className="card-text">{currentPost.body}</p>
+        <h2 className="mx-3 mt-2"> {currentPost.title} </h2>
+        <p className="card-text mx-3">{currentPost.body}</p>
         <img
           src={`${process.env.REACT_APP_API_URL}/post/photo/${currentPost._id}`}
           alt={currentPost.title}
@@ -132,7 +171,7 @@ const SinglePost = ({ postId }) => {
             objectFit: "cover",
           }}
         />
-        <div className="row border-bottom border-top border-silver">
+        <div className="row border-bottom border-top border-silver mx-1">
           <div className="col mt-3">
             <div className="row">
               <div className="col-auto">
@@ -215,12 +254,15 @@ const SinglePost = ({ postId }) => {
             )}
           </div>
         </div>
-
-        <Comment
-          postId={currentPost._id}
-          comments={comments.reverse()}
-          updateComments={updateComments}
-        />
+        <div className="row m-1 mb-2">
+          <div className="col-12">
+            <Comment
+              postId={currentPost._id}
+              comments={comments.reverse()}
+              updateComments={updateComments}
+            />
+          </div>
+        </div>
       </div>
     );
   };
