@@ -21,10 +21,10 @@ const SinglePost = ({ postId }) => {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(0);
   const [comments, setComments] = useState([]);
-  const [other_Menu, setOther_Menu] = useState(false);
+  const [menu, setMenu] = useState(false);
 
   const toggleOther = () => {
-    setOther_Menu(!other_Menu);
+    setMenu(!menu);
   };
 
   const userId = isAuth()._id;
@@ -133,7 +133,7 @@ const SinglePost = ({ postId }) => {
             </div>
           </div>
           <div className="col text-right">
-            <Dropdown isOpen={other_Menu} toggle={toggleOther}>
+            <Dropdown isOpen={menu} toggle={toggleOther}>
               <DropdownToggle
                 style={{
                   // "&:hover": {
