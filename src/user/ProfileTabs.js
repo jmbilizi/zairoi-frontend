@@ -27,7 +27,10 @@ const ProfileTabs = ({ user, following, followers, posts }) => {
   const allFollowers = () => (
     <>
       {followers.map((person, i) => (
-        <div className="card col-lg-3 col-md-3 col-sm-6 mx-auto" key={i}>
+        <div
+          className="card col-lg-3 col-md-3 col-sm-6 mx-auto border border-light"
+          key={i}
+        >
           <img
             style={{ height: "200px", width: "auto" }}
             className="pt-2 rounded-circle"
@@ -64,7 +67,10 @@ const ProfileTabs = ({ user, following, followers, posts }) => {
   const allFollowing = () => (
     <>
       {following.map((person, i) => (
-        <div className="card col-lg-3 col-md-3 col-sm-6 mx-sm-auto" key={i}>
+        <div
+          className="card col-lg-3 col-md-3 col-sm-6 mx-sm-auto border border-light"
+          key={i}
+        >
           <img
             style={{ height: "200px", width: "auto" }}
             className="pt-2 rounded-circle"
