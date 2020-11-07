@@ -12,6 +12,7 @@ import {
   DropdownItem,
 } from "reactstrap";
 import FollowUnfollow from "../user/FollowUnfollow";
+import ChatBox from "../chat/ChatBox";
 const moment = require("moment");
 
 const SinglePost = ({ postId }) => {
@@ -152,13 +153,16 @@ const SinglePost = ({ postId }) => {
 
                 {isAuth() && isAuth()._id !== currentPost.postedBy._id ? (
                   <>
-                    <DropdownItem href="#">Message</DropdownItem>
+                    <ChatBox
+                      id={currentPost.postedBy._id}
+                      name={currentPost.postedBy.name}
+                      theclass="ml-4"
+                    />
+                    {/* <DropdownItem href="#">Message</DropdownItem> */}
                   </>
                 ) : (
                   ""
                 )}
-                <DropdownItem href="#">Action</DropdownItem>
-                <DropdownItem href="#">Another Action</DropdownItem>
                 {isAuth() && isAuth()._id === currentPost.postedBy._id ? (
                   <>
                     <DropdownItem onClick={deleteConfirmed}>
@@ -171,11 +175,14 @@ const SinglePost = ({ postId }) => {
                 ) : (
                   ""
                 )}
+                <DropdownItem href="#">Action</DropdownItem>
                 <FollowUnfollow
                   user={currentPost.postedBy}
                   followClass="ml-4"
                   unfollowClass="ml-4"
                 />
+
+                {/* <DropdownItem href="#">Another Action</DropdownItem> */}
                 {/* <DropdownItem href="#">Follow/Unfollow</DropdownItem> */}
                 <DropdownItem href="#">Report</DropdownItem>
               </DropdownMenu>
