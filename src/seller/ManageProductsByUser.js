@@ -48,7 +48,7 @@ const ManageProductsByUser = ({ userId }) => {
         .filter((p) => p.soldBy === userId)
         .map((p, i) => (
           <div key={i}>
-            <div style={{ height: "40px" }} className="row bg-white mb-1 px-3">
+            <div style={{ height: "40px" }} className="row bg-light mb-1 px-3">
               <div style={{ color: "dark" }} className="col-10 mx-auto my-auto">
                 {p.name}
               </div>
