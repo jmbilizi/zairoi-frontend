@@ -28,8 +28,8 @@ const Post = () => {
   return (
     <Layout>
       <div className="row">
-        <div className="col-md-2 col-sm-0"></div>
-        <div className="col-md-8 col-sm-12">
+        <div className="col-md-3 col-sm-0"></div>
+        <div className="col-md-6 col-sm-12">
           {posts
             .filter(
               (post) =>
@@ -43,7 +43,7 @@ const Post = () => {
               </div>
             ))}
         </div>
-        <div className="col-md-2 col-sm-0"></div>
+        <div className="col-md-3 col-sm-0"></div>
       </div>
     </Layout>
   );
