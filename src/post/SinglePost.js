@@ -160,17 +160,22 @@ const SinglePost = ({ postId }) => {
         </div>
         <h2 className="mx-3 mt-2"> {currentPost.title} </h2>
         <p className="card-text mx-3">{currentPost.body}</p>
-        <img
-          src={`${process.env.REACT_APP_API_URL}/post/photo/${currentPost._id}`}
-          alt={currentPost.title}
-          onError={(i) => (i.target.style.display = "none")}
-          className="img-thunbnail mb-3"
-          style={{
-            height: "100%",
-            width: "100%",
-            objectFit: "cover",
-          }}
-        />
+        {currentPost.photo ? (
+          <img
+            src={currentPost.photo.url}
+            alt={currentPost.title}
+            onError={(i) => (i.target.style.display = "none")}
+            className="img-thunbnail mb-3"
+            style={{
+              height: "100%",
+              width: "100%",
+              objectFit: "cover",
+            }}
+          />
+        ) : (
+          ""
+        )}
+
         <div className="row border-bottom border-top border-silver mx-1">
           <div className="col mt-3">
             <div className="row">
