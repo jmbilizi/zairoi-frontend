@@ -154,7 +154,11 @@ class Profile extends Component {
                     following={this.state.following}
                     onButtonClick={this.clickFollowButton}
                   />
-                  <ChatBox id={user._id} name={user.name} />
+                  <ChatBox
+                    id={user._id}
+                    name={user.name}
+                    theclass="btn btn-primary btn-raised ml-5"
+                  />
                 </>
               )}
 
