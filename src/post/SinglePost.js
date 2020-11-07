@@ -158,7 +158,7 @@ const SinglePost = ({ postId }) => {
             </Dropdown>
           </div>
         </div>
-        <h2 className="mx-3 mt-2"> {currentPost.title} </h2>
+        <h5 className="mx-3 mt-2"> {currentPost.title} </h5>
         <p className="card-text mx-3">{currentPost.body}</p>
         {currentPost.photo ? (
           <img
