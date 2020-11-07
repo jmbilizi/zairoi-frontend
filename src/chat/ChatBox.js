@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import Modal from "./Modal";
 import Message from "./Message";
 
-function ToggleModal({ id, name }) {
+function ToggleModal({ id, name, theclass }) {
   const [showModal, setShowModal] = useState(false);
   const [reduceModal, setreduceModal] = useState(false);
 
   //Modal
   const togglemodal = () => {
     setShowModal(!showModal);
+    setreduceModal(false);
   };
 
   //reduceModal
@@ -18,13 +19,14 @@ function ToggleModal({ id, name }) {
 
   return (
     <>
-      <button
+      <div
         //I will add on click event that will send you to a card that allow you to send message to the particular user
         onClick={togglemodal}
-        className="btn btn-primary btn-raised ml-5"
+        className={`${theclass}`}
       >
-        {!showModal ? "Message" : "End Chat"}
-      </button>
+        Message
+        {/* {!showModal ? "Message" : "End Chat"} */}
+      </div>
       {showModal ? (
         <Modal reducer={reduceModal}>
           <Message userId={id} userName={name} />
