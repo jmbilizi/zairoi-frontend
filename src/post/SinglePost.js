@@ -148,12 +148,30 @@ const SinglePost = ({ postId }) => {
                 <i className="fas fa-ellipsis-h"></i>
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem href="#">View Profile</DropdownItem>
-                <DropdownItem href="#">Muted</DropdownItem>
-                <DropdownItem href="#">Delete</DropdownItem>
+                <DropdownItem href={`${posterId}`}>View Profile</DropdownItem>
+
+                {isAuth() && isAuth()._id !== currentPost.postedBy._id ? (
+                  <>
+                    <DropdownItem href="#">Message</DropdownItem>
+                  </>
+                ) : (
+                  ""
+                )}
                 <DropdownItem href="#">Action</DropdownItem>
-                <DropdownItem href="#">Report</DropdownItem>
                 <DropdownItem href="#">Another Action</DropdownItem>
+                {isAuth() && isAuth()._id === currentPost.postedBy._id ? (
+                  <>
+                    <DropdownItem onClick={deleteConfirmed}>
+                      Delete
+                    </DropdownItem>
+                    <DropdownItem href={`/post/edit/${currentPost._id}`}>
+                      Update
+                    </DropdownItem>
+                  </>
+                ) : (
+                  ""
+                )}
+                <DropdownItem href="#">Report</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>
