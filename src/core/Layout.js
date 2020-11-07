@@ -291,7 +291,7 @@ const Layout = ({ children, match, history }) => {
   return (
     <Fragment>
       {nav()}
-      <div style={{ marginTop: "30px" }} className="container">
+      <div style={{ marginTop: "30px" }} className="container-fluid">
         {children}
       </div>
     </Fragment>

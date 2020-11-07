@@ -65,7 +65,7 @@ const Shop = () => {
     );
   };
 
-  const shuffle = array => {
+  const shuffle = (array) => {
     var currentIndex = array.length,
       temporaryValue,
       randomIndex;
@@ -83,7 +83,7 @@ const Shop = () => {
     }
 
     return array;
-  }
+  };
 
   useEffect(() => {
     init();
@@ -117,8 +117,8 @@ const Shop = () => {
 
   return (
     <Layout>
-      <div className="row">
-        <div className="col-md-3 col-sm-10">
+      <div className="row px-md-5 px-sm-0">
+        <div className="col-md-2 col-sm-10">
           <div className="row">
             <div>
               <h5>Filter by categories</h5>
@@ -143,11 +143,11 @@ const Shop = () => {
           </div>
         </div>
 
-        <div className="col-md-9 col-sm-8">
+        <div className="col-md-10 col-sm-12">
           <h2 className="mb-4">Products</h2>
           <div className="row">
             {shuffle(filteredResults).map((product, i) => (
-              <div key={i} className="col-lg-6 col-sm-12 mb-1">
+              <div key={i} className="col-lg-3 col-md-4 col-sm-6 mb-1">
                 <Card product={product} />
               </div>
             ))}
