@@ -144,15 +144,13 @@ const Shop = () => {
         </div>
 
         <div className="col-md-10 col-sm-12">
-          <h2 className="mb-4">Products</h2>
           <div className="row">
             {shuffle(filteredResults).map((product, i) => (
-              <div key={i} className="col-lg-3 col-md-4 col-sm-6 mb-1">
+              <div key={i} className="col-lg-3 col-md-4 col-sm-5 mb-1">
                 <Card product={product} />
               </div>
             ))}
           </div>
-          <hr />
           {loadMoreButton()}
         </div>
       </div>
