@@ -11,7 +11,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
-
+import FollowUnfollow from "../user/FollowUnfollow";
 const moment = require("moment");
 
 const SinglePost = ({ postId }) => {
@@ -171,6 +171,12 @@ const SinglePost = ({ postId }) => {
                 ) : (
                   ""
                 )}
+                <FollowUnfollow
+                  user={currentPost.postedBy}
+                  followClass="ml-4"
+                  unfollowClass="ml-4"
+                />
+                {/* <DropdownItem href="#">Follow/Unfollow</DropdownItem> */}
                 <DropdownItem href="#">Report</DropdownItem>
               </DropdownMenu>
             </Dropdown>
