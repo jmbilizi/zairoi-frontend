@@ -24,7 +24,7 @@ function ToggleModal({ id, name, theclass }) {
         onClick={togglemodal}
         className={`${theclass}`}
       >
-        Message
+        <i className="far fa-comment-alt"></i> Message
         {/* {!showModal ? "Message" : "End Chat"} */}
       </div>
       {showModal ? (
@@ -32,11 +32,11 @@ function ToggleModal({ id, name, theclass }) {
           <Message userId={id} userName={name} />
           {reduceModal ? (
             <button className="modal-sizer" onClick={toggleReduceModal}>
-              <i class="fas fa-angle-up"></i>
+              <i className="fas fa-angle-up"></i>
             </button>
           ) : (
             <button className="modal-sizer" onClick={toggleReduceModal}>
-              <i class="fas fa-angle-down"></i>
+              <i className="fas fa-angle-down"></i>
             </button>
           )}
 

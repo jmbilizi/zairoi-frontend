@@ -46,7 +46,11 @@ const ProfileTabs = ({ user, following, followers, posts }) => {
             </Link>
             {person._id !== isAuth()._id ? (
               <div class="float-right">
-                <FollowUnfollow user={person} />
+                <FollowUnfollow
+                  user={person}
+                  followClass="btn btn-success btn-raised"
+                  unfollowClass="btn btn-warning btn-raised"
+                />
               </div>
             ) : (
               ""

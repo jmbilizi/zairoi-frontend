@@ -18,14 +18,14 @@ class FollowProfileButton extends Component {
             onClick={this.followClick}
             className="btn btn-success btn-raised"
           >
-            Follow
+            <i className="fas fa-user-plus"></i> Follow
           </button>
         ) : (
           <button
             onClick={this.unfollowClick}
             className="btn btn-warning btn-raised"
           >
-            UnFollow
+            <i className="fas fa-user-minus"></i> UnFollow
           </button>
         )}
       </div>

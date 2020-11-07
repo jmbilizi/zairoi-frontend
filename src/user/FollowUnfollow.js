@@ -38,11 +38,11 @@ const FollowUnfollow = ({ user, followClass, unfollowClass }) => {
     <div className="d-inline-block">
       {!following ? (
         <div onClick={followClick} className={`${followClass}`}>
-          Follow
+          <i className="fas fa-user-plus"></i> Follow
         </div>
       ) : (
         <div onClick={unfollowClick} className={`${unfollowClass}`}>
-          UnFollow
+          <i className="fas fa-user-minus"></i> UnFollow
         </div>
       )}
     </div>

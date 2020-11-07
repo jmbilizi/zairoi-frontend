@@ -149,7 +149,9 @@ const SinglePost = ({ postId }) => {
                 <i className="fas fa-ellipsis-h"></i>
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem href={`${posterId}`}>View Profile</DropdownItem>
+                <DropdownItem href={`${posterId}`}>
+                  <i class="far fa-eye"></i> View Profile
+                </DropdownItem>
 
                 {isAuth() && isAuth()._id !== currentPost.postedBy._id ? (
                   <>
@@ -163,28 +165,29 @@ const SinglePost = ({ postId }) => {
                 ) : (
                   ""
                 )}
-                {isAuth() && isAuth()._id === currentPost.postedBy._id ? (
-                  <>
-                    <DropdownItem onClick={deleteConfirmed}>
-                      Delete
-                    </DropdownItem>
-                    <DropdownItem href={`/post/edit/${currentPost._id}`}>
-                      Update
-                    </DropdownItem>
-                  </>
-                ) : (
-                  ""
-                )}
-                <DropdownItem href="#">Action</DropdownItem>
+                {/* <DropdownItem href="#">Action</DropdownItem> */}
                 <FollowUnfollow
                   user={currentPost.postedBy}
                   followClass="ml-4"
                   unfollowClass="ml-4"
                 />
-
+                {isAuth() && isAuth()._id === currentPost.postedBy._id ? (
+                  <>
+                    <DropdownItem onClick={deleteConfirmed}>
+                      <i className="far fa-trash-alt"></i> Delete
+                    </DropdownItem>
+                    <DropdownItem href={`/post/edit/${currentPost._id}`}>
+                      <i class="fas fa-pencil-alt"></i> Update
+                    </DropdownItem>
+                  </>
+                ) : (
+                  ""
+                )}
                 {/* <DropdownItem href="#">Another Action</DropdownItem> */}
                 {/* <DropdownItem href="#">Follow/Unfollow</DropdownItem> */}
-                <DropdownItem href="#">Report</DropdownItem>
+                <DropdownItem href="#">
+                  <i class="fas fa-exclamation-circle"></i> Report
+                </DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>
