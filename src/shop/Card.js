@@ -103,13 +103,20 @@ const Card = ({
     );
   };
   return (
-    <div className="card ">
-      <div className="card-header card-header-1 ">{product.name}</div>
-      <div className="card-body">
+    <div className="card border boder-light">
+      <ShowImage p={product} />
+      <div className="row px-2 pt-2">
+        <div className="col-9 text-left">
+          <h3 className="mute">{product.name}</h3>
+        </div>
+        <div className="col-3 text-right">
+          <h3 className="text-success">${product.price}</h3>
+        </div>
+      </div>
+      <div className="card-body px-2 py-0">
         {shouldRedirect(redirect)}
-        <ShowImage p={product} />
-        <p className="card-p  mt-2">{product.description.substring(0, 100)} </p>
-        <p className="card-p black-10">$ {product.price}</p>
+        <p className="card-p">{product.description.substring(0, 100)} </p>
+        {/* <p className="card-p black-10">$ {product.price}</p> */}
         <p className="black-9">
           Category: {product.category && product.category.name}
         </p>
