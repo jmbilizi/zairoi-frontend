@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { follow, unfollow } from "./apiUser";
 import { isAuth, getCookie } from "../auth/helpers";
 
-const FollowUnfollow = ({ user }) => {
+const FollowUnfollow = ({ user, followClass, unfollowClass }) => {
   const [following, setFollowing] = useState(() => {
     const match = user.followers.find((follower) => {
       // one id has many other ids (followers) and vice versa
       return follower === isAuth()._id;
     });
-    return match
+    return match;
   });
 
   const token = getCookie("token");
@@ -37,13 +37,13 @@ const FollowUnfollow = ({ user }) => {
   return (
     <div className="d-inline-block">
       {!following ? (
-        <button onClick={followClick} className="btn btn-success btn-raised">
+        <div onClick={followClick} className={`${followClass}`}>
           Follow
-        </button>
+        </div>
       ) : (
-        <button onClick={unfollowClick} className="btn btn-warning btn-raised">
+        <div onClick={unfollowClick} className={`${unfollowClass}`}>
           UnFollow
-        </button>
+        </div>
       )}
     </div>
   );
