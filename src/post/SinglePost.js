@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/iframe-has-title */
+/* eslint-disable no-mixed-operators */
 import React, { useState, useEffect } from "react";
 import { singlePost, remove, like, unlike } from "./apiPost";
 import { Link, Redirect } from "react-router-dom";
@@ -13,6 +15,7 @@ import {
 } from "reactstrap";
 import FollowUnfollow from "../user/FollowUnfollow";
 import ChatBox from "../chat/ChatBox";
+import { Player } from "video-react";
 const moment = require("moment");
 
 const SinglePost = ({ postId }) => {
@@ -150,7 +153,7 @@ const SinglePost = ({ postId }) => {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem href={`${posterId}`}>
-                  <i class="far fa-eye"></i> View Profile
+                  <i className="far fa-eye"></i> View Profile
                 </DropdownItem>
 
                 {isAuth() && isAuth()._id !== currentPost.postedBy._id ? (
@@ -177,7 +180,7 @@ const SinglePost = ({ postId }) => {
                       <i className="far fa-trash-alt"></i> Delete
                     </DropdownItem>
                     <DropdownItem href={`/post/edit/${currentPost._id}`}>
-                      <i class="fas fa-pencil-alt"></i> Update
+                      <i className="fas fa-pencil-alt"></i> Update
                     </DropdownItem>
                   </>
                 ) : (
@@ -186,7 +189,7 @@ const SinglePost = ({ postId }) => {
                 {/* <DropdownItem href="#">Another Action</DropdownItem> */}
                 {/* <DropdownItem href="#">Follow/Unfollow</DropdownItem> */}
                 <DropdownItem href="#">
-                  <i class="fas fa-exclamation-circle"></i> Report
+                  <i className="fas fa-exclamation-circle"></i> Report
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
@@ -194,17 +197,39 @@ const SinglePost = ({ postId }) => {
         </div>
         <h5 className="mx-3 mt-2"> {currentPost.title} </h5>
         <p className="card-text mx-3">{currentPost.body}</p>
-        {currentPost.photo ? (
+        {(currentPost.photo &&
+          currentPost.photo.contentType === "image/jpeg") ||
+        (currentPost.photo && currentPost.photo.contentType === "image/png") ||
+        (currentPost.photo && currentPost.photo.contentType === "image/jpg") ||
+        (currentPost.photo && currentPost.photo.contentType === "image/gif") ? (
           <img
             src={currentPost.photo.url}
             alt={currentPost.title}
             onError={(i) => (i.target.style.display = "none")}
-            className="img-thunbnail mb-3"
+            className="img-thunbnail"
             style={{
               height: "100%",
               width: "100%",
               objectFit: "cover",
             }}
+          />
+        ) : (currentPost.photo &&
+            currentPost.photo.contentType === "video/mp4") ||
+          (currentPost.photo &&
+            currentPost.photo.contentType === "video/3gp") ||
+          (currentPost.photo &&
+            currentPost.photo.contentType === "video/mov") ||
+          (currentPost.photo &&
+            currentPost.photo.contentType === "video/flv") ? (
+          <Player
+            autoPlay
+            loop
+            controls
+            playsInline
+            muted
+            src={`${currentPost.photo.url}`}
+            width="100%"
+            height="100%"
           />
         ) : (
           ""
