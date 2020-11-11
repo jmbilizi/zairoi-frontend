@@ -6,7 +6,7 @@ import { Link, Redirect } from "react-router-dom";
 import { isAuth, getCookie } from "../auth/helpers";
 import Comment from "./Comment";
 import DefaultProfile from "../images/avatar.jpg";
-import { PencilIcon, TrashIcon, CommentIcon } from "@primer/octicons-react";
+import { PencilIcon, TrashIcon } from "@primer/octicons-react";
 import {
   Dropdown,
   DropdownToggle,
@@ -234,90 +234,74 @@ const SinglePost = ({ postId }) => {
         ) : (
           ""
         )}
-
-        <div className="row border-bottom border-top border-silver mx-1">
-          <div className="col mt-3">
-            <div className="row">
-              <div className="col-auto">
-                {!liked ? (
-                  <p onClick={likeToggle}>
-                    <i
-                      className="fa fa-thumbs-up text-success bg-dark"
-                      style={{ padding: "10px", borderRadius: "50%" }}
-                    />{" "}
-                    {likes} Like
-                  </p>
-                ) : (
-                  <p onClick={likeToggle}>
-                    <i
-                      className="fa fa-thumbs-up text-warning bg-dark"
-                      style={{ padding: "10px", borderRadius: "50%" }}
-                    />{" "}
-                    {likes} Like
-                  </p>
-                )}
-              </div>
-              <div className="col">
-                <div className="row">
-                  <CommentIcon size={30} />
-                  <p className="text-dark ml-1 mt-2 pb-2">
-                    {" "}
-                    {comments.length} Comments
-                  </p>
-                </div>
-              </div>
-            </div>
+        <div className="row">
+          <div className="col">
+            <ul
+              style={{ listStyleType: "none", paddingTop: "10px" }}
+              className="px-3"
+            >
+              <li className="float-left">
+                <small>{likes} Likes</small>
+              </li>
+              <li className="float-right">
+                <small> 0 Shares </small>
+              </li>
+              <li className="float-right px-2">
+                <small> {comments.length} Comments </small>
+              </li>
+            </ul>
           </div>
-
-          <div className="col-auto mt-3 text-right">
-            {isAuth() && isAuth()._id === currentPost.postedBy._id && (
-              <>
-                <button
-                  onClick={deleteConfirmed}
-                  className="btn btn-raised btn-danger btn-sm"
-                >
-                  <TrashIcon size={18} />
-                </button>
+        </div>
+        <div className="row border-bottom border-top border-silver mx-3">
+          <div
+            style={{ background: "#f9f9f9" }}
+            className="col rounded text-center pt-3 m-1"
+          >
+            {!liked ? (
+              <p onClick={likeToggle}>
+                <i className="far fa-thumbs-up"></i> Like
+              </p>
+            ) : (
+              <p onClick={likeToggle}>
+                <i className="far fa-thumbs-down"></i> Unlike
+              </p>
+            )}
+          </div>
+          <div
+            style={{ background: "#f9f9f9" }}
+            className="col rounded text-center pt-3 m-1"
+          >
+            <i className="far fa-comment-alt"></i> Comment
+          </div>
+          <div
+            style={{ background: "#f9f9f9" }}
+            className="col rounded text-center pt-3 m-1"
+          >
+            <i className="far fa-share-square"></i> Share
+          </div>
+        </div>
+        {isAuth() && isAuth().role === "admin" && (
+          <>
+            <div className="card rounded border border-silver m-2">
+              <div className="card-body">
+                <h5 className="card-title">Admin</h5>
+                <p className="mb-2 text-danger">Edit/Delete as an Admin</p>
                 <Link
                   to={`/post/edit/${currentPost._id}`}
-                  className="btn btn-raised btn-warning btn-sm mx-1"
+                  className="btn btn-raised btn-warning btn-md mr-5"
                 >
-                  <PencilIcon size={18} />
+                  <PencilIcon size={20} />
                 </Link>
-              </>
-            )}
-            <Link
-              to={`/`}
-              className="btn btn-raised btn-primary btn-sm float-right"
-            >
-              Back
-            </Link>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-12">
-            {isAuth() && isAuth().role === "admin" && (
-              <div className="card mt-2 rounded border border-silver">
-                <div className="card-body">
-                  <h5 className="card-title">Admin</h5>
-                  <p className="mb-2 text-danger">Edit/Delete as an Admin</p>
-                  <Link
-                    to={`/post/edit/${currentPost._id}`}
-                    className="btn btn-raised btn-warning btn-md mr-5"
-                  >
-                    <PencilIcon size={20} />
-                  </Link>
-                  <button
-                    onClick={deleteConfirmed}
-                    className="btn btn-raised btn-danger btn-md mr-5"
-                  >
-                    <TrashIcon size={20} />
-                  </button>
-                </div>
+                <button
+                  onClick={deleteConfirmed}
+                  className="btn btn-raised btn-danger btn-md mr-5"
+                >
+                  <TrashIcon size={20} />
+                </button>
               </div>
-            )}
-          </div>
-        </div>
+            </div>
+          </>
+        )}
         <div className="row m-1 mb-2">
           <div className="col-12">
             <Comment
