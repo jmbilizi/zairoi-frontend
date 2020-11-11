@@ -26,6 +26,7 @@ const SinglePost = ({ postId }) => {
   const [likes, setLikes] = useState(0);
   const [comments, setComments] = useState([]);
   const [menu, setMenu] = useState(false);
+  const [showCommentForm, setShowCommentForm] = useState(false);
 
   const toggleOther = () => {
     setMenu(!menu);
@@ -88,6 +89,10 @@ const SinglePost = ({ postId }) => {
     if (answer) {
       deletePost();
     }
+  };
+
+  const showCommentFormFunc = () => {
+    setShowCommentForm(!showCommentForm);
   };
 
   const renderPost = (currentPost) => {
@@ -270,6 +275,7 @@ const SinglePost = ({ postId }) => {
           <div
             style={{ background: "#f9f9f9" }}
             className="col rounded text-center pt-3 m-1"
+            onClick={showCommentFormFunc}
           >
             <i className="far fa-comment-alt"></i> Comment
           </div>
@@ -305,6 +311,7 @@ const SinglePost = ({ postId }) => {
         <div className="row m-1 mb-2">
           <div className="col-12">
             <Comment
+              showForm={showCommentForm}
               postId={currentPost._id}
               comments={comments.reverse()}
               updateComments={updateComments}
