@@ -4,12 +4,7 @@ import { isAuth, getCookie } from "../auth/helpers";
 import { Link } from "react-router-dom";
 import DefaultProfile from "../images/avatar.jpg";
 
-const Comment = ({
-  showForm,
-  postId,
-  comments,
-  updateComments,
-}) => {
+const Comment = ({ showForm, postId, comments, updateComments }) => {
   const [state, setState] = useState({
     text: "",
     error: "",
@@ -84,7 +79,7 @@ const Comment = ({
     <div>
       {showForm ? (
         <form onSubmit={addComment}>
-          <div className="input-group mt-2 mb-0">
+          <div className="input-group mb-0">
             <img
               style={{
                 borderRadius: "50%",
