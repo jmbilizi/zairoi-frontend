@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { list } from "./apiPost";
 import DefaultPost from "../images/mountains.jpg";
 import { Link } from "react-router-dom";
+import { Player } from "video-react";
 
 class Posts extends Component {
   constructor() {
@@ -46,7 +47,47 @@ class Posts extends Component {
           return (
             <div className="card col-md-5 col-sm-10 mx-auto" key={i}>
               <div className="card-body">
-                {post.photo ? (
+                {(post.photo &&
+                  post.photo.contentType === "image/jpeg") ||
+                (post.photo &&
+                  post.photo.contentType === "image/png") ||
+                (post.photo &&
+                  post.photo.contentType === "image/jpg") ||
+                (post.photo &&
+                  post.photo.contentType === "image/gif") ? (
+                  <img
+                    src={post.photo.url}
+                    alt={post.title}
+                    onError={(i) => (i.target.style.display = "none")}
+                    className="img-thunbnail"
+                    style={{
+                      height: "100%",
+                      width: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                ) : (post.photo &&
+                    post.photo.contentType === "video/mp4") ||
+                  (post.photo &&
+                    post.photo.contentType === "video/3gp") ||
+                  (post.photo &&
+                    post.photo.contentType === "video/mov") ||
+                  (post.photo &&
+                    post.photo.contentType === "video/flv") ? (
+                  <Player
+                    autoPlay
+                    loop
+                    controls
+                    playsInline
+                    muted
+                    src={`${post.photo.url}`}
+                    width="100%"
+                    height="100%"
+                  />
+                ) : (
+                  ""
+                )}
+                {/* {post.photo ? (
                   <img
                     src={post.photo.url}
                     alt={post.title}
@@ -62,7 +103,7 @@ class Posts extends Component {
                     className="img-thunbnail mb-3"
                     style={{ height: "200px", width: "100%" }}
                   />
-                )}
+                )} */}
 
                 <h5 className="card-title">{post.title}</h5>
                 <p className="card-text">{post.body.substring(0, 100)}</p>
