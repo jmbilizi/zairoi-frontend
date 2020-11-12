@@ -26,7 +26,8 @@ const SinglePost = ({ postId }) => {
   const [likes, setLikes] = useState(0);
   const [comments, setComments] = useState([]);
   const [menu, setMenu] = useState(false);
-  const [showCommentForm, setShowCommentForm] = useState(false);
+  const [showCommentForm, setShowCommentForm] = useState(true);
+  const [showComments, setShowComments] = useState(false);
 
   const toggleOther = () => {
     setMenu(!menu);
@@ -93,6 +94,10 @@ const SinglePost = ({ postId }) => {
 
   const showCommentFormFunc = () => {
     setShowCommentForm(!showCommentForm);
+  };
+
+  const showCommentsFunc = () => {
+    setShowComments(!showComments);
   };
 
   const renderPost = (currentPost) => {
@@ -247,7 +252,10 @@ const SinglePost = ({ postId }) => {
             >
               <li className="btn btn-link p-0 float-left">{likes} Likes</li>
               <li className="btn btn-link p-0 float-right">0 Shares</li>
-              <li className="btn btn-link p-0 float-right px-2">
+              <li
+                onClick={showCommentsFunc}
+                className="btn btn-link p-0 float-right px-2"
+              >
                 {comments.length} Comments
               </li>
             </ul>
@@ -308,6 +316,7 @@ const SinglePost = ({ postId }) => {
           <div className="col-12">
             <Comment
               showForm={showCommentForm}
+              showComments={showComments}
               postId={currentPost._id}
               comments={comments.reverse()}
               updateComments={updateComments}
