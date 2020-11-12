@@ -103,7 +103,8 @@ const Comment = ({
                 type="text"
                 onChange={handleChange}
                 value={text}
-                className="form-control ml-1 rounded-pill bg-light"
+                style={{ background: "#f9f9f9" }}
+                className="form-control ml-1 rounded-pill"
                 placeholder="Leave a comment..."
               />
             </div>
@@ -137,7 +138,7 @@ const Comment = ({
                   />
                 </Link>
               </div>
-              <div className="col rounded bg-light">
+              <div style={{ background: "#f7f7f7" }} className="col rounded">
                 <div className="row pt-2">
                   <div className="col">
                     <Link to={`/user/${comment.postedBy._id}`}>
