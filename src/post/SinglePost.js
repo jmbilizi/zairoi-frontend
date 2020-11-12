@@ -293,8 +293,8 @@ const SinglePost = ({ postId }) => {
             <i className="far fa-share-square"></i> Share
           </div>
         </div>
-        <div className="row m-1 mb-2">
-          <div className="col-12">
+        <div className="row m-1">
+          <div className="col-12 px-1">
             <Comment
               showForm={showCommentForm}
               showComments={showComments}
