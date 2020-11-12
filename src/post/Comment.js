@@ -4,7 +4,12 @@ import { isAuth, getCookie } from "../auth/helpers";
 import { Link } from "react-router-dom";
 import DefaultProfile from "../images/avatar.jpg";
 
-const Comment = ({ showForm, postId, comments, updateComments }) => {
+const Comment = ({
+  showForm,
+  postId,
+  comments,
+  updateComments,
+}) => {
   const [state, setState] = useState({
     text: "",
     error: "",
@@ -78,39 +83,40 @@ const Comment = ({ showForm, postId, comments, updateComments }) => {
   return (
     <div>
       {showForm ? (
-        <form onSubmit={addComment}>
-          <div className="input-group mb-0">
-            <img
-              style={{
-                borderRadius: "50%",
-              }}
-              height="38px"
-              width="38px"
-              onError={(i) => (i.target.src = `${DefaultProfile}`)}
-              src={`${process.env.REACT_APP_API_URL}/user/photo/${
-                isAuth()._id
-              }`}
-              alt={isAuth().name}
-            />
-            <input
-              type="text"
-              onChange={handleChange}
-              value={text}
-              className="form-control ml-1 rounded-pill bg-light"
-              placeholder="Leave a comment..."
-            />
+        <>
+          <form onSubmit={addComment}>
+            <div className="input-group mb-0">
+              <img
+                style={{
+                  borderRadius: "50%",
+                }}
+                height="38px"
+                width="38px"
+                onError={(i) => (i.target.src = `${DefaultProfile}`)}
+                src={`${process.env.REACT_APP_API_URL}/user/photo/${
+                  isAuth()._id
+                }`}
+                alt={isAuth().name}
+              />
+              <input
+                type="text"
+                onChange={handleChange}
+                value={text}
+                className="form-control ml-1 rounded-pill bg-light"
+                placeholder="Leave a comment..."
+              />
+            </div>
+          </form>
+          <div
+            className="alert alert-danger"
+            style={{ display: error ? "" : "none" }}
+          >
+            {error}
           </div>
-        </form>
+        </>
       ) : (
         ""
       )}
-
-      <div
-        className="alert alert-danger"
-        style={{ display: error ? "" : "none" }}
-      >
-        {error}
-      </div>
 
       {comments.map((comment, i) => (
         <div className="row mt-2 mr-auto" key={i}>
