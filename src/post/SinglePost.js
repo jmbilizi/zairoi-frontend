@@ -184,7 +184,9 @@ const SinglePost = ({ postId }) => {
                   followClass="ml-4"
                   unfollowClass="ml-4"
                 />
-                {isAuth() && isAuth()._id === currentPost.postedBy._id ? (
+                {isAuth() &&
+                (isAuth()._id === currentPost.postedBy._id ||
+                  isAuth().role === "admin") ? (
                   <>
                     <DropdownItem onClick={deleteConfirmed}>
                       <i className="far fa-trash-alt"></i> Delete
@@ -290,28 +292,6 @@ const SinglePost = ({ postId }) => {
             <i className="far fa-share-square"></i> Share
           </div>
         </div>
-        {isAuth() && isAuth().role === "admin" && (
-          <>
-            <div className="card rounded border border-silver m-2">
-              <div className="card-body">
-                <h5 className="card-title">Admin</h5>
-                <p className="mb-2 text-danger">Edit/Delete as an Admin</p>
-                <Link
-                  to={`/post/edit/${currentPost._id}`}
-                  className="btn btn-raised btn-warning btn-md mr-5"
-                >
-                  <PencilIcon size={20} />
-                </Link>
-                <button
-                  onClick={deleteConfirmed}
-                  className="btn btn-raised btn-danger btn-md mr-5"
-                >
-                  <TrashIcon size={20} />
-                </button>
-              </div>
-            </div>
-          </>
-        )}
         <div className="row m-1 mb-2">
           <div className="col-12">
             <Comment
