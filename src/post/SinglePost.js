@@ -243,16 +243,12 @@ const SinglePost = ({ postId }) => {
           <div className="col">
             <ul
               style={{ listStyleType: "none", paddingTop: "10px" }}
-              className="px-3"
+              className="px-2"
             >
-              <li className="float-left">
-                <small>{likes} Likes</small>
-              </li>
-              <li className="float-right">
-                <small> 0 Shares </small>
-              </li>
-              <li className="float-right px-2">
-                <small> {comments.length} Comments </small>
+              <li className="btn btn-link p-0 float-left">{likes} Likes</li>
+              <li className="btn btn-link p-0 float-right">0 Shares</li>
+              <li className="btn btn-link p-0 float-right px-2">
+                {comments.length} Comments
               </li>
             </ul>
           </div>
