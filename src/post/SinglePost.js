@@ -105,8 +105,8 @@ const SinglePost = ({ postId }) => {
 
     return (
       <div className="card rounded border border-silver mb-3 bg-white">
-        <div className="row border-bottom border-silver mt-3 mx-1">
-          <div className="col-auto">
+        <div className="row border-bottom border-silver pt-2  mx-1">
+          <div className="col-auto px-1">
             <Link to={`${posterId}`}>
               <img
                 style={{
@@ -129,7 +129,7 @@ const SinglePost = ({ postId }) => {
                     lineHeight: "25px",
                     color: "black",
                   }}
-                  className=""
+                  className="btn btn-link m-0 p-0"
                 >
                   <strong>{posterName}</strong>
                 </div>
@@ -141,7 +141,7 @@ const SinglePost = ({ postId }) => {
               </small>
             </div>
           </div>
-          <div className="col text-right">
+          <div className="col text-right px-0">
             <Dropdown isOpen={menu} toggle={toggleOther}>
               <DropdownToggle
                 style={{
@@ -200,8 +200,8 @@ const SinglePost = ({ postId }) => {
             </Dropdown>
           </div>
         </div>
-        <h5 className="mx-3 mt-2"> {currentPost.title} </h5>
-        <p className="card-text mx-3">{currentPost.body}</p>
+        <h5 className="mx-2 mt-2"> {currentPost.title} </h5>
+        <p className="card-text mx-2">{currentPost.body}</p>
         {(currentPost.photo &&
           currentPost.photo.contentType === "image/jpeg") ||
         (currentPost.photo && currentPost.photo.contentType === "image/png") ||
