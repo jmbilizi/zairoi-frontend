@@ -253,10 +253,11 @@ const SinglePost = ({ postId }) => {
               className="px-2"
             >
               <li className="btn btn-link p-0 float-left">{likes} Likes</li>
-              <li className="btn btn-link p-0 float-right">0 Shares</li>
+              <li className="btn btn-link p-0 float-right">1 Shares</li>
+              <li className="btn btn-link p-0 float-right px-2">10 views</li>
               <li
                 onClick={showCommentsFunc}
-                className="btn btn-link p-0 float-right px-2"
+                className="btn btn-link p-0 float-left px-2"
               >
                 {comments.length} Comments
               </li>
