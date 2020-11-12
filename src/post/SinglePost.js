@@ -257,7 +257,7 @@ const SinglePost = ({ postId }) => {
             </ul>
           </div>
         </div>
-        <div className="row border-bottom border-top border-silver mx-3">
+        <div className="row border-bottom border-top border-silver mx-2">
           <div
             style={{ background: "#f9f9f9" }}
             className="col rounded text-center pt-3 m-1"
