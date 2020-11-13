@@ -109,8 +109,8 @@ const Message = ({ userId, userName }) => {
                   borderRadius: "50%",
                 }}
                 className="float-left mr-2"
-                height="38px"
-                width="38px"
+                height="40px"
+                width="40px"
                 onError={(i) => (i.target.src = `${DefaultProfile}`)}
                 src={`${process.env.REACT_APP_API_URL}/user/photo/${userId}`}
                 alt="userName"
@@ -172,10 +172,8 @@ const Message = ({ userId, userName }) => {
 
         <div>
           <div className="chat-conversation">
-            <ul className="list-unstyled p-0">
-              <PerfectScrollbar
-                style={{ height: "320px", marginBottom: "0px" }}
-              >
+            <ul className="list-unstyled p-0 my-0">
+              <PerfectScrollbar style={{ height: "332px", margin: "0px" }}>
                 <li>
                   <div className="chat-day-title">
                     <span className="title">Today</span>
@@ -184,10 +182,14 @@ const Message = ({ userId, userName }) => {
                 {messages.map((message) => (
                   <li
                     key={"test_k" + message.id}
-                    className={message.isRight ? "right" : "left"}
+                    className={message.isRight ? "text-right" : "text-left"}
                   >
                     <div className="conversation-list">
-                      <UncontrolledDropdown>
+                      <UncontrolledDropdown
+                        className={
+                          message.isRight ? "float-left" : "float-right"
+                        }
+                      >
                         <DropdownToggle
                           href="#"
                           className="btn nav-btn"
@@ -195,7 +197,7 @@ const Message = ({ userId, userName }) => {
                         >
                           <i className="bx bx-dots-vertical-rounded"></i>
                         </DropdownToggle>
-                        <DropdownMenu direction="right">
+                        <DropdownMenu right>
                           <DropdownItem href="#">Copy</DropdownItem>
                           <DropdownItem href="#">Save</DropdownItem>
                           <DropdownItem href="#">Forward</DropdownItem>
