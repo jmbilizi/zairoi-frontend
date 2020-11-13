@@ -271,24 +271,39 @@ const SinglePost = ({ postId }) => {
           </div>
         </div>
         <div className="row border-bottom border-top border-silver mx-2">
-          <div className="col rounded text-center border border-silver pt-3 m-1">
-            {!liked ? (
-              <p onClick={likeToggle}>
-                <i className="far fa-thumbs-up"></i> Like
-              </p>
-            ) : (
-              <p onClick={likeToggle}>
-                <i className="far fa-thumbs-down"></i> Unlike
-              </p>
-            )}
-          </div>
+          {!liked ? (
+            <div
+              onMouseEnter={(i) => (i.target.style.background = "#f5f5f5")}
+              onMouseLeave={(i) => (i.target.style.background = "none")}
+              className="col rounded text-center border border-silver py-2 m-1"
+              onClick={likeToggle}
+            >
+              <i className="far fa-thumbs-up"></i> Like
+            </div>
+          ) : (
+            <div
+              onMouseEnter={(i) => (i.target.style.background = "#f5f5f5")}
+              onMouseLeave={(i) => (i.target.style.background = "none")}
+              className="col rounded text-center border border-silver py-2 m-1"
+              onClick={likeToggle}
+            >
+              <i className="far fa-thumbs-down"></i> Unlike
+            </div>
+          )}
+
           <div
-            className="col rounded text-center border border-silver pt-3 m-1"
+            onMouseEnter={(i) => (i.target.style.background = "#f5f5f5")}
+            onMouseLeave={(i) => (i.target.style.background = "none")}
+            className="col rounded text-center border border-silver py-2 m-1"
             onClick={showCommentFormFunc}
           >
             <i className="far fa-comment-alt"></i> Comment
           </div>
-          <div className="col rounded text-center border border-silver pt-3 m-1">
+          <div
+            onMouseEnter={(i) => (i.target.style.background = "#f5f5f5")}
+            onMouseLeave={(i) => (i.target.style.background = "none")}
+            className="col rounded text-center border border-silver py-2 m-1"
+          >
             <i className="far fa-share-square"></i> Share
           </div>
         </div>
