@@ -17,9 +17,7 @@ import {
   Card,
 } from "reactstrap";
 
-//Import Scrollbar
-import PerfectScrollbar from "react-perfect-scrollbar";
-import "react-perfect-scrollbar/dist/css/styles.css";
+import { Scrollbars } from "react-custom-scrollbars";
 // Import scss
 import "./assets/scss/theme.scss";
 
@@ -173,7 +171,7 @@ const Message = ({ userId, userName }) => {
         <div>
           <div className="chat-conversation">
             <ul className="list-unstyled p-0 my-0">
-              <PerfectScrollbar style={{ height: "332px", margin: "0px" }}>
+              <Scrollbars style={{ height: "332px" }}>
                 <li>
                   <div className="chat-day-title">
                     <span className="title">Today</span>
@@ -182,7 +180,9 @@ const Message = ({ userId, userName }) => {
                 {messages.map((message) => (
                   <li
                     key={"test_k" + message.id}
-                    className={message.isRight ? "text-right" : "text-left"}
+                    className={
+                      message.isRight ? "text-right pr-3" : "text-left pl-2"
+                    }
                   >
                     <div className="conversation-list">
                       <UncontrolledDropdown
@@ -197,7 +197,7 @@ const Message = ({ userId, userName }) => {
                         >
                           <i className="bx bx-dots-vertical-rounded"></i>
                         </DropdownToggle>
-                        <DropdownMenu right>
+                        <DropdownMenu>
                           <DropdownItem href="#">Copy</DropdownItem>
                           <DropdownItem href="#">Save</DropdownItem>
                           <DropdownItem href="#">Forward</DropdownItem>
@@ -225,7 +225,7 @@ const Message = ({ userId, userName }) => {
                     </div>
                   </li>
                 ))}
-              </PerfectScrollbar>
+              </Scrollbars>
             </ul>
           </div>
           <div className="p-2 chat-input-section">
