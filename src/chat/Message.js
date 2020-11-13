@@ -139,10 +139,12 @@ const Message = ({ userId, userName }) => {
                 <li className="list-inline-item pr-5">
                   <Dropdown isOpen={other_Menu} toggle={toggleOther}>
                     <DropdownToggle
+                      onMouseEnter={(i) =>
+                        (i.target.style.background = "#f5f5f5")
+                      }
+                      onMouseLeave={(i) => (i.target.style.background = "none")}
                       style={{
-                        // "&:hover": {
-                        //   backgroundColor: "#f5f5f5",
-                        // },
+                        marginTop: "3px",
                         paddingLeft: "6px",
                         paddingRight: "6px",
                       }}
