@@ -149,10 +149,9 @@ const SinglePost = ({ postId }) => {
           <div className="col text-right px-0">
             <Dropdown isOpen={menu} toggle={toggleOther}>
               <DropdownToggle
+                onMouseEnter={(i) => (i.target.style.background = "#f5f5f5")}
+                onMouseLeave={(i) => (i.target.style.background = "none")}
                 style={{
-                  // "&:hover": {
-                  //   backgroundColor: "#f5f5f5",
-                  // },
                   paddingLeft: "6px",
                   paddingRight: "6px",
                 }}
