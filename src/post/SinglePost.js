@@ -26,7 +26,7 @@ const SinglePost = ({ postId }) => {
   const [likes, setLikes] = useState(0);
   const [comments, setComments] = useState([]);
   const [menu, setMenu] = useState(false);
-  const [showCommentForm, setShowCommentForm] = useState(true);
+  const [showCommentForm, setShowCommentForm] = useState(false);
   const [showComments, setShowComments] = useState(false);
 
   const toggleOther = () => {
@@ -250,14 +250,20 @@ const SinglePost = ({ postId }) => {
           <div className="col">
             <ul
               style={{ listStyleType: "none", paddingTop: "10px" }}
-              className="px-2"
+              className="px-2 "
             >
-              <li className="btn btn-link p-0 float-left">{likes} Likes</li>
-              <li className="btn btn-link p-0 float-right">1 Shares</li>
-              <li className="btn btn-link p-0 float-right px-2">10 views</li>
+              <li className="btn btn-link p-0 float-left text-dark">
+                {likes} Likes
+              </li>
+              <li className="btn btn-link p-0 float-right text-dark">
+                1 Shares
+              </li>
+              <li className="btn btn-link p-0 float-right px-2 text-dark">
+                10 views
+              </li>
               <li
                 onClick={showCommentsFunc}
-                className="btn btn-link p-0 float-left px-2"
+                className="btn btn-link p-0 float-left px-2 text-dark"
               >
                 {comments.length} Comments
               </li>
@@ -265,10 +271,7 @@ const SinglePost = ({ postId }) => {
           </div>
         </div>
         <div className="row border-bottom border-top border-silver mx-2">
-          <div
-            style={{ background: "#f9f9f9" }}
-            className="col rounded text-center pt-3 m-1"
-          >
+          <div className="col rounded text-center border border-silver pt-3 m-1">
             {!liked ? (
               <p onClick={likeToggle}>
                 <i className="far fa-thumbs-up"></i> Like
@@ -280,16 +283,12 @@ const SinglePost = ({ postId }) => {
             )}
           </div>
           <div
-            style={{ background: "#f9f9f9" }}
-            className="col rounded text-center pt-3 m-1"
+            className="col rounded text-center border border-silver pt-3 m-1"
             onClick={showCommentFormFunc}
           >
             <i className="far fa-comment-alt"></i> Comment
           </div>
-          <div
-            style={{ background: "#f9f9f9" }}
-            className="col rounded text-center pt-3 m-1"
-          >
+          <div className="col rounded text-center border border-silver pt-3 m-1">
             <i className="far fa-share-square"></i> Share
           </div>
         </div>
