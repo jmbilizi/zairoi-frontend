@@ -123,8 +123,8 @@ const Comment = ({
       {showComments ? (
         <>
           {comments.map((comment, i) => (
-            <div className="row mt-2 mr-auto" key={i}>
-              <div className="col-auto">
+            <div className="row mt-1 mr-auto" key={i}>
+              <div className="col-auto pr-1">
                 <Link to={`/user/${comment.postedBy._id}`}>
                   <img
                     style={{
@@ -138,11 +138,14 @@ const Comment = ({
                   />
                 </Link>
               </div>
-              <div style={{ background: "#f7f7f7" }} className="col rounded">
-                <div className="row pt-2">
+              <div
+                style={{ background: "#f7f7f7" }}
+                className="col rounded ml-0 mr-1"
+              >
+                <div className="row pt-2 pb-0">
                   <div className="col">
                     <Link to={`/user/${comment.postedBy._id}`}>
-                      <>{comment.postedBy.name} </>
+                      <strong>{comment.postedBy.name} </strong>
                     </Link>
                   </div>
                   <div className="col-auto text-right">
@@ -155,7 +158,7 @@ const Comment = ({
                 </div>
                 <div className="row">
                   <div className="col">
-                    <p className="lead">{comment.text}</p>
+                    <p>{comment.text}</p>
                   </div>
                 </div>
                 <div className="row bg-white">
