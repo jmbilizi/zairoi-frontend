@@ -3,6 +3,7 @@ import { comment, uncomment } from "./apiPost";
 import { isAuth, getCookie } from "../auth/helpers";
 import { Link } from "react-router-dom";
 import DefaultProfile from "../images/avatar.jpg";
+const moment = require("moment");
 
 const Comment = ({
   showForm,
@@ -149,11 +150,9 @@ const Comment = ({
                     </Link>
                   </div>
                   <div className="col-auto text-right">
-                    <p>
-                      <small className="font-italic">
-                        {new Date(comment.created).toDateString()}
-                      </small>
-                    </p>
+                    <small className="mute">
+                      {moment(comment.created).fromNow()}
+                    </small>
                   </div>
                 </div>
                 <div className="row">
