@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // import antd from "antd";
 import "antd/dist/antd.css";
 
@@ -14,22 +14,22 @@ function getBase64(file) {
   });
 }
 
-class PicturesWall extends React.Component {
-  state = {
+const PicturesWall = () => {
+  const [state, setState] = useState({
     previewVisible: false,
     previewImage: "",
     previewTitle: "",
     fileList: [],
-  };
+  });
 
-  handleCancel = () => this.setState({ previewVisible: false });
+  const handleCancel = () => setState({ previewVisible: false });
 
-  handlePreview = async (file) => {
+  const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
     }
 
-    this.setState({
+    setState({
       previewImage: file.url || file.preview,
       previewVisible: true,
       previewTitle:
@@ -37,38 +37,36 @@ class PicturesWall extends React.Component {
     });
   };
 
-  handleChange = ({ fileList }) => this.setState({ fileList });
+  const handleChange = ({ fileList }) => setState({ fileList });
 
-  render() {
-    const { previewVisible, previewImage, fileList, previewTitle } = this.state;
-    const uploadButton = (
-      <div>
-        <PlusOutlined />
-        <div style={{ marginTop: 8 }}>Upload</div>
-      </div>
-    );
-    return (
-      <>
-        <Upload
-          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-          listType="picture-card"
-          fileList={fileList}
-          onPreview={this.handlePreview}
-          onChange={this.handleChange}
-        >
-          {fileList.length >= 8 ? null : uploadButton}
-        </Upload>
-        <Modal
-          visible={previewVisible}
-          title={previewTitle}
-          footer={null}
-          onCancel={this.handleCancel}
-        >
-          <img alt="example" style={{ width: "100%" }} src={previewImage} />
-        </Modal>
-      </>
-    );
-  }
-}
+  const { previewVisible, previewImage, fileList, previewTitle } = state;
+  const uploadButton = (
+    <div>
+      <PlusOutlined />
+      <div style={{ marginTop: 8 }}>Upload</div>
+    </div>
+  );
+  return (
+    <>
+      <Upload
+        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        listType="picture-card"
+        fileList={fileList}
+        onPreview={handlePreview}
+        onChange={handleChange}
+      >
+        {fileList.length >= 8 ? null : uploadButton}
+      </Upload>
+      <Modal
+        visible={previewVisible}
+        title={previewTitle}
+        footer={null}
+        onCancel={handleCancel}
+      >
+        <img alt="example" style={{ width: "100%" }} src={previewImage} />
+      </Modal>
+    </>
+  );
+};
 
 export default PicturesWall;
