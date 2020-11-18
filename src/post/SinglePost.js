@@ -53,8 +53,8 @@ const SinglePost = ({ postId }) => {
     });
   }, []);
 
-  const updateComments = (allComments) => {
-    setComments({ allComments });
+  const updateComments = (updatedComments) => {
+    setComments(updatedComments);
   };
 
   const likeToggle = () => {
