@@ -26,9 +26,9 @@ const Comment = ({
   };
 
   const isValid = () => {
-    if (!text.length > 0 || text.length > 150) {
+    if (!text.length > 0 || text.length > 500) {
       setState({
-        error: "Comment should not be empty and less than 150 characters long",
+        error: "Comment should not be empty and less than 500 characters long",
       });
       return false;
     }
