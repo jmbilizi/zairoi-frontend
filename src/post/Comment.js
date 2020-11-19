@@ -10,6 +10,7 @@ const Comment = ({
   showComments,
   postId,
   comments,
+  posterId,
   updateComments,
 }) => {
   const [state, setState] = useState({
@@ -124,7 +125,7 @@ const Comment = ({
       {showComments ? (
         <>
           {comments.map((comment, i) => (
-            <div className="row mt-1 mr-auto" key={i}>
+            <div className="row mt-2 mr-auto" key={i}>
               <div className="col-auto pr-1">
                 <Link to={`/user/${comment.postedBy._id}`}>
                   <img
@@ -156,53 +157,39 @@ const Comment = ({
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col">
-                    <p>{comment.text}</p>
-                  </div>
+                  <div className="col">{comment.text}</div>
                 </div>
-                <div className="row bg-white">
-                  <div className="col-auto">
-                    <p className="text-dark mx-auto">
-                      <i className="far fa-thumbs-up"></i> 2 Like
-                    </p>
+                <div className="row">
+                  <div className="col-auto text-dark">
+                    <i className="far fa-thumbs-up"></i> 2
                   </div>
-                  <div className="col-auto">
-                    <p className="text-dark mx-auto">
-                      <i className="fas fa-comment"></i> 1 Reply
-                    </p>
+                  <div className="col-auto text-dark">
+                    <i className="fas fa-comment"></i> 1
                   </div>
-                  <div className="col-auto">
-                    <p className="text-dark mx-auto">
-                      <span>
-                        {isAuth() && isAuth()._id === comment.postedBy._id && (
-                          <>
-                            <span
-                              onClick={() => deleteConfirmed(comment)}
-                              className="text-danger"
-                            >
-                              <i className="far fa-trash-alt"></i> Delete
-                            </span>
-                          </>
-                        )}
+                  {isAuth() &&
+                    (isAuth()._id === comment.postedBy._id ||
+                      isAuth().role === "admin" ||
+                      isAuth()._id === posterId) && (
+                      <div className="col-auto text-dark ">
+                        <span onClick={() => deleteConfirmed(comment)}>
+                          <i className="far fa-trash-alt"></i>
+                        </span>
+                      </div>
+                    )}
+                  {isAuth() && isAuth()._id === comment.postedBy._id && (
+                    <div className="col-auto text-dark">
+                      <span onClick={() => deleteConfirmed()}>
+                        <i className="fas fa-pencil-alt"></i>
                       </span>
-                    </p>
-                  </div>
-                  <div className="col-auto">
-                    <p className="text-dark mx-auto">
+                    </div>
+                  )}
+                  {isAuth() && isAuth()._id !== comment.postedBy._id && (
+                    <div className="col-auto text-dark">
                       <span>
-                        {isAuth() && isAuth()._id === comment.postedBy._id && (
-                          <>
-                            <span
-                              onClick={() => deleteConfirmed()}
-                              className="text-primary"
-                            >
-                              <i className="fas fa-pencil-alt"></i> Edit
-                            </span>
-                          </>
-                        )}
+                        <i className="fas fa-exclamation-circle"></i>
                       </span>
-                    </p>
-                  </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
