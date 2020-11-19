@@ -312,7 +312,7 @@ const SinglePost = ({ postId }) => {
               showComments={showComments}
               postId={currentPost._id}
               posterId={currentPost.postedBy}
-              comments={comments.reverse()}
+              comments={comments.slice(0).reverse()}
               updateComments={updateComments}
             />
           </div>
