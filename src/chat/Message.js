@@ -127,13 +127,11 @@ const Message = ({ userId, userName }) => {
                 alt="userName"
               />
               <>
-                <Link
-                  to={`/user/${userId}`}
-                  className="font-size-13 mb-1 text-left text-dark"
-                >
-                  <strong>{Chat_Box_Username}</strong>
-                </Link>
-
+                <h5 className="font-size-13 mb-1 text-left btn-link">
+                  <Link to={`/user/${userId}`} className="text-dark">
+                    <strong>{Chat_Box_Username}</strong>
+                  </Link>
+                </h5>
                 <p className="text-muted mb-0 text-left">
                   <i
                     className={
