@@ -5,16 +5,23 @@ import { read } from "../user/apiUser";
 import DefaultProfile from "../images/avatar.jpg";
 
 import {
+  Container,
   Row,
   Col,
   UncontrolledTooltip,
   Button,
+  Media,
   UncontrolledDropdown,
   Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
+  Input,
   Card,
+  Form,
+  FormGroup,
+  InputGroup,
+  InputGroupAddon,
 } from "reactstrap";
 
 import { Scrollbars } from "react-custom-scrollbars";
@@ -46,6 +53,7 @@ const Message = ({ userId, userName }) => {
     },
   ]);
   const [other_Menu, setOther_Menu] = useState(false);
+  const [search_Menu, setSearch_Menu] = useState(false);
   const [Chat_Box_Username, setChat_Box_Username] = useState("");
   const [Chat_Box_Username2, setChat_Box_Username2] = useState("");
   const [Chat_Box_User_Status, setChat_Box_User_Status] = useState("");
@@ -78,6 +86,11 @@ const Message = ({ userId, userName }) => {
 
   const toggleOther = () => {
     setOther_Menu(!other_Menu);
+  };
+
+  //Toggle Chat Box Menus
+  const toggleSearch = () => {
+    setSearch_Menu(!search_Menu);
   };
 
   const addMessage = () => {
@@ -114,9 +127,12 @@ const Message = ({ userId, userName }) => {
                 alt="userName"
               />
               <>
-                <h5 className="font-size-15 mb-1 text-left">
-                  {Chat_Box_Username}
-                </h5>
+                <Link
+                  to={`/user/${userId}`}
+                  className="font-size-13 mb-1 text-left text-dark"
+                >
+                  <strong>{Chat_Box_Username}</strong>
+                </Link>
 
                 <p className="text-muted mb-0 text-left">
                   <i
@@ -133,8 +149,46 @@ const Message = ({ userId, userName }) => {
               </>
             </Col>
             <Col md="5" xs="4">
-              <ul className="list-inline user-chat-nav text-right mb-0">
-                <li className="list-inline-item pr-5">
+              <ul className="list-inline user-chat-nav text-right mb-0 pr-5">
+                <li className="list-inline-item">
+                  <Dropdown isOpen={search_Menu} toggle={toggleSearch}>
+                    <DropdownToggle
+                      onMouseEnter={(i) =>
+                        (i.target.style.background = "#f5f5f5")
+                      }
+                      onMouseLeave={(i) => (i.target.style.background = "none")}
+                      style={{
+                        marginTop: "3px",
+                        paddingLeft: "6px",
+                        paddingRight: "3px",
+                      }}
+                      className="btn"
+                      tag="i"
+                    >
+                      <i class="fas fa-search"></i>
+                    </DropdownToggle>
+                    <DropdownMenu className="dropdown-menu-md" right>
+                      <Form className="p-3">
+                        <FormGroup className="m-0">
+                          <InputGroup>
+                            <Input
+                              type="text"
+                              className="form-control"
+                              placeholder="Search ..."
+                              aria-label="Recipient's username"
+                            />
+                            <InputGroupAddon addonType="append">
+                              <Button color="primary" type="submit">
+                                <i className="mdi mdi-magnify"></i>
+                              </Button>
+                            </InputGroupAddon>
+                          </InputGroup>
+                        </FormGroup>
+                      </Form>
+                    </DropdownMenu>
+                  </Dropdown>
+                </li>
+                <li className="list-inline-item">
                   <Dropdown isOpen={other_Menu} toggle={toggleOther}>
                     <DropdownToggle
                       onMouseEnter={(i) =>
