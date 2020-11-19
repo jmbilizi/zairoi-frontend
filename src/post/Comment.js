@@ -141,13 +141,20 @@ const Comment = ({
                 </Link>
               </div>
               <div
-                style={{ background: "#f7f7f7" }}
-                className="col rounded ml-0 mr-1"
+                // style={{ background: "#f7f7f7" }}
+                className="col rounded border border-silver ml-0 mr-1"
               >
-                <div className="row pt-2 pb-0">
+                <div className="row pt-1 pb-0">
                   <div className="col">
                     <Link to={`/user/${comment.postedBy._id}`}>
-                      <strong>{comment.postedBy.name} </strong>
+                      <div
+                        style={{
+                          color: "black",
+                        }}
+                        className="btn btn-link m-0 p-0"
+                      >
+                        <strong>{comment.postedBy.name} </strong>
+                      </div>
                     </Link>
                   </div>
                   <div className="col-auto text-right">
