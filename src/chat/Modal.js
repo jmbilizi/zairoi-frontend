@@ -11,7 +11,7 @@ const Modal = ({ children, reducer }) => {
   if (reducer === true) {
     element.setAttribute(
       "style",
-      "height: 110px; width: 350px; background: #fff; position: absolute; left: auto; right: 70px; top: 0; bottom: 0; margin: auto; box-shadow: 0 5px 10px 2px rgba(195, 192, 192, 0.5); padding: 1px; text-align: center;"
+      "height: 110px; width: 350px; background: #fff; position: absolute; left: auto; right: 85px; top: 0; bottom: 0; margin: auto; box-shadow: 0 5px 10px 2px rgba(195, 192, 192, 0.5); padding: 1px; text-align: center;"
     );
   }
 
