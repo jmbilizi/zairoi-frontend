@@ -114,7 +114,7 @@ const Message = ({ userId, userName }) => {
       <Card>
         <div className="p-2 border-bottom ">
           <Row>
-            <Col md="7" xs="8">
+            <Col xs="7">
               <img
                 style={{
                   borderRadius: "50%",
@@ -146,7 +146,7 @@ const Message = ({ userId, userName }) => {
                 </p>
               </>
             </Col>
-            <Col md="5" xs="4">
+            <Col xs="5">
               <ul className="list-inline user-chat-nav text-right mb-0 pr-5">
                 <li className="list-inline-item">
                   <Dropdown isOpen={search_Menu} toggle={toggleSearch}>
