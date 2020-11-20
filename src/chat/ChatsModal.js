@@ -20,7 +20,7 @@ const ChatsModal = ({ children, auth }) => {
   }
 
   if (auth === false) {
-    chatsModalRoot.textContent = null;
+    element.textContent = null;
   }
 
   // if (reducer === true) {
