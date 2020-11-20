@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ChatsModal from "./ChatsModal";
 import Chats from "./Chats";
 
-function ChatsBox(auth) {
+const ChatsBox = ({ auth }) => {
   // const [showModal, setShowModal] = useState(false);
   // const [reduceModal, setreduceModal] = useState(false);
 
@@ -17,7 +17,7 @@ function ChatsBox(auth) {
   // };
 
   return (
-    <ChatsModal auth={auth}/>
+    <ChatsModal auth={auth} />
     // <>
 
     //   <button
@@ -47,5 +47,5 @@ function ChatsBox(auth) {
     //   ) : null}
     // </>
   );
-}
+};
 export default ChatsBox;
