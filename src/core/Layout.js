@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import { isAuth, signout } from "../auth/helpers";
 import DefaultProfile from "../images/avatar.jpg";
 import { itemTotal } from "../shop/cartHelpers";
+import ChatsBox from "../chat/ChatsBox";
 // import { Message } from "@primer/octicons-react";
 
 const Layout = ({ children, match, history }) => {
@@ -287,14 +288,33 @@ const Layout = ({ children, match, history }) => {
       </li>
     </ul>
   );
+  const check = () => {
+    if (isAuth() && isAuth().length !== -1) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  console.log(check());
+
+  // const chatsModal = document.getElementById("chats");
 
   return (
-    <Fragment>
+    <>
       {nav()}
       <div style={{ marginTop: "30px" }} className="container-fluid">
         {children}
       </div>
-    </Fragment>
+      {<ChatsBox auth={check()} />}
+      {/* {check() === true
+        ? (chatsModal.textContent = (
+            <i
+              class="fas fa-chalkboard-teacher"
+              style={{ fontSize: "30px", color: "black" }}
+            ></i>
+          ))
+        : (chatsModal.textContent = null)} */}
+    </>
   );
 };
 
