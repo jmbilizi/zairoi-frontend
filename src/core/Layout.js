@@ -305,15 +305,7 @@ const Layout = ({ children, match, history }) => {
       <div style={{ marginTop: "30px" }} className="container-fluid">
         {children}
       </div>
-      {<ChatsBox auth={check()} />}
-      {/* {check() === true
-        ? (chatsModal.textContent = (
-            <i
-              class="fas fa-chalkboard-teacher"
-              style={{ fontSize: "30px", color: "black" }}
-            ></i>
-          ))
-        : (chatsModal.textContent = null)} */}
+      {isAuth() && isAuth().length !== -1 && <ChatsBox auth={check()} />}
     </>
   );
 };
