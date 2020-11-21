@@ -282,7 +282,7 @@ class Chat extends Component {
                 alt="photo"
               />
 
-              <h5 className="font-size-13 mb-1 text-left btn-link">
+              <h5 className="font-size-15 mb-1 text-left btn-link">
                 <Link to={`/user/${isAuth()._id}`} className="text-dark">
                   <strong>{isAuth().name}</strong>
                 </Link>
