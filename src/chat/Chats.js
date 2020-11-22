@@ -314,17 +314,6 @@ class Chat extends Component {
           </Row>
         </div>
 
-        <div className="search-box chat-search-box py-1">
-          <div className="position-relative">
-            <Input
-              type="text"
-              className="form-control"
-              placeholder="Search..."
-            />
-            <i className="bx bx-search-alt search-icon"></i>
-          </div>
-        </div>
-
         <div className="chat-leftsidebar-nav">
           <Nav pills justified>
             <NavItem>
@@ -367,8 +356,18 @@ class Chat extends Component {
               </NavLink>
             </NavItem>
           </Nav>
-          <TabContent activeTab={this.state.activeTab} className="py-2">
+          <TabContent activeTab={this.state.activeTab} className="py-0">
             <TabPane tabId="1">
+              <div className="search-box chat-search-box py-1">
+                <div className="position-relative justify-content-center">
+                  <Input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search..."
+                  />
+                  <i className="bx bx-search-alt search-icon"></i>
+                </div>
+              </div>
               <div>
                 <ul className="list-unstyled chat-list">
                   <Scrollbars style={{ height: "450px" }}>
@@ -422,6 +421,16 @@ class Chat extends Component {
             </TabPane>
 
             <TabPane tabId="2">
+              <div className="search-box chat-search-box py-1">
+                <div className="position-relative">
+                  <Input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search..."
+                  />
+                  <i className="bx bx-search-alt search-icon"></i>
+                </div>
+              </div>
               <ul className="list-unstyled chat-list">
                 <Scrollbars style={{ height: "450px" }}>
                   {this.state.groups.map((group) => (
@@ -451,6 +460,16 @@ class Chat extends Component {
             </TabPane>
 
             <TabPane tabId="3">
+              <div className="search-box chat-search-box py-1 text-center">
+                <div className="position-relative">
+                  <Input
+                    type="text"
+                    className="form-control "
+                    placeholder="Search..."
+                  />
+                  <i className="bx bx-search-alt search-icon"></i>
+                </div>
+              </div>
               <div>
                 <Scrollbars style={{ height: "450px" }}>
                   {this.state.contacts.map((contact) => (
