@@ -13,14 +13,14 @@ const ChatsModal = ({ children, auth, reducer }) => {
     if (reducer === true) {
       element.setAttribute(
         "style",
-        "height: 110px; width: 320px; background: #fff; position: absolute; left: auto; right: 5px; top: 0; bottom: 0; margin: auto; box-shadow: 0 5px 10px 2px rgba(195, 192, 192, 0.5); padding: 1px; text-align: left"
+        "height: 110px; width: 320px; background: #fff; position: absolute; left: auto; right: 0px; top: 0; bottom: 0; margin: auto; box-shadow: 0 5px 10px 2px rgba(195, 192, 192, 0.5); padding: 1px; text-align: left"
       );
     }
 
     if (reducer === false) {
       element.setAttribute(
         "style",
-        "height: 1220px; width: 320px; background: #fff; position: absolute; left: auto; right: 5px; top: 0; bottom: 0; margin: auto; box-shadow: 0 5px 10px 2px rgba(195, 192, 192, 0.5); padding: 1px; text-align: left"
+        "height: 1220px; width: 320px; background: #fff; position: absolute; left: auto; right: 0px; top: 0; bottom: 0; margin: auto; box-shadow: 0 5px 10px 2px rgba(195, 192, 192, 0.5); padding: 1px; text-align: left"
       );
     }
   }
