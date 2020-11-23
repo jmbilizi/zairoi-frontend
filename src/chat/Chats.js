@@ -55,7 +55,7 @@ class Chat extends Component {
           status: "online",
           image: avatar3,
           name: "Adam Miller",
-          description: "I've finished it! See you so",
+          description: "I've finished it! See you when you come home",
           time: "12 min",
           isActive: false,
         },
@@ -91,7 +91,7 @@ class Chat extends Component {
           status: "online",
           image: avatar7,
           name: "Stephen Hadley",
-          description: "I've finished it! See you so",
+          description: "I've finished it! See you soon, Janvier.",
           time: "5 hrs",
           isActive: false,
         },
@@ -383,26 +383,38 @@ class Chat extends Component {
                           }}
                         >
                           <Media>
-                            <div className="align-self-center mr-3">
-                              <i
-                                className={
-                                  chat.status === "online"
-                                    ? "mdi mdi-circle text-success font-size-10"
-                                    : chat.status === "intermediate"
-                                    ? "mdi mdi-circle text-warning font-size-10"
-                                    : "mdi mdi-circle font-size-10"
-                                }
-                              ></i>
-                            </div>
-                            <div className="align-self-center mr-3">
-                              <img
-                                src={chat.image}
-                                className="rounded-circle avatar-xs"
-                                alt=""
-                              />
+                            <div
+                              style={{ position: "relative" }}
+                              className="justify-content-center mt-1"
+                            >
+                              <div
+                                style={{
+                                  position: "absolute",
+                                  zIndex: 10,
+                                  top: "15px",
+                                  left: "23px",
+                                }}
+                              >
+                                <i
+                                  className={
+                                    chat.status === "online"
+                                      ? "mdi mdi-circle text-success font-size-10"
+                                      : chat.status === "intermediate"
+                                      ? "mdi mdi-circle text-warning font-size-10"
+                                      : "mdi mdi-circle font-size-10"
+                                  }
+                                ></i>
+                              </div>
+                              <div style={{ position: "absolute" }}>
+                                <img
+                                  src={chat.image}
+                                  className="rounded-circle avatar-xs"
+                                  alt=""
+                                />
+                              </div>
                             </div>
 
-                            <Media className="overflow-hidden" body>
+                            <Media className="overflow-hidden ml-4 pl-3" body>
                               <h5 className="text-truncate font-size-14 mb-1">
                                 {chat.name}
                               </h5>
