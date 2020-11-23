@@ -315,12 +315,15 @@ class Chat extends Component {
         </div>
 
         <div className="chat-leftsidebar-nav">
-          <Nav pills justified>
+          <Nav pills justified className="border-bottom border-silver">
             <NavItem>
               <NavLink
-                className={classnames({
-                  active: this.state.activeTab === "1",
-                })}
+                onMouseEnter={(i) => (i.target.style.background = "#f5f5f5")}
+                onMouseLeave={(i) => (i.target.style.background = "none")}
+                className="rounded border border-silver py-2 m-1"
+                // className={classnames({
+                //   active: this.state.activeTab === "1",
+                // })}
                 onClick={() => {
                   this.toggleTab("1");
                 }}
@@ -331,9 +334,12 @@ class Chat extends Component {
             </NavItem>
             <NavItem>
               <NavLink
-                className={classnames({
-                  active: this.state.activeTab === "2",
-                })}
+                onMouseEnter={(i) => (i.target.style.background = "#f5f5f5")}
+                onMouseLeave={(i) => (i.target.style.background = "none")}
+                className="rounded border border-silver py-2 m-1"
+                // className={classnames({
+                //   active: this.state.activeTab === "2",
+                // })}
                 onClick={() => {
                   this.toggleTab("2");
                 }}
@@ -344,9 +350,12 @@ class Chat extends Component {
             </NavItem>
             <NavItem>
               <NavLink
-                className={classnames({
-                  active: this.state.activeTab === "3",
-                })}
+                onMouseEnter={(i) => (i.target.style.background = "#f5f5f5")}
+                onMouseLeave={(i) => (i.target.style.background = "none")}
+                className="rounded border border-silver py-2 m-1"
+                // className={classnames({
+                //   active: this.state.activeTab === "3",
+                // })}
                 onClick={() => {
                   this.toggleTab("3");
                 }}
