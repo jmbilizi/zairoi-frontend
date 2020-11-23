@@ -398,10 +398,10 @@ class Chat extends Component {
                                 <i
                                   className={
                                     chat.status === "online"
-                                      ? "mdi mdi-circle text-success font-size-10"
+                                      ? "mdi mdi-circle text-success font-size-12"
                                       : chat.status === "intermediate"
-                                      ? "mdi mdi-circle text-warning font-size-10"
-                                      : "mdi mdi-circle font-size-10"
+                                      ? "mdi mdi-circle text-warning font-size-12"
+                                      : "mdi mdi-circle font-size-12"
                                   }
                                 ></i>
                               </div>
