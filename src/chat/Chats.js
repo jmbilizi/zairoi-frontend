@@ -387,6 +387,7 @@ class Chat extends Component {
                       >
                         <Link
                           to="#"
+                          className="p-3"
                           onClick={() => {
                             this.UserChatOpen(chat.id, chat.name, chat.status);
                           }}
