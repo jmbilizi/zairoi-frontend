@@ -297,6 +297,19 @@ const Layout = ({ children, match, history }) => {
   };
   console.log(check());
 
+  function checkChatReducer() {
+    if (localStorage.getItem("checkChatReducer") === ("true" || "false")) {
+      if (localStorage.getItem("checkChatReducer") === "true") {
+        return true;
+      }
+      if (localStorage.getItem("checkChatReducer") === "false") {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
   // const chatsModal = document.getElementById("chats");
 
   return (
@@ -305,7 +318,9 @@ const Layout = ({ children, match, history }) => {
       <div style={{ marginTop: "30px" }} className="container-fluid">
         {children}
       </div>
-      {isAuth() && isAuth().length !== -1 && <ChatsBox auth={check()} />}
+      {isAuth() && isAuth().length !== -1 && (
+        <ChatsBox auth={check()} checkChatReducer={checkChatReducer()} />
+      )}
     </>
   );
 };

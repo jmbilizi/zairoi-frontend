@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import ChatsModal from "./ChatsModal";
 import Chats from "./Chats";
 
-const ChatsBox = ({ auth }) => {
-  const [reduceModal, setreduceModal] = useState(true);
+const ChatsBox = ({ auth, checkChatReducer }) => {
+  const [reduceModal, setreduceModal] = useState(checkChatReducer);
 
   //reduceModal
   const toggleReduceModal = () => {
     setreduceModal(!reduceModal);
+    localStorage.setItem("checkChatReducer", !reduceModal);
   };
 
   return (
