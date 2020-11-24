@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { isAuth, getCookie } from "../auth/helpers";
 import { read } from "../user/apiUser";
@@ -77,10 +77,13 @@ const Message = ({ userId, userName }) => {
   };
   console.log(userId);
 
-  useEffect(() => {
-    console.log(userId);
-    init(userId);
-  }, []);
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(scrollToBottom, init(userId), []);
 
   console.log(Chat_Box_Username);
 
@@ -108,7 +111,7 @@ const Message = ({ userId, userName }) => {
   };
 
   return (
-    <Col lg="12" className="px-0">
+    <Col lg="12" className="px-0 mb-0">
       {/* <div className="d-lg-flex">
         <div style={{ height: "100%" }} className="user-chat"> */}
       <Card>
@@ -219,142 +222,138 @@ const Message = ({ userId, userName }) => {
             </Col>
           </Row>
         </div>
-
-        <div>
-          <div className="chat-conversation">
-            <ul className="list-unstyled p-0 my-0">
-              <Scrollbars style={{ height: "332px" }}>
-                <li>
-                  <div className="chat-day-title">
-                    <span className="title">Today</span>
+        <div className="chat-conversation">
+          <ul className="list-unstyled p-0 my-0">
+            <Scrollbars
+              style={{
+                height: "332px",
+              }}
+            >
+              <li>
+                <div className="chat-day-title py-0 my-0">
+                  <span className="title">Today</span>
+                </div>
+              </li>
+              {messages.map((message) => (
+                <li
+                  key={"test_k" + message.id}
+                  className={
+                    message.isRight ? "text-right pr-3" : "text-left pl-2"
+                  }
+                >
+                  <div className="conversation-list">
+                    <UncontrolledDropdown
+                      className={message.isRight ? "float-left" : "float-right"}
+                    >
+                      <DropdownToggle href="#" className="btn nav-btn" tag="i">
+                        <i className="bx bx-dots-vertical-rounded"></i>
+                      </DropdownToggle>
+                      <DropdownMenu>
+                        <DropdownItem href="#">Copy</DropdownItem>
+                        <DropdownItem href="#">Save</DropdownItem>
+                        <DropdownItem href="#">Forward</DropdownItem>
+                        <DropdownItem href="#">Delete</DropdownItem>
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
+                    <div className="ctext-wrap p-3">
+                      <div
+                        className={`conversation-name ${
+                          message.isRight ? "text-right" : "text-left"
+                        }`}
+                      >
+                        {message.name}
+                      </div>
+                      <p>{message.message}</p>
+                      <p
+                        className={`chat-time mb-0 ${
+                          message.isRight ? "text-right" : "text-left"
+                        }`}
+                      >
+                        <i className="bx bx-time-five align-left"></i>
+                        {message.time}
+                      </p>
+                    </div>
                   </div>
                 </li>
-                {messages.map((message) => (
-                  <li
-                    key={"test_k" + message.id}
-                    className={
-                      message.isRight ? "text-right pr-3" : "text-left pl-2"
-                    }
-                  >
-                    <div className="conversation-list">
-                      <UncontrolledDropdown
-                        className={
-                          message.isRight ? "float-left" : "float-right"
-                        }
-                      >
-                        <DropdownToggle
-                          href="#"
-                          className="btn nav-btn"
-                          tag="i"
-                        >
-                          <i className="bx bx-dots-vertical-rounded"></i>
-                        </DropdownToggle>
-                        <DropdownMenu>
-                          <DropdownItem href="#">Copy</DropdownItem>
-                          <DropdownItem href="#">Save</DropdownItem>
-                          <DropdownItem href="#">Forward</DropdownItem>
-                          <DropdownItem href="#">Delete</DropdownItem>
-                        </DropdownMenu>
-                      </UncontrolledDropdown>
-                      <div className="ctext-wrap p-3">
-                        <div
-                          className={`conversation-name ${
-                            message.isRight ? "text-right" : "text-left"
-                          }`}
-                        >
-                          {message.name}
-                        </div>
-                        <p>{message.message}</p>
-                        <p
-                          className={`chat-time mb-0 ${
-                            message.isRight ? "text-right" : "text-left"
-                          }`}
-                        >
-                          <i className="bx bx-time-five align-left"></i>
-                          {message.time}
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </Scrollbars>
-            </ul>
-          </div>
-          <div className="p-2 chat-input-section">
-            <Row>
-              <Col>
-                <div className="position-relative">
-                  <input
-                    type="text"
-                    value={curMessage}
-                    onChange={(e) => {
-                      setCurMessage(e.target.value);
-                    }}
-                    className="form-control chat-input"
-                    placeholder="Enter Message..."
-                  />
-                  <div className="chat-input-links">
-                    <ul className="list-inline mb-0">
-                      <li className="list-inline-item">
-                        <Link to="#">
-                          <i
-                            className="mdi mdi-emoticon-happy-outline"
-                            id="Emojitooltip"
-                          ></i>
-                          {/* <UncontrolledTooltip
+              ))}
+              <div ref={messagesEndRef} />
+            </Scrollbars>
+          </ul>
+        </div>
+        <div className="p-2 chat-input-section">
+          <Row>
+            <Col>
+              <div className="position-relative">
+                <input
+                  type="text"
+                  value={curMessage}
+                  onChange={(e) => {
+                    setCurMessage(e.target.value);
+                  }}
+                  className="form-control chat-input"
+                  placeholder="Enter Message..."
+                />
+                <div className="chat-input-links">
+                  <ul className="list-inline mb-0">
+                    <li className="list-inline-item">
+                      <Link to="#">
+                        <i
+                          className="mdi mdi-emoticon-happy-outline"
+                          id="Emojitooltip"
+                        ></i>
+                        {/* <UncontrolledTooltip
                                       placement="top"
                                       target="Emojitooltip"
                                     >
                                       Emojis
                                     </UncontrolledTooltip> */}
-                        </Link>
-                      </li>
-                      <li className="list-inline-item">
-                        <label>
-                          <i
-                            className="mdi mdi-file-image-outline"
-                            id="Imagetooltip"
-                          ></i>
-                          {/* <UncontrolledTooltip
+                      </Link>
+                    </li>
+                    <li className="list-inline-item">
+                      <label>
+                        <i
+                          className="mdi mdi-file-image-outline"
+                          id="Imagetooltip"
+                        ></i>
+                        {/* <UncontrolledTooltip
                                       placement="top"
                                       target="Imagetooltip"
                                     >
                                       Images
                                     </UncontrolledTooltip> */}
-                          <input type="file" hidden />
-                        </label>
-                      </li>
-                      <li className="list-inline-item">
-                        <Link to="#">
-                          <i
-                            className="mdi mdi-file-document-outline"
-                            id="Filetooltip"
-                          ></i>
-                          {/* <UncontrolledTooltip
+                        <input type="file" hidden />
+                      </label>
+                    </li>
+                    <li className="list-inline-item">
+                      <Link to="#">
+                        <i
+                          className="mdi mdi-file-document-outline"
+                          id="Filetooltip"
+                        ></i>
+                        {/* <UncontrolledTooltip
                                       placement="top"
                                       target="Filetooltip"
                                     >
                                       Add Files
                                     </UncontrolledTooltip> */}
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
+                      </Link>
+                    </li>
+                  </ul>
                 </div>
-              </Col>
-              <Col className="col-auto">
-                <Button
-                  type="button"
-                  color="primary"
-                  onClick={addMessage}
-                  className="btn-rounded chat-send waves-effect waves-light"
-                >
-                  <span className="d-none d-sm-inline-block"></span>
-                  <i className="mdi mdi-send"></i>
-                </Button>
-              </Col>
-            </Row>
-          </div>
+              </div>
+            </Col>
+            <Col className="col-auto">
+              <Button
+                type="button"
+                color="primary"
+                onClick={addMessage}
+                className="btn-rounded chat-send waves-effect waves-light"
+              >
+                <span className="d-none d-sm-inline-block"></span>
+                <i className="mdi mdi-send"></i>
+              </Button>
+            </Col>
+          </Row>
         </div>
       </Card>
       {/* </div>
