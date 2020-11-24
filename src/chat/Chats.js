@@ -260,11 +260,9 @@ class Chat extends Component {
   }
 
   render() {
-    const photoUrl = isAuth()._id
-      ? `${process.env.REACT_APP_API_URL}/user/photo/${
-          isAuth()._id
-        }?${new Date().getTime()}`
-      : DefaultProfile;
+    const photoUrl = `${process.env.REACT_APP_API_URL}/user/photo/${
+      isAuth()._id
+    }`;
 
     return (
       <Col lg="12" className="px-0">
@@ -273,6 +271,7 @@ class Chat extends Component {
             <Col xs="9">
               <img
                 src={photoUrl}
+                onError={(i) => (i.target.src = `${DefaultProfile}`)}
                 style={{
                   borderRadius: "50%",
                 }}
