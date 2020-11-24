@@ -230,7 +230,7 @@ const Message = ({ userId, userName }) => {
               }}
             >
               <li>
-                <div className="chat-day-title py-0 my-0">
+                <div className="chat-day-title py-0 mt-3">
                   <span className="title">Today</span>
                 </div>
               </li>
