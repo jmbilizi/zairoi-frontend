@@ -367,7 +367,11 @@ class Chat extends Component {
           </Nav>
           <TabContent activeTab={this.state.activeTab} className="py-0">
             <TabPane tabId="1">
-              <div className="search-box chat-search-box py-1">
+              <div
+                onMouseEnter={(i) => (i.target.style.background = "#f5f5f5")}
+                onMouseLeave={(i) => (i.target.style.background = "none")}
+                className="search-box chat-search-box py-1 rounded border border-silver m-1"
+              >
                 <div className="position-relative justify-content-center">
                   <Input
                     type="text"
@@ -443,7 +447,11 @@ class Chat extends Component {
             </TabPane>
 
             <TabPane tabId="2">
-              <div className="search-box chat-search-box py-1">
+              <div
+                onMouseEnter={(i) => (i.target.style.background = "#f5f5f5")}
+                onMouseLeave={(i) => (i.target.style.background = "none")}
+                className="search-box chat-search-box py-1 rounded border border-silver m-1"
+              >
                 <div className="position-relative">
                   <Input
                     type="text"
@@ -482,7 +490,11 @@ class Chat extends Component {
             </TabPane>
 
             <TabPane tabId="3">
-              <div className="search-box chat-search-box py-1 text-center">
+              <div
+                onMouseEnter={(i) => (i.target.style.background = "#f5f5f5")}
+                onMouseLeave={(i) => (i.target.style.background = "none")}
+                className="search-box chat-search-box py-1 rounded border border-silver m-1"
+              >
                 <div className="position-relative">
                   <Input
                     type="text"
