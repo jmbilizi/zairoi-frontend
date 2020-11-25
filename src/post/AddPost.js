@@ -144,7 +144,7 @@ class AddPost extends Component {
     }
 
     return (
-      <div className="container sticky-top">
+      <div className="container">
         <div className="row">
           <div className="col-sm-12">
             <div
@@ -171,7 +171,7 @@ class AddPost extends Component {
                     type="text"
                     style={{ background: "#f9f9f9" }}
                     className="form-control rounded-pill my-3 mr-2"
-                    placeholder="What's the new post?"
+                    placeholder="Start you new post..."
                   />
                 </div>
               </form>
