@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { list } from "./apiPost";
 import { isAuth } from "../auth/helpers";
-
+import AddPost from "./AddPost";
 import Layout from "../core/Layout";
 import SinglePost from "./SinglePost";
 
@@ -30,6 +30,7 @@ const Post = () => {
       <div className="row">
         <div className="col-md-3 col-sm-0"></div>
         <div className="col-md-6 col-sm-12">
+          <AddPost />
           {posts
             .filter(
               (post) =>
