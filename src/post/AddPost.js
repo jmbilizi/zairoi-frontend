@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { isAuth, getCookie } from "../auth/helpers";
 import { create } from "./apiPost";
 import { Redirect } from "react-router-dom";
-import { Modal } from "antd";
+import { Modal, Button } from "antd";
 import DefaultProfile from "../images/avatar.jpg";
 
 class AddPost extends Component {
@@ -29,9 +29,10 @@ class AddPost extends Component {
 
   handleOk = (e) => {
     console.log(e);
-    this.setState({
-      visible: false,
-    });
+    this.setState({ loading: true });
+    setTimeout(() => {
+      this.setState({ loading: false, visible: false });
+    }, 3000);
   };
 
   handleCancel = (e) => {
@@ -125,14 +126,14 @@ class AddPost extends Component {
           value={body}
         />
       </div>
-      <div className="text-center">
+      {/* <div className="text-center">
         <button
           onClick={this.clickSubmit}
           className="btn btn-raised btn-primary text-center"
         >
           Create Post
         </button>
-      </div>
+      </div> */}
     </form>
   );
 
@@ -171,7 +172,7 @@ class AddPost extends Component {
                     type="text"
                     style={{ background: "#f9f9f9" }}
                     className="form-control rounded-pill my-3 mr-2"
-                    placeholder="Start you new post..."
+                    placeholder="Start your new post..."
                   />
                 </div>
               </form>
@@ -179,8 +180,21 @@ class AddPost extends Component {
             <Modal
               title="Create Post"
               visible={this.state.visible}
-              onOk={this.handleOk}
               onCancel={this.handleCancel}
+              footer={[
+                <Button key="back" onClick={this.handleCancel}>
+                  Cancel
+                </Button>,
+                <Button
+                  key="submit"
+                  type="primary"
+                  loading={loading}
+                  //onClick={this.handleOk}
+                  onClick={this.clickSubmit}
+                >
+                  Post
+                </Button>,
+              ]}
             >
               <div className="container mb-2">
                 <div
