@@ -31,11 +31,16 @@ const Layout = ({ children, match, history }) => {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      <div className="collapse navbar-collapse" id="navbarText">
+      <div
+        style={{ lineHeight: "45px" }}
+        className="collapse navbar-collapse"
+        id="navbarText"
+      >
         <ul style={{ listStyleType: "none" }} className="navbar-nav ml-auto">
           <li className="nav-item">
             <Link to="/" className="nav-link" style={isActive("/")}>
-              <i
+              <i className="fas fa-house-user"></i> Home
+              {/* <i
                 className="fas fa-house-user"
                 style={{
                   fontSize: "25px",
@@ -55,7 +60,7 @@ const Layout = ({ children, match, history }) => {
                 >
                   <small>Home</small>
                 </span>
-              </i>
+              </i> */}
             </Link>
           </li>
           {!isAuth() && (
@@ -66,7 +71,8 @@ const Layout = ({ children, match, history }) => {
                   className="nav-link"
                   style={isActive("/signin")}
                 >
-                  <i
+                  <i className="fas fa-sign-in-alt"></i> Log In
+                  {/* <i
                     className="fas fa-sign-in-alt"
                     style={{
                       fontSize: "25px",
@@ -87,7 +93,7 @@ const Layout = ({ children, match, history }) => {
                     >
                       <small> In</small>
                     </span>
-                  </i>
+                  </i> */}
                 </Link>
               </li>
               <li className="nav-item">
@@ -96,7 +102,8 @@ const Layout = ({ children, match, history }) => {
                   className="nav-link"
                   style={isActive("/signup")}
                 >
-                  <i
+                  <i className="fas fa-user-plus"></i> Log Out
+                  {/* <i
                     className="fas fa-user-plus"
                     style={{
                       fontSize: "25px",
@@ -117,7 +124,7 @@ const Layout = ({ children, match, history }) => {
                     >
                       <small>Up</small>
                     </span>
-                  </i>
+                  </i> */}
                 </Link>
               </li>
             </Fragment>
@@ -143,7 +150,7 @@ const Layout = ({ children, match, history }) => {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" style={isActive("/shop")} to="/shop">
-                  Shop
+                  <i className="fas fa-store"></i> Shop
                 </Link>
               </li>
               <li className="nav-item">
@@ -152,7 +159,7 @@ const Layout = ({ children, match, history }) => {
                   style={isActive(`/findpeople`)}
                   to={`/findpeople`}
                 >
-                  Find People
+                  <i className="fas fa-users"></i> Find People
                 </Link>
               </li>
               <li className="nav-item">
@@ -161,7 +168,8 @@ const Layout = ({ children, match, history }) => {
                   style={isActive("/post/create")}
                   className="nav-link"
                 >
-                  <i
+                  <i className="fas fa-plus"></i> Post
+                  {/* <i
                     style={{ position: "relative", height: "50px" }}
                     className="fas fa-2x fa-plus"
                   >
@@ -177,7 +185,7 @@ const Layout = ({ children, match, history }) => {
                     >
                       <small>Post</small>
                     </span>
-                  </i>
+                  </i> */}
                 </Link>
               </li>
               <li className="nav-item">
@@ -186,7 +194,8 @@ const Layout = ({ children, match, history }) => {
                   style={isActive(`/messaging`)}
                   to={`/messaging`}
                 >
-                  <i
+                  <i className="far fa-comment-alt"></i> Message
+                  {/* <i
                     className="far fa-envelope"
                     style={{
                       fontSize: "25px",
@@ -206,7 +215,7 @@ const Layout = ({ children, match, history }) => {
                     >
                       <small>Msg</small>
                     </span>
-                  </i>
+                  </i> */}
                 </Link>
               </li>
               <li className="nav-item">
@@ -217,6 +226,21 @@ const Layout = ({ children, match, history }) => {
                 >
                   <div style={{ position: "relative", height: "50px" }}>
                     <img
+                      style={{
+                        borderRadius: "50%",
+                        // border: "1px solid black",
+                      }}
+                      // className="float-left mr-2"
+                      height="40px"
+                      width="40px"
+                      onError={(i) => (i.target.src = `${DefaultProfile}`)}
+                      src={`${process.env.REACT_APP_API_URL}/user/photo/${
+                        isAuth()._id
+                      }`}
+                      alt={isAuth().name}
+                    />{" "}
+                    {isAuth().name}
+                    {/* <img
                       style={{
                         borderRadius: "50%",
                         // border: "1px solid black",
@@ -241,13 +265,13 @@ const Layout = ({ children, match, history }) => {
                       }}
                     >
                       <small>Me</small>
-                    </span>
+                    </span> */}
                   </div>
                 </Link>
               </li>
 
               <li className="nav-item">
-                <span
+                <Link
                   className="nav-link"
                   style={{ cursor: "pointer" }}
                   onClick={() => {
@@ -256,7 +280,8 @@ const Layout = ({ children, match, history }) => {
                     });
                   }}
                 >
-                  <i
+                  <i className="fas fa-sign-out-alt"></i> Log Out
+                  {/* <i
                     className="fas fa-sign-out-alt"
                     style={{
                       fontSize: "25px",
@@ -276,14 +301,19 @@ const Layout = ({ children, match, history }) => {
                     >
                       <small>Out</small>
                     </span>
-                  </i>
-                </span>
+                  </i> */}
+                </Link>
               </li>
             </Fragment>
           )}
           <li className="nav-item">
             <Link className="nav-link" style={isActive("/cart")} to="/cart">
-              <i
+              <i className="fas fa-shopping-cart">
+                <sup>
+                  <small style={{ color: "red" }}>{itemTotal()}</small>
+                </sup>
+              </i>
+              {/* <i
                 style={{ position: "relative", height: "50px" }}
                 className="fas fa-2x fa-shopping-cart "
               >
@@ -303,7 +333,7 @@ const Layout = ({ children, match, history }) => {
                 >
                   <small>Cart</small>
                 </span>
-              </i>
+              </i> */}
             </Link>
           </li>
         </ul>
