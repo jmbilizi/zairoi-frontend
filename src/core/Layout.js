@@ -306,13 +306,40 @@ const Layout = ({ children, match, history }) => {
               </li>
             </Fragment>
           )}
-          <li className="nav-item">
+          <li style={{ position: "relative" }} className="nav-item">
             <Link className="nav-link" style={isActive("/cart")} to="/cart">
               <i className="fas fa-shopping-cart">
-                <sup>
-                  <small style={{ color: "red" }}>{itemTotal()}</small>
-                </sup>
-              </i>
+                {" "}
+                <small
+                  style={{
+                    fontSize: "14px",
+                    color: "red",
+                    position: "absolute",
+                    top: "20px",
+                    left: "15px",
+                  }}
+                >
+                  {itemTotal()}
+                </small>
+              </i> Cart
+              {/* <i
+                className="fas fa-2x fa-shopping-cart"
+                style={{
+                  position: "absolute",
+                }}
+              ></i>
+
+              <small
+                style={{
+                  color: "white",
+                  position: "absolute",
+                  top: "-4px",
+                  left: "25px",
+                }}
+              >
+                {itemTotal()}
+              </small> */}
+
               {/* <i
                 style={{ position: "relative", height: "50px" }}
                 className="fas fa-2x fa-shopping-cart "
@@ -367,7 +394,10 @@ const Layout = ({ children, match, history }) => {
   return (
     <>
       {nav()}
-      <div style={{ marginTop: "30px" }} className="container-fluid">
+      <div
+        style={{ marginTop: "30px", overflowX: "hidden" }}
+        className="container-fluid"
+      >
         {children}
       </div>
       {isAuth() && isAuth().length !== -1 && (
