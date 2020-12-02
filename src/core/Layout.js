@@ -271,7 +271,7 @@ const Layout = ({ children, match, history }) => {
               </li>
 
               <li className="nav-item">
-                <Link
+                <div
                   className="nav-link"
                   style={{ cursor: "pointer" }}
                   onClick={() => {
@@ -302,7 +302,7 @@ const Layout = ({ children, match, history }) => {
                       <small>Out</small>
                     </span>
                   </i> */}
-                </Link>
+                </div>
               </li>
             </Fragment>
           )}
@@ -321,7 +321,8 @@ const Layout = ({ children, match, history }) => {
                 >
                   {itemTotal()}
                 </small>
-              </i> Cart
+              </i>{" "}
+              Cart
               {/* <i
                 className="fas fa-2x fa-shopping-cart"
                 style={{
@@ -339,7 +340,6 @@ const Layout = ({ children, match, history }) => {
               >
                 {itemTotal()}
               </small> */}
-
               {/* <i
                 style={{ position: "relative", height: "50px" }}
                 className="fas fa-2x fa-shopping-cart "
@@ -374,7 +374,6 @@ const Layout = ({ children, match, history }) => {
       return false;
     }
   };
-  console.log(check());
 
   function checkChatReducer() {
     if (localStorage.getItem("checkChatReducer") === ("true" || "false")) {
@@ -388,8 +387,6 @@ const Layout = ({ children, match, history }) => {
       return false;
     }
   }
-
-  // const chatsModal = document.getElementById("chats");
 
   return (
     <>
