@@ -10,7 +10,7 @@ const ShowImage = ({ p }) => (
     />
     <div className="card-img-overlay d-flex justify-content-end">
       <a href="#" className="card-link text-danger like">
-        <i class="fas fa-heart fa-2x"></i>
+        <i className="fas fa-heart fa-2x"></i>
       </a>
     </div>
   </div>
