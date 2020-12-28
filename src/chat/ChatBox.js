@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from "./Modal";
 import Message from "./Message";
 
-function ToggleModal({ id, name, theclass }) {
+function ToggleModal({ id, name }) {
   const [showModal, setShowModal] = useState(false);
   const [reduceModal, setreduceModal] = useState(false);
 
@@ -22,10 +22,8 @@ function ToggleModal({ id, name, theclass }) {
       <div
         //I will add on click event that will send you to a card that allow you to send message to the particular user
         onClick={togglemodal}
-        className={`${theclass}`}
       >
         <i className="far fa-comment-alt"></i> Message
-        {/* {!showModal ? "Message" : "End Chat"} */}
       </div>
       {showModal ? (
         <Modal reducer={reduceModal}>

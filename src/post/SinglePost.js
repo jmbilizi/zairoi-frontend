@@ -6,12 +6,6 @@ import { Link, Redirect } from "react-router-dom";
 import { isAuth, getCookie } from "../auth/helpers";
 import Comment from "./Comment";
 import DefaultProfile from "../images/avatar.jpg";
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
 import FollowUnfollow from "../user/FollowUnfollow";
 import ChatBox from "../chat/ChatBox";
 import { Player } from "video-react";
