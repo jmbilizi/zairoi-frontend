@@ -146,8 +146,8 @@ const SinglePost = ({ postId }) => {
             </div>
           </div>
           <div className="col text-right px-0">
-            <Dropdown isOpen={menu} toggle={toggleOther}>
-              <DropdownToggle
+            <div className="dropdown">
+              <div
                 onMouseEnter={(i) => (i.target.style.background = "#f5f5f5")}
                 onMouseLeave={(i) => (i.target.style.background = "none")}
                 style={{
@@ -155,54 +155,57 @@ const SinglePost = ({ postId }) => {
                   paddingRight: "6px",
                 }}
                 className="btn"
-                tag="i"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
               >
                 <i className="fas fa-ellipsis-h"></i>
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem href={`${posterId}`}>
+              </div>
+              <div
+                className="dropdown-menu dropdown-menu-right"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <Link to={`${posterId}`} className="dropdown-item">
                   <i className="far fa-eye"></i> View Profile
-                </DropdownItem>
+                </Link>
 
                 {isAuth() && isAuth()._id !== currentPost.postedBy._id ? (
-                  <>
+                  <Link className="dropdown-item ">
                     <ChatBox
                       id={currentPost.postedBy._id}
                       name={currentPost.postedBy.name}
-                      theclass="ml-4"
                     />
-                    {/* <DropdownItem href="#">Message</DropdownItem> */}
-                  </>
+                  </Link>
                 ) : (
                   ""
                 )}
-                {/* <DropdownItem href="#">Action</DropdownItem> */}
-                <FollowUnfollow
-                  user={currentPost.postedBy}
-                  followClass="ml-4"
-                  unfollowClass="ml-4"
-                />
+                <Link className="dropdown-item">
+                  <FollowUnfollow user={currentPost.postedBy} />
+                </Link>
                 {isAuth() &&
                 (isAuth()._id === currentPost.postedBy._id ||
                   isAuth().role === "admin") ? (
                   <>
-                    <DropdownItem onClick={deleteConfirmed}>
+                    <Link className="dropdown-item " onClick={deleteConfirmed}>
                       <i className="far fa-trash-alt"></i> Delete
-                    </DropdownItem>
-                    <DropdownItem href={`/post/edit/${currentPost._id}`}>
+                    </Link>
+                    <Link
+                      className="dropdown-item"
+                      to={`/post/edit/${currentPost._id}`}
+                    >
                       <i className="fas fa-pencil-alt"></i> Update
-                    </DropdownItem>
+                    </Link>
                   </>
                 ) : (
                   ""
                 )}
-                {/* <DropdownItem href="#">Another Action</DropdownItem> */}
-                {/* <DropdownItem href="#">Follow/Unfollow</DropdownItem> */}
-                <DropdownItem href="#">
+                <Link className="dropdown-item" to="#">
                   <i className="fas fa-exclamation-circle"></i> Report
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
         <h5 className="mx-2 mt-2"> {currentPost.title} </h5>
