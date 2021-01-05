@@ -16,9 +16,9 @@ const Layout = ({ children, match, history }) => {
   };
 
   const nav = () => (
-    <nav className="navbar navbar-expand-lg navbar-light nav-tabs sticky-top">
+    <nav className="navbar navbar-expand-lg navbar-light nav-tabs sticky-top bg-white">
       <a className="navbar-brand" href="/">
-        Logo
+        Sutwa
       </a>
       <button
         className="navbar-toggler"
@@ -40,27 +40,6 @@ const Layout = ({ children, match, history }) => {
           <li className="nav-item">
             <Link to="/" className="nav-link" style={isActive("/")}>
               <i className="fas fa-house-user"></i> Home
-              {/* <i
-                className="fas fa-house-user"
-                style={{
-                  fontSize: "25px",
-                  position: "relative",
-                  height: "50px",
-                }}
-              >
-                <span
-                  style={{
-                    position: "absolute",
-                    height: "20px",
-                    bottom: "0",
-                    right: "0",
-                    left: "0",
-                    fontSize: "20px",
-                  }}
-                >
-                  <small>Home</small>
-                </span>
-              </i> */}
             </Link>
           </li>
           {!isAuth() && (
@@ -72,28 +51,6 @@ const Layout = ({ children, match, history }) => {
                   style={isActive("/signin")}
                 >
                   <i className="fas fa-sign-in-alt"></i> Log In
-                  {/* <i
-                    className="fas fa-sign-in-alt"
-                    style={{
-                      fontSize: "25px",
-                      position: "relative",
-                      height: "50px",
-                      top: "0",
-                    }}
-                  >
-                    <span
-                      style={{
-                        position: "absolute",
-                        height: "20px",
-                        bottom: "0",
-                        right: "0",
-                        left: "0",
-                        fontSize: "20px",
-                      }}
-                    >
-                      <small> In</small>
-                    </span>
-                  </i> */}
                 </Link>
               </li>
               <li className="nav-item">
@@ -103,28 +60,6 @@ const Layout = ({ children, match, history }) => {
                   style={isActive("/signup")}
                 >
                   <i className="fas fa-user-plus"></i> Log Out
-                  {/* <i
-                    className="fas fa-user-plus"
-                    style={{
-                      fontSize: "25px",
-                      position: "relative",
-                      height: "50px",
-                      top: "0",
-                    }}
-                  >
-                    <span
-                      style={{
-                        position: "absolute",
-                        height: "20px",
-                        bottom: "0",
-                        right: "0",
-                        left: "0",
-                        fontSize: "20px",
-                      }}
-                    >
-                      <small>Up</small>
-                    </span>
-                  </i> */}
                 </Link>
               </li>
             </Fragment>
@@ -169,23 +104,6 @@ const Layout = ({ children, match, history }) => {
                   className="nav-link"
                 >
                   <i className="fas fa-plus"></i> Post
-                  {/* <i
-                    style={{ position: "relative", height: "50px" }}
-                    className="fas fa-2x fa-plus"
-                  >
-                    <span
-                      style={{
-                        position: "absolute",
-                        height: "20px",
-                        bottom: "0",
-                        right: "0",
-                        left: "0",
-                        fontSize: "20px",
-                      }}
-                    >
-                      <small>Post</small>
-                    </span>
-                  </i> */}
                 </Link>
               </li>
               <li className="nav-item">
@@ -195,27 +113,6 @@ const Layout = ({ children, match, history }) => {
                   to={`/messaging`}
                 >
                   <i className="far fa-comment-alt"></i> Message
-                  {/* <i
-                    className="far fa-envelope"
-                    style={{
-                      fontSize: "25px",
-                      position: "relative",
-                      height: "50px",
-                    }}
-                  >
-                    <span
-                      style={{
-                        position: "absolute",
-                        height: "20px",
-                        bottom: "0",
-                        right: "0",
-                        left: "0",
-                        fontSize: "20px",
-                      }}
-                    >
-                      <small>Msg</small>
-                    </span>
-                  </i> */}
                 </Link>
               </li>
               <li className="nav-item">
@@ -240,32 +137,6 @@ const Layout = ({ children, match, history }) => {
                       alt={isAuth().name}
                     />{" "}
                     {isAuth().name}
-                    {/* <img
-                      style={{
-                        borderRadius: "50%",
-                        // border: "1px solid black",
-                      }}
-                      // className="float-left mr-2"
-                      height="30px"
-                      width="30px"
-                      onError={(i) => (i.target.src = `${DefaultProfile}`)}
-                      src={`${process.env.REACT_APP_API_URL}/user/photo/${
-                        isAuth()._id
-                      }`}
-                      alt={isAuth().name}
-                    />
-                    <span
-                      style={{
-                        position: "absolute",
-                        height: "22px",
-                        bottom: "0",
-                        right: "0",
-                        left: "0",
-                        fontSize: "20px",
-                      }}
-                    >
-                      <small>Me</small>
-                    </span> */}
                   </div>
                 </Link>
               </li>
@@ -281,27 +152,6 @@ const Layout = ({ children, match, history }) => {
                   }}
                 >
                   <i className="fas fa-sign-out-alt"></i> Log Out
-                  {/* <i
-                    className="fas fa-sign-out-alt"
-                    style={{
-                      fontSize: "25px",
-                      position: "relative",
-                      height: "50px",
-                    }}
-                  >
-                    <span
-                      style={{
-                        position: "absolute",
-                        height: "20px",
-                        bottom: "0",
-                        right: "0",
-                        left: "0",
-                        fontSize: "20px",
-                      }}
-                    >
-                      <small>Out</small>
-                    </span>
-                  </i> */}
                 </div>
               </li>
             </Fragment>
@@ -323,44 +173,6 @@ const Layout = ({ children, match, history }) => {
                 </small>
               </i>{" "}
               Cart
-              {/* <i
-                className="fas fa-2x fa-shopping-cart"
-                style={{
-                  position: "absolute",
-                }}
-              ></i>
-
-              <small
-                style={{
-                  color: "white",
-                  position: "absolute",
-                  top: "-4px",
-                  left: "25px",
-                }}
-              >
-                {itemTotal()}
-              </small> */}
-              {/* <i
-                style={{ position: "relative", height: "50px" }}
-                className="fas fa-2x fa-shopping-cart "
-              >
-                {" "}
-                <sup>
-                  <small style={{}}>{itemTotal()}</small>
-                </sup>
-                <span
-                  style={{
-                    position: "absolute",
-                    height: "20px",
-                    bottom: "0",
-                    right: "0",
-                    left: "0",
-                    fontSize: "20px",
-                  }}
-                >
-                  <small>Cart</small>
-                </span>
-              </i> */}
             </Link>
           </li>
         </ul>
@@ -392,8 +204,8 @@ const Layout = ({ children, match, history }) => {
     <>
       {nav()}
       <div
-        style={{ marginTop: "30px", overflowX: "hidden" }}
-        className="container-fluid"
+        style={{ overflowX: "hidden" }}
+        className="jumbotron jumbotron-fluid pt-3"
       >
         {children}
       </div>
