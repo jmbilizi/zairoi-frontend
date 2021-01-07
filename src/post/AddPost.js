@@ -145,9 +145,9 @@ class AddPost extends Component {
     }
 
     return (
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
-          <div className="col-sm-12">
+          <div className="col-sm-12 px-0">
             <div
               className="card rounded border border-silver mb-3 bg-white"
               style={{ height: "70px" }}

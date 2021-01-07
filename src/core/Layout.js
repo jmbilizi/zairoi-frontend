@@ -17,9 +17,6 @@ const Layout = ({ children, match, history }) => {
 
   const nav = () => (
     <nav className="navbar navbar-expand-lg nav-tabs navbar-light sticky-top bg-white">
-      <a className="navbar-brand" href="/">
-        Sutwa
-      </a>
       <button
         className="navbar-toggler"
         type="button"
@@ -31,6 +28,9 @@ const Layout = ({ children, match, history }) => {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
+      <Link to="/" className="navbar-brand">
+        Sutwa
+      </Link>
       <div
         style={{ lineHeight: "45px" }}
         className="collapse navbar-collapse"
@@ -203,7 +203,10 @@ const Layout = ({ children, match, history }) => {
   return (
     <>
       {nav()}
-      <div style={{ overflowX: "hidden" }} className="pt-3">
+      <div
+        style={{ overflowX: "hidden" }}
+        className="container-fluid pt-3 px-0 px-xl-5"
+      >
         {children}
       </div>
       {isAuth() && isAuth().length !== -1 && (

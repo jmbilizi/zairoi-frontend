@@ -27,26 +27,24 @@ const Post = () => {
 
   return (
     <Layout>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-2 col-sm-0"></div>
-          <div className="col-md-8 col-sm-12">
-            <AddPost />
-            {posts
-              .filter(
-                (post) =>
-                  following.includes(post.postedBy._id) === true ||
-                  isAuth()._id === post.postedBy._id ||
-                  post.postedBy.role === "admin"
-              )
-              .map((post, i) => (
-                <div key={i}>
-                  <SinglePost postId={post._id} />
-                </div>
-              ))}
-          </div>
-          <div className="col-md-2 col-sm-0"></div>
+      <div className="row mx-0">
+        <div className="col-md-3 col-sm-0"></div>
+        <div className="col-md-6 col-sm-12 mx-0 px-0">
+          <AddPost />
+          {posts
+            .filter(
+              (post) =>
+                following.includes(post.postedBy._id) === true ||
+                isAuth()._id === post.postedBy._id ||
+                post.postedBy.role === "admin"
+            )
+            .map((post, i) => (
+              <div key={i}>
+                <SinglePost postId={post._id} />
+              </div>
+            ))}
         </div>
+        <div className="col-md-3 col-sm-0"></div>
       </div>
     </Layout>
   );
