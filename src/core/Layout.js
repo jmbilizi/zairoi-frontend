@@ -16,7 +16,7 @@ const Layout = ({ children, match, history }) => {
   };
 
   const nav = () => (
-    <nav className="navbar navbar-expand-lg navbar-light nav-tabs sticky-top bg-white">
+    <nav className="navbar navbar-expand-lg nav-tabs navbar-light sticky-top bg-white">
       <a className="navbar-brand" href="/">
         Sutwa
       </a>
@@ -203,10 +203,7 @@ const Layout = ({ children, match, history }) => {
   return (
     <>
       {nav()}
-      <div
-        style={{ overflowX: "hidden" }}
-        className="jumbotron jumbotron-fluid pt-3"
-      >
+      <div style={{ overflowX: "hidden" }} className="pt-3">
         {children}
       </div>
       {isAuth() && isAuth().length !== -1 && (
