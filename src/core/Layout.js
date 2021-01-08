@@ -34,7 +34,7 @@ const Layout = ({ children, match, history }) => {
 
       <div
         style={{ lineHeight: "40px" }}
-        className="collapse navbar-collapse"
+        className="collapse navbar-collapse order-3 order-lg-2"
         id="navbarText"
       >
         <ul style={{ listStyleType: "none" }} className="navbar-nav ml-auto">
@@ -142,7 +142,7 @@ const Layout = ({ children, match, history }) => {
 
       {isAuth() && (
         <div
-          className="nav-item dropdown"
+          className="nav-item dropdown d-flex flex-row order-2 order-lg-3"
           style={{ lineHeight: "50px" }}
           aria-haspopup="true"
           aria-expanded="false"
