@@ -31,6 +31,7 @@ const Layout = ({ children, match, history }) => {
       <Link to="/" className="navbar-brand mr-auto">
         Sutwa
       </Link>
+
       <div
         style={{ lineHeight: "40px" }}
         className="collapse navbar-collapse"
@@ -115,20 +116,6 @@ const Layout = ({ children, match, history }) => {
                   <i className="far fa-comment-alt"></i> Message
                 </Link>
               </li>
-
-              <li className="nav-item">
-                <div
-                  className="nav-link"
-                  style={{ cursor: "pointer" }}
-                  onClick={() => {
-                    signout(() => {
-                      history.push("/");
-                    });
-                  }}
-                >
-                  <i className="fas fa-sign-out-alt"></i> Log Out
-                </div>
-              </li>
             </Fragment>
           )}
           <li style={{ position: "relative" }} className="nav-item">
@@ -152,14 +139,47 @@ const Layout = ({ children, match, history }) => {
           </li>
         </ul>
       </div>
+
       {isAuth() && (
-        <Fragment>
-          <div style={{ lineHeight: "50px" }} className="nav-item">
-            <Link
-              className="nav-link"
-              style={isActive(`/user/${isAuth()._id}`)}
-              to={`/user/${isAuth()._id}`}
-            >
+        <div
+          className="nav-item dropdown"
+          style={{ lineHeight: "50px" }}
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <Link
+            className="nav-link dropdown-toggle"
+            id="navbarDropdownMenuLink"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            style={isActive(`/user/${isAuth()._id}`)}
+            to={`/user/${isAuth()._id}`}
+          >
+            {/* <div style={{ position: "relative", height: "50px" }}> */}
+            <img
+              style={{
+                borderRadius: "50%",
+                // border: "1px solid black",
+              }}
+              // className="float-left mr-2"
+              height="40px"
+              width="40px"
+              onError={(i) => (i.target.src = `${DefaultProfile}`)}
+              src={`${process.env.REACT_APP_API_URL}/user/photo/${
+                isAuth()._id
+              }`}
+              alt={isAuth().name}
+            />{" "}
+            {/* {isAuth().name} */}
+            {/* </div> */}
+          </Link>
+
+          <div
+            className="dropdown-menu dropdown-menu-right"
+            aria-labelledby="navbarDropdownMenuLink"
+          >
+            <Link className="dropdown-item lead" to={`/user/${isAuth()._id}`}>
               <div style={{ position: "relative", height: "50px" }}>
                 <img
                   style={{
@@ -174,12 +194,28 @@ const Layout = ({ children, match, history }) => {
                     isAuth()._id
                   }`}
                   alt={isAuth().name}
-                />{" "}
-                {/* {isAuth().name} */}
+                />
+                {"  "}
+                {isAuth().name}
               </div>
             </Link>
+            <Link className="dropdown-item lead" to={`/user/${isAuth()._id}`}>
+              <i className="far fa-eye mr-2"></i> View Profile
+            </Link>
+
+            <Link
+              className="dropdown-item lead"
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                signout(() => {
+                  history.push("/");
+                });
+              }}
+            >
+              <i className="fas fa-sign-out-alt mr-2"></i> Log Out
+            </Link>
           </div>
-        </Fragment>
+        </div>
       )}
     </nav>
   );

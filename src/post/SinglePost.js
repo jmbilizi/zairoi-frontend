@@ -161,12 +161,12 @@ const SinglePost = ({ postId }) => {
                 className="dropdown-menu dropdown-menu-right"
                 aria-labelledby="dropdownMenuButton"
               >
-                <Link to={`${posterId}`} className="dropdown-item">
-                  <i className="far fa-eye"></i> View Profile
+                <Link to={`${posterId}`} className="dropdown-item lead">
+                  <i className="far fa-eye mr-2"></i> View Profile
                 </Link>
 
                 {isAuth() && isAuth()._id !== currentPost.postedBy._id ? (
-                  <Link className="dropdown-item ">
+                  <Link className="dropdown-item lead">
                     <ChatBox
                       id={currentPost.postedBy._id}
                       name={currentPost.postedBy.name}
@@ -175,28 +175,31 @@ const SinglePost = ({ postId }) => {
                 ) : (
                   ""
                 )}
-                <Link className="dropdown-item">
+                <Link className="dropdown-item lead">
                   <FollowUnfollow user={currentPost.postedBy} />
                 </Link>
                 {isAuth() &&
                 (isAuth()._id === currentPost.postedBy._id ||
                   isAuth().role === "admin") ? (
                   <>
-                    <Link className="dropdown-item " onClick={deleteConfirmed}>
-                      <i className="far fa-trash-alt"></i> Delete
+                    <Link
+                      className="dropdown-item lead"
+                      onClick={deleteConfirmed}
+                    >
+                      <i className="far fa-trash-alt mr-2"></i> Delete
                     </Link>
                     <Link
-                      className="dropdown-item"
+                      className="dropdown-item lead"
                       to={`/post/edit/${currentPost._id}`}
                     >
-                      <i className="fas fa-pencil-alt"></i> Update
+                      <i className="fas fa-pencil-alt mr-2"></i> Update
                     </Link>
                   </>
                 ) : (
                   ""
                 )}
-                <Link className="dropdown-item" to="#">
-                  <i className="fas fa-exclamation-circle"></i> Report
+                <Link className="dropdown-item lead" to="#">
+                  <i className="fas fa-exclamation-circle mr-2"></i> Report
                 </Link>
               </div>
             </div>

@@ -24,7 +24,7 @@ function ToggleModal({ id, name, theclass }) {
         onClick={togglemodal}
         className={`${theclass}`}
       >
-        <i className="far fa-comment-alt"></i> Message
+        <i className="far fa-comment-alt mr-2"></i> Message
         {/* {!showModal ? "Message" : "End Chat"} */}
       </div>
       {showModal ? (
