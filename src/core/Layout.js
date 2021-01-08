@@ -179,16 +179,19 @@ const Layout = ({ children, match, history }) => {
             className="dropdown-menu dropdown-menu-right"
             aria-labelledby="navbarDropdownMenuLink"
           >
-            <Link className="dropdown-item lead" to={`/user/${isAuth()._id}`}>
+            <Link
+              className="dropdown-item pl-3 lead"
+              to={`/user/${isAuth()._id}`}
+            >
               <div style={{ position: "relative", height: "50px" }}>
                 <img
                   style={{
                     borderRadius: "50%",
                     // border: "1px solid black",
                   }}
-                  // className="float-left mr-2"
-                  height="40px"
-                  width="40px"
+                  className="mr-2"
+                  height="30px"
+                  width="30px"
                   onError={(i) => (i.target.src = `${DefaultProfile}`)}
                   src={`${process.env.REACT_APP_API_URL}/user/photo/${
                     isAuth()._id
@@ -199,8 +202,31 @@ const Layout = ({ children, match, history }) => {
                 {isAuth().name}
               </div>
             </Link>
-            <Link className="dropdown-item lead" to={`/user/${isAuth()._id}`}>
+
+            {/* <Link className="dropdown-item lead" to={`/user/${isAuth()._id}`}>
               <i className="far fa-eye mr-2"></i> View Profile
+            </Link> */}
+
+            <Link
+              style={{ position: "relative" }}
+              className="dropdown-item lead"
+              to="/cart"
+            >
+              <i className="fas fa-shopping-cart mr-2">
+                {" "}
+                <small
+                  style={{
+                    fontSize: "14px",
+                    color: "red",
+                    position: "absolute",
+                    top: "20px",
+                    left: "15px",
+                  }}
+                >
+                  {itemTotal()}
+                </small>
+              </i>{" "}
+              Cart
             </Link>
 
             <Link
