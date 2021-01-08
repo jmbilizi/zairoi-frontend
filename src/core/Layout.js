@@ -16,7 +16,7 @@ const Layout = ({ children, match, history }) => {
   };
 
   const nav = () => (
-    <nav className="navbar navbar-expand-lg nav-tabs navbar-light sticky-top bg-white p-0 pl-3 ">
+    <nav className="navbar navbar-expand-lg nav-tabs navbar-light sticky-top bg-white ">
       <button
         className="navbar-toggler mr-2"
         type="button"
@@ -148,7 +148,7 @@ const Layout = ({ children, match, history }) => {
           aria-expanded="false"
         >
           <Link
-            className="nav-link dropdown-toggle"
+            className="dropdown-toggle"
             id="navbarDropdownMenuLink"
             data-toggle="dropdown"
             aria-haspopup="true"
