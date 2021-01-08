@@ -18,7 +18,7 @@ const Layout = ({ children, match, history }) => {
   const nav = () => (
     <nav className="navbar navbar-expand-lg nav-tabs navbar-light sticky-top bg-white p-0 pl-3 ">
       <button
-        className="navbar-toggler"
+        className="navbar-toggler mr-2"
         type="button"
         data-toggle="collapse"
         data-target="#navbarText"
@@ -28,7 +28,7 @@ const Layout = ({ children, match, history }) => {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      <Link to="/" className="navbar-brand">
+      <Link to="/" className="navbar-brand mr-auto">
         Sutwa
       </Link>
       <div
