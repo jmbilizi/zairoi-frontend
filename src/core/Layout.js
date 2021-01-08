@@ -16,7 +16,7 @@ const Layout = ({ children, match, history }) => {
   };
 
   const nav = () => (
-    <nav className="navbar navbar-expand-lg nav-tabs navbar-light sticky-top bg-white">
+    <nav className="navbar navbar-expand-lg nav-tabs navbar-light sticky-top bg-white p-0 pl-3 ">
       <button
         className="navbar-toggler"
         type="button"
@@ -32,7 +32,7 @@ const Layout = ({ children, match, history }) => {
         Sutwa
       </Link>
       <div
-        style={{ lineHeight: "45px" }}
+        style={{ lineHeight: "40px" }}
         className="collapse navbar-collapse"
         id="navbarText"
       >
@@ -59,7 +59,7 @@ const Layout = ({ children, match, history }) => {
                   className="nav-link"
                   style={isActive("/signup")}
                 >
-                  <i className="fas fa-user-plus"></i> Log Out
+                  <i className="fas fa-user-plus"></i> Sign Up
                 </Link>
               </li>
             </Fragment>
@@ -115,31 +115,6 @@ const Layout = ({ children, match, history }) => {
                   <i className="far fa-comment-alt"></i> Message
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  style={isActive(`/user/${isAuth()._id}`)}
-                  to={`/user/${isAuth()._id}`}
-                >
-                  <div style={{ position: "relative", height: "50px" }}>
-                    <img
-                      style={{
-                        borderRadius: "50%",
-                        // border: "1px solid black",
-                      }}
-                      // className="float-left mr-2"
-                      height="40px"
-                      width="40px"
-                      onError={(i) => (i.target.src = `${DefaultProfile}`)}
-                      src={`${process.env.REACT_APP_API_URL}/user/photo/${
-                        isAuth()._id
-                      }`}
-                      alt={isAuth().name}
-                    />{" "}
-                    {isAuth().name}
-                  </div>
-                </Link>
-              </li>
 
               <li className="nav-item">
                 <div
@@ -177,6 +152,35 @@ const Layout = ({ children, match, history }) => {
           </li>
         </ul>
       </div>
+      {isAuth() && (
+        <Fragment>
+          <div style={{ lineHeight: "50px" }} className="nav-item">
+            <Link
+              className="nav-link"
+              style={isActive(`/user/${isAuth()._id}`)}
+              to={`/user/${isAuth()._id}`}
+            >
+              <div style={{ position: "relative", height: "50px" }}>
+                <img
+                  style={{
+                    borderRadius: "50%",
+                    // border: "1px solid black",
+                  }}
+                  // className="float-left mr-2"
+                  height="40px"
+                  width="40px"
+                  onError={(i) => (i.target.src = `${DefaultProfile}`)}
+                  src={`${process.env.REACT_APP_API_URL}/user/photo/${
+                    isAuth()._id
+                  }`}
+                  alt={isAuth().name}
+                />{" "}
+                {/* {isAuth().name} */}
+              </div>
+            </Link>
+          </div>
+        </Fragment>
+      )}
     </nav>
   );
   const check = () => {
