@@ -337,7 +337,7 @@ const SinglePost = ({ postId }) => {
       <div className="row">
         <div className="col-sm-12 px-0">
           {!post ? (
-            <div className="jumbotron text-center">
+            <div className="jumbotron text-center bg-white">
               <h2>Loading...</h2>
             </div>
           ) : (
