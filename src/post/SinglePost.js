@@ -175,9 +175,14 @@ const SinglePost = ({ postId }) => {
                 ) : (
                   ""
                 )}
-                <Link className="dropdown-item lead">
-                  <FollowUnfollow user={currentPost.postedBy} />
-                </Link>
+                {isAuth() && isAuth()._id !== currentPost.postedBy._id ? (
+                  <Link className="dropdown-item lead">
+                    <FollowUnfollow user={currentPost.postedBy} />
+                  </Link>
+                ) : (
+                  ""
+                )}
+
                 {isAuth() &&
                 (isAuth()._id === currentPost.postedBy._id ||
                   isAuth().role === "admin") ? (
