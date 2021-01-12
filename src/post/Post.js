@@ -7,10 +7,9 @@ import SinglePost from "./SinglePost";
 
 const Post = () => {
   const [posts, setPosts] = useState([]);
-  const [page, setPage] = useState(1);
 
-  const loadPosts = (page) => {
-    list(page).then((data) => {
+  const loadPosts = () => {
+    list().then((data) => {
       if (data.error) {
         console.log(data.error);
       } else {
@@ -20,7 +19,7 @@ const Post = () => {
   };
 
   useEffect(() => {
-    loadPosts(page);
+    loadPosts();
   }, []);
 
   const following = isAuth().following;

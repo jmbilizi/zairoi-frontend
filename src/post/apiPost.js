@@ -24,8 +24,8 @@ export const create = (userId, token, post) => {
 // };
 
 // with pagination
-export const list = (page) => {
-  return fetch(`${process.env.REACT_APP_API_URL}/posts/?page=${page}`, {
+export const list = () => {
+  return fetch(`${process.env.REACT_APP_API_URL}/posts`, {
     method: "GET",
   })
     .then((response) => {
