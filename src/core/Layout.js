@@ -26,9 +26,16 @@ const Layout = ({ children, match, history }) => {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span className="navbar-toggler-icon"></span>
+        <span
+          style={{ fontSize: "25px" }}
+          className="navbar-toggler-icon"
+        ></span>
       </button>
-      <Link to="/" className="navbar-brand mr-auto">
+      <Link
+        style={{ fontSize: "30px", fontFamily: "cursive" }}
+        to="/"
+        className="navbar-brand mr-auto"
+      >
         Sutwa
       </Link>
 
@@ -163,8 +170,8 @@ const Layout = ({ children, match, history }) => {
                 // border: "1px solid black",
               }}
               // className="float-left mr-2"
-              height="40px"
-              width="40px"
+              height="50px"
+              width="50px"
               onError={(i) => (i.target.src = `${DefaultProfile}`)}
               src={`${process.env.REACT_APP_API_URL}/user/photo/${
                 isAuth()._id
