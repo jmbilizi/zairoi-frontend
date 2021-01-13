@@ -210,8 +210,8 @@ const SinglePost = ({ postId }) => {
             </div>
           </div>
         </div>
-        <h5 className="mx-2 mt-2"> {currentPost.title} </h5>
-        <p className="card-text mx-2">{currentPost.body}</p>
+        <h4 className="mx-2 mt-2"> {currentPost.title} </h4>
+        <p className="card-text mx-2 lead">{currentPost.body}</p>
         {(currentPost.photo &&
           currentPost.photo.contentType === "image/jpeg") ||
         (currentPost.photo && currentPost.photo.contentType === "image/png") ||
