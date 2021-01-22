@@ -16,9 +16,9 @@ const Layout = ({ children, match, history }) => {
   };
 
   const nav = () => (
-    <nav className="navbar navbar-expand-lg nav-tabs navbar-light sticky-top bg-white ">
+    <nav className="navbar navbar-expand-lg nav-tabs navbar-light sticky-top bg-white p-0 mx-0">
       <button
-        className="navbar-toggler mr-2"
+        className="navbar-toggler m-0 "
         type="button"
         data-toggle="collapse"
         data-target="#navbarText"
@@ -34,7 +34,7 @@ const Layout = ({ children, match, history }) => {
       <Link
         style={{ fontSize: "30px", fontFamily: "cursive" }}
         to="/"
-        className="navbar-brand mr-auto"
+        className="navbar-brand my-0 px-2 py-0 mr-auto"
       >
         Sutwa
       </Link>
