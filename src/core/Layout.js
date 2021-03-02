@@ -37,17 +37,30 @@ const Layout = ({ children, match, history }) => {
           </span>
         </button>
         <Link
-          style={{ fontSize: "30px", fontFamily: "cursive" }}
+          style={{
+            fontSize: "30px",
+            fontFamily: "cursive",
+          }}
           to="/"
           className="navbar-brand my-0 px-2 py-0 mr-auto"
         >
-          Sutwa
+          <div>
+            <span
+              style={{
+                fontFamily: "sans-serif",
+              }}
+              className="display-4"
+            >
+              S
+            </span>
+            utwa
+          </div>
         </Link>
       </>
     );
   };
   const nav = () => (
-    <nav className="navbar navbar-expand-lg nav-tabs navbar-light sticky-top bg-white">
+    <nav className="navbar navbar-expand-lg navbar-light sticky-top bg-white py-0">
       {toggleAndLogoButton()}
       <div
         // style={{ lineHeight: "40px" }}
@@ -57,7 +70,7 @@ const Layout = ({ children, match, history }) => {
         <ul style={{ listStyleType: "none" }} className="navbar-nav ml-auto">
           <div
             id="sideBarHeader"
-            className="navbar navbar-expand-lg nav-tabs navbar-light bg-white py-2"
+            className="navbar navbar-expand-lg nav-tabs navbar-light bg-white py-0"
           >
             {toggleAndLogoButton()}
           </div>
@@ -186,8 +199,8 @@ const Layout = ({ children, match, history }) => {
                 // border: "1px solid black",
               }}
               // className="float-left mr-2"
-              height="50px"
-              width="50px"
+              height="40px"
+              width="40px"
               onError={(i) => (i.target.src = `${DefaultProfile}`)}
               src={`${process.env.REACT_APP_API_URL}/user/photo/${
                 isAuth()._id
