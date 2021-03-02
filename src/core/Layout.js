@@ -4,6 +4,7 @@ import { isAuth, signout } from "../auth/helpers";
 import DefaultProfile from "../images/avatar.jpg";
 import { itemTotal } from "../shop/cartHelpers";
 import ChatsBox from "../chat/ChatsBox";
+import "./Navbar.css";
 // import { Message } from "@primer/octicons-react";
 
 const Layout = ({ children, match, history }) => {
@@ -15,36 +16,51 @@ const Layout = ({ children, match, history }) => {
     }
   };
 
+  const toggleAndLogoButton = () => {
+    return (
+      <>
+        <button
+          className="navbar-toggler navbar-toggler-left collapsed"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarText"
+          aria-controls="navbarText"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span
+            style={{ fontSize: "25px" }}
+            className="navbar-toggler-icon"
+          ></span>
+          <span style={{ fontSize: "32px" }} className="my-1 mx-2 close">
+            X
+          </span>
+        </button>
+        <Link
+          style={{ fontSize: "30px", fontFamily: "cursive" }}
+          to="/"
+          className="navbar-brand my-0 px-2 py-0 mr-auto"
+        >
+          Sutwa
+        </Link>
+      </>
+    );
+  };
   const nav = () => (
-    <nav className="navbar navbar-expand-lg nav-tabs navbar-light sticky-top bg-white p-0 mx-0">
-      <button
-        className="navbar-toggler m-0 "
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarText"
-        aria-controls="navbarText"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span
-          style={{ fontSize: "25px" }}
-          className="navbar-toggler-icon"
-        ></span>
-      </button>
-      <Link
-        style={{ fontSize: "30px", fontFamily: "cursive" }}
-        to="/"
-        className="navbar-brand my-0 px-2 py-0 mr-auto"
-      >
-        Sutwa
-      </Link>
-
+    <nav className="navbar navbar-expand-lg nav-tabs navbar-light sticky-top bg-white">
+      {toggleAndLogoButton()}
       <div
-        style={{ lineHeight: "40px" }}
+        // style={{ lineHeight: "40px" }}
         className="collapse navbar-collapse order-3 order-lg-2"
         id="navbarText"
       >
         <ul style={{ listStyleType: "none" }} className="navbar-nav ml-auto">
+          <div
+            id="sideBarHeader"
+            className="navbar navbar-expand-lg nav-tabs navbar-light bg-white py-2"
+          >
+            {toggleAndLogoButton()}
+          </div>
           <li className="nav-item">
             <Link to="/" className="nav-link" style={isActive("/")}>
               <i className="fas fa-house-user"></i> Home
@@ -236,7 +252,7 @@ const Layout = ({ children, match, history }) => {
               Cart
             </Link>
 
-            <Link
+            <div
               className="dropdown-item lead"
               style={{ cursor: "pointer" }}
               onClick={() => {
@@ -246,7 +262,7 @@ const Layout = ({ children, match, history }) => {
               }}
             >
               <i className="fas fa-sign-out-alt mr-2"></i> Log Out
-            </Link>
+            </div>
           </div>
         </div>
       )}

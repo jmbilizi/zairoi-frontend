@@ -1,0 +1,50 @@
+/* navbar becomes mobile sidebar under lg breakpoint */
+@media (max-width: 992px) {
+  body {
+    height: 100vh;
+    overflow: scroll;
+  }
+  .navbar-collapse.collapsing .navbar-nav {
+    background-color: white;
+    color: white;
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: -260px;
+    transition: all 0.2s ease;
+  }
+
+  .navbar-collapse.show .navbar-nav {
+    background-color: white;
+    color: white;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    flex-direction: column;
+    height: auto;
+    width: 260px;
+    transition: left 0.35s ease;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+
+  .nav-item {
+    padding-left: 1rem;
+  }
+  .nav-item:hover {
+    background-color: #f5f5f5;
+  }
+  .navbar-toggler > .close {
+    display: inline;
+  }
+  .navbar-toggler.collapsed > .close,
+  .navbar-toggler:not(.collapsed) > .navbar-toggler-icon {
+    display: none;
+  }
+}
+@media (min-width: 992px) {
+  #sideBarHeader {
+    display: none;
+  }
+}

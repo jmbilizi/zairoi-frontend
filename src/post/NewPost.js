@@ -78,7 +78,8 @@ class NewPost extends Component {
         <input
           onChange={this.handleChange("photo")}
           type="file"
-          multiple accept="image/*|audio/*|video/*"
+          multiple
+          accept="image/*|audio/*|video/*"
           // accept="image/*"
           className="form-control"
         />

@@ -59,6 +59,17 @@
     ></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
+      //sidebar close when clicked outside
+      $(document).ready(function () {
+        $(document).click(function (event) {
+          var click = $(event.target);
+          var _open = $(".navbar-collapse").hasClass("show");
+          if (_open === true && !click.hasClass("navbar-toggler")) {
+            $(".navbar-toggler").click();
+          }
+        });
+      });
+
       AOS.init();
     </script>
   </body>
